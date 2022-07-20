@@ -38,5 +38,4 @@ void main() {
     // assert
     expect(result, Right(tCode));
   });
-  // TODO: write a test for the error case
 }
