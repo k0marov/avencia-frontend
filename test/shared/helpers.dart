@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:avencia/logic/transactions/transaction_code.dart';
+import 'package:avencia/logic/transactions/internal/transaction_code.dart';
 import 'package:dartz/dartz.dart';
 import 'package:english_words/english_words.dart' as english_words;
 

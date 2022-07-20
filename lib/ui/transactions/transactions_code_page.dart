@@ -1,10 +1,11 @@
+import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_code_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../../di.dart';
-import '../../logic/transactions/transaction_code.dart';
+import '../../logic/transactions/internal/transaction_code.dart';
 import '../shared/simple_future_builder.dart';
 
 String displayDuration(Duration d) => "${d.inMinutes}".padLeft(2, '0') + ":" + "${d.inSeconds % 60}".padLeft(2, '0');
@@ -18,7 +19,7 @@ class DepositCodePage extends StatelessWidget {
       appBar: AppBar(),
       body: Center(
         child: SimpleFutureBuilder<TransactionCode>(
-          future: uiDeps.transCodeGetter(),
+          future: uiDeps.getTransCode(TransactionType.deposit),
           loading: CircularProgressIndicator(),
           exceptionBuilder: (exception) => Text(exception.toString()),
           loadedBuilder: (code) => BlocProvider(

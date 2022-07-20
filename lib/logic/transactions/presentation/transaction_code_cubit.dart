@@ -3,7 +3,7 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../transaction_code.dart';
+import '../internal/transaction_code.dart';
 
 part 'transaction_code_state.dart';
 

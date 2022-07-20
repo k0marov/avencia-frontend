@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/transactions/service.dart';
-import 'package:avencia/logic/transactions/transaction_code_mapper.dart';
+import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
+import 'package:avencia/logic/transactions/transaction_code_getter.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -25,7 +25,10 @@ void main() {
     sut = newTransactionCodeGetter(mockClient, mockMapper);
   });
 
-  final wantUri = Uri.https(apiHost, genTransactionCodeEndpoint, {});
+  final tTransactionType = randomBool() ? TransactionType.deposit : TransactionType.withdrawal;
+  final wantUri =
+      Uri.https(apiHost, genTransactionCodeEndpoint, {transactionTypeKey: transactionTypeValue(tTransactionType)});
+
   final tJson = randomJson();
   final tCode = randomTransactionCode();
 
@@ -34,7 +37,7 @@ void main() {
     when(() => mockClient.get(wantUri)).thenAnswer((_) async => http.Response(json.encode(tJson), 200));
     when(() => mockMapper.fromJson(tJson)).thenReturn(tCode);
     // act
-    final result = await sut();
+    final result = await sut(tTransactionType);
     // assert
     expect(result, Right(tCode));
   });
