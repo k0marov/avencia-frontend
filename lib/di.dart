@@ -1,19 +1,26 @@
-import 'package:avencia/logic/core/auth_http_client.dart';
-import 'package:avencia/logic/features/auth/auth_facade.dart';
-import 'package:avencia/logic/features/auth/auth_gate_stream.dart';
-import 'package:avencia/logic/features/deposit/data/mappers.dart';
-import 'package:avencia/logic/features/deposit/data/requesters.dart';
-import 'package:avencia/logic/features/deposit/domain/services.dart';
+import 'package:avencia/logic/auth/auth_facade.dart';
+import 'package:avencia/logic/auth/auth_http_client.dart';
+import 'package:avencia/logic/transactions/presentation/transaction_code_cubit.dart';
+import 'package:avencia/logic/transactions/service.dart';
+import 'package:avencia/logic/transactions/transaction_code_mapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:get_it/get_it.dart';
 import 'package:http/http.dart' as http;
 
-final sl = GetIt.instance;
+class UIDeps {
+  final AuthFacade authFacade;
+  final TransactionCodeGetter transCodeGetter;
+  final TransactionCodeCubitFactory transCodeCubitFactory;
+
+  UIDeps._(this.authFacade, this.transCodeGetter, this.transCodeCubitFactory);
+}
+
+late final UIDeps uiDeps;
 
 Future<void> initialize() async {
-  sl.registerLazySingleton<AuthFacade>(() => FirebaseAuthFacade(FirebaseAuth.instance));
-  sl.registerLazySingleton<AuthGateStreamFactory>(() => authGateStreamFactoryImpl(sl<AuthFacade>().getTokenStream));
-  final client = AuthHTTPClient(sl<AuthFacade>(), http.Client());
-  final depRequester = newDepositCodeRequester(client, TransactionCodeMapper());
-  sl.registerLazySingleton(() => newDepositCodeGetter(depRequester));
+  final authFacade = FirebaseAuthFacade(FirebaseAuth.instance);
+  final httpClient = AuthHTTPClient(authFacade, http.Client());
+  final transCodeGetter = newTransactionCodeGetter(httpClient, TransactionCodeMapper());
+  final transCodeCubitFactory = newTransactionCodeCubitFactory();
+
+  uiDeps = UIDeps._(authFacade, transCodeGetter, transCodeCubitFactory);
 }

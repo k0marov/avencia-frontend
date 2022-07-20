@@ -14,7 +14,6 @@ dependencies:
   bloc: ^8.0.3
   flutter_bloc: ^8.0.1
   equatable: ^2.0.3
-  get_it: ^7.2.0
   flutterfire_ui: ^0.4.2+3
   firebase_core: ^1.19.2
   http: ^0.13.4

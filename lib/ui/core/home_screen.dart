@@ -1,8 +1,8 @@
-import 'package:avencia/logic/features/auth/auth_facade.dart';
+import 'package:avencia/ui/shared/helpers.dart';
+import 'package:avencia/ui/transactions/transactions_code_page.dart';
 import 'package:flutter/material.dart';
 
 import '../../di.dart';
-import '../features/deposit/deposit_code_page.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -16,11 +16,11 @@ class HomeScreen extends StatelessWidget {
           children: [
             Text("You are signed in."),
             TextButton(
-              onPressed: () => Navigator.of(context).push(MaterialPageRoute(builder: (context) => DepositCodePage())),
+              onPressed: () => pushRoute(context, DepositCodePage()),
               child: Text("Deposit"),
             ),
             TextButton(
-              onPressed: sl<AuthFacade>().logout,
+              onPressed: uiDeps.authFacade.logout,
               child: Text("Logout"),
             ),
           ],
