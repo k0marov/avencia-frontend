@@ -1,7 +1,9 @@
+import 'package:avencia/config/const.dart';
+import 'package:avencia/di.dart';
 import 'package:avencia/logic/transactions/presentation/home_screen_cubit/home_screen_cubit.dart';
+import 'package:avencia/ui/core/transaction_code_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:qr_flutter/qr_flutter.dart';
 
 import 'flat_color_button.dart';
 import 'gradient_button.dart';
@@ -26,19 +28,19 @@ class HomeScreen extends StatelessWidget {
         ];
       case HomeScreenState.depositing:
         return [
-          GradientButton(
-            onPressed: b.finishPressed,
-            text: "FINISH",
+          Expanded(
+            child: TransactionCodeWidget(
+              type: TransactionType.deposit,
+            ),
           ),
-          QrImage(data: "hello"),
         ];
       case HomeScreenState.withdrawing:
         return [
-          GradientButton(
-            onPressed: b.finishPressed,
-            text: "FINISH",
+          Expanded(
+            child: TransactionCodeWidget(
+              type: TransactionType.withdrawal,
+            ),
           ),
-          QrImage(data: "hello"),
         ];
     }
   }
@@ -75,7 +77,10 @@ class HomeScreen extends StatelessWidget {
                     thickness: 4,
                   ),
                 ),
-                FlatColorButton(),
+                FlatColorButton(
+                  color: Colors.red.shade300,
+                  onPressed: uiDeps.authFacade.logout,
+                ),
               ],
             ),
           ),
