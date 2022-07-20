@@ -1,8 +1,8 @@
-import 'package:avencia/ui/shared/helpers.dart';
-import 'package:avencia/ui/transactions/transactions_code_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../di.dart';
+import 'flat_color_button.dart';
+import 'gradient_button.dart';
+import 'logo_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -12,17 +12,37 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("You are signed in."),
-            TextButton(
-              onPressed: () => pushRoute(context, DepositCodePage()),
-              child: Text("Deposit"),
+            SizedBox(height: 100),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 4),
+              child: LogoWidget(),
             ),
-            TextButton(
-              onPressed: uiDeps.authFacade.logout,
-              child: Text("Logout"),
+            Text(
+              "Welcome!",
+              style: (Theme.of(context).textTheme.displaySmall ?? TextStyle()).copyWith(
+                fontWeight: FontWeight.w100,
+              ),
+              textAlign: TextAlign.center,
             ),
+            SizedBox(height: 35),
+            GradientButton(
+              onPressed: () {},
+              text: "DEPOSIT",
+            ),
+            SizedBox(height: 25),
+            GradientButton(
+              onPressed: () {},
+              text: "WITHDRAW",
+            ),
+            SizedBox(height: 50),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32, vertical: 6),
+              child: Divider(
+                thickness: 4,
+              ),
+            ),
+            FlatColorButton(),
           ],
         ),
       ),

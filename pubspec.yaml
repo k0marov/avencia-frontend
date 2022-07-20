@@ -28,3 +28,5 @@ dev_dependencies:
   fake_async: ^1.3.0
 flutter:
   uses-material-design: true
+  assets:
+    - assets/logo_white.png
