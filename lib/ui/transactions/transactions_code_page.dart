@@ -1,5 +1,5 @@
 import 'package:avencia/config/const.dart';
-import 'package:avencia/logic/transactions/presentation/transaction_code_cubit.dart';
+import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';

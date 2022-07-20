@@ -3,9 +3,9 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../internal/transaction_code.dart';
+import '../../internal/transaction_code.dart';
 
-part 'transaction_code_state.dart';
+part "transaction_code_state.dart";
 
 class TransactionCodeCubit extends Cubit<TransactionCodeState> {
   Timer? _timer;

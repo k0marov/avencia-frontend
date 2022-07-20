@@ -1,7 +1,7 @@
 import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
-import 'package:avencia/logic/transactions/presentation/transaction_code_cubit.dart';
+import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import 'package:avencia/logic/transactions/transaction_code_getter.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;

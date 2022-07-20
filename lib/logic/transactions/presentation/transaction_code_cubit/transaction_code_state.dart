@@ -1,4 +1,4 @@
-part of 'transaction_code_cubit.dart';
+part of "transaction_code_cubit.dart";
 
 class TransactionCodeState extends Equatable {
   final TransactionCode code;
