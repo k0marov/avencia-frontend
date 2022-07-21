@@ -22,6 +22,8 @@ class TransactionCodeWidget extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: state != null
               ? QrImage(
+                  eyeStyle: QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.black),
+                  // embeddedImage: AssetImage("assets/logo_square_small.png"),
                   data: state.code.code,
                   version: QrVersions.auto,
                 )
