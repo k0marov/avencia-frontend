@@ -9,7 +9,7 @@ class GradientButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 185,
+        width: 195,
         height: 70,
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [Colors.pink, Colors.blue]),
