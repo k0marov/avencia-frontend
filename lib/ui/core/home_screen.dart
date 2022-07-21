@@ -28,18 +28,14 @@ class HomeScreen extends StatelessWidget {
         ];
       case HomeScreenState.depositing:
         return [
-          Expanded(
-            child: TransactionCodeWidget(
-              type: TransactionType.deposit,
-            ),
+          TransactionCodeWidget(
+            type: TransactionType.deposit,
           ),
         ];
       case HomeScreenState.withdrawing:
         return [
-          Expanded(
-            child: TransactionCodeWidget(
-              type: TransactionType.withdrawal,
-            ),
+          TransactionCodeWidget(
+            type: TransactionType.withdrawal,
           ),
         ];
     }

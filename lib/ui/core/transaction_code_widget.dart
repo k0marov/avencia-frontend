@@ -7,14 +7,32 @@ import '../../config/const.dart';
 import '../../di.dart';
 import '../../logic/transactions/internal/transaction_code.dart';
 import '../../logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
+import '../shared/helpers.dart';
 import '../shared/simple_future_builder.dart';
 import 'gradient_button.dart';
-
-String displayDuration(Duration d) => "${d.inMinutes}".padLeft(2, '0') + ":" + "${d.inSeconds % 60}".padLeft(2, '0');
 
 class TransactionCodeWidget extends StatelessWidget {
   final TransactionType type;
   const TransactionCodeWidget({Key? key, required this.type}) : super(key: key);
+
+  static const _textStyle = TextStyle(fontSize: 24, fontStyle: FontStyle.italic);
+
+  Widget _buildMainContent(TransactionCodeState? state) => Column(children: [
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          child: state != null
+              ? QrImage(
+                  data: state.code.code,
+                  version: QrVersions.auto,
+                )
+              : AspectRatio(aspectRatio: 1, child: Center(child: CircularProgressIndicator(strokeWidth: 16))),
+        ),
+        state != null
+            ? state.leftToExpire.isNegative
+                ? Text("Expired.", style: _textStyle.copyWith(color: Colors.red))
+                : Text("Expires in ${displayDuration(state.leftToExpire)}", style: _textStyle)
+            : Text("Loading...", style: _textStyle),
+      ]);
 
   @override
   Widget build(BuildContext context) {
@@ -23,39 +41,14 @@ class TransactionCodeWidget extends StatelessWidget {
         onPressed: context.read<HomeScreenCubit>().finishPressed,
         text: "FINISH",
       ),
-      SizedBox(height: 20),
       SimpleFutureBuilder<TransactionCode>(
         future: uiDeps.getTransCode(type),
-        loading: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: 300,
-              child: Center(child: CircularProgressIndicator()),
-              height: 300,
-            ),
-            SizedBox(height: 20),
-            Text("Loading..."),
-          ],
-        ),
+        loading: _buildMainContent(null),
         exceptionBuilder: (exception) => Text(exception.toString()),
         loadedBuilder: (code) => BlocProvider(
             create: (_) => uiDeps.transCodeCubitFactory(code),
             child: BlocBuilder<TransactionCodeCubit, TransactionCodeState>(
-              builder: (context, state) => Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  QrImage(
-                    data: state.code.code,
-                    version: QrVersions.auto,
-                    size: 300.0,
-                  ),
-                  SizedBox(height: 20),
-                  state.leftToExpire.isNegative
-                      ? Text("Expired.", style: TextStyle(color: Colors.red))
-                      : Text("Expires in ${displayDuration(state.leftToExpire)}")
-                ],
-              ),
+              builder: (context, state) => _buildMainContent(state),
             )),
       ),
     ]);
