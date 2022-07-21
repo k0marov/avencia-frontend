@@ -30,6 +30,4 @@ flutter:
   uses-material-design: true
   assets:
     - assets/logo_title.png
-    - assets/logo_square_small.png
     - assets/logo_square_big.png
-    - assets/logo_in_circle.png
