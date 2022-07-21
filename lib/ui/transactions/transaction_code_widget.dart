@@ -7,9 +7,9 @@ import '../../config/const.dart';
 import '../../di.dart';
 import '../../logic/transactions/internal/transaction_code.dart';
 import '../../logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
+import '../core/gradient_button.dart';
+import '../core/simple_future_builder.dart';
 import '../shared/helpers.dart';
-import '../shared/simple_future_builder.dart';
-import 'gradient_button.dart';
 
 class TransactionCodeWidget extends StatelessWidget {
   final TransactionType type;
@@ -44,7 +44,14 @@ class TransactionCodeWidget extends StatelessWidget {
       SimpleFutureBuilder<TransactionCode>(
         future: uiDeps.getTransCode(type),
         loading: _buildMainContent(null),
-        exceptionBuilder: (exception) => Text(exception.toString()),
+        exceptionBuilder: (exception) => Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+          child: Text("Oops, some error happened. Please, try again.",
+              style: TextStyle(
+                fontSize: 22,
+                fontStyle: FontStyle.italic,
+              )),
+        ),
         loadedBuilder: (code) => BlocProvider(
             create: (_) => uiDeps.transCodeCubitFactory(code),
             child: BlocBuilder<TransactionCodeCubit, TransactionCodeState>(

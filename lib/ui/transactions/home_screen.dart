@@ -1,13 +1,13 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/di.dart';
 import 'package:avencia/logic/transactions/presentation/home_screen_cubit/home_screen_cubit.dart';
-import 'package:avencia/ui/core/transaction_code_widget.dart';
+import 'package:avencia/ui/transactions/transaction_code_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'flat_color_button.dart';
-import 'gradient_button.dart';
-import 'logo_widget.dart';
+import '../core/flat_color_button.dart';
+import '../core/gradient_button.dart';
+import '../core/logo_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
