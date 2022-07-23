@@ -15,6 +15,7 @@ StartTransactionUseCase newStartTransactionUseCase(AuthHTTPClient httpClient, Tr
       return withExceptionHandling(() async {
         final uri = Uri.https(apiHost, genTransactionCodeEndpoint, {transactionTypeKey: transactionTypeValue(type)});
         final response = await httpClient.get(uri);
+        print(response.body);
         return codeMapper.fromJson(json.decode(response.body));
       });
     };
