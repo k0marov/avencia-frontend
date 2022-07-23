@@ -17,13 +17,13 @@ class TransactionCodeWidget extends StatelessWidget {
 
   static const _textStyle = TextStyle(fontSize: 24, fontStyle: FontStyle.italic);
 
-  Widget _buildMainContent(TransactionCodeState? state) => Column(children: [
+  Widget _buildMainContent(BuildContext context, TransactionCodeState? state) => Column(children: [
         Padding(
           padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: state != null
               ? QrImage(
                   eyeStyle: QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.black),
-                  // embeddedImage: AssetImage("assets/logo_square_small.png"),
+                  foregroundColor: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                   data: state.code.code,
                   version: QrVersions.auto,
                 )
@@ -45,7 +45,7 @@ class TransactionCodeWidget extends StatelessWidget {
       ),
       SimpleFutureBuilder<TransactionCode>(
         future: uiDeps.startTransaction(type),
-        loading: _buildMainContent(null),
+        loading: _buildMainContent(context, null),
         exceptionBuilder: (exception) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
           child: Text("Oops, some error happened. Please, try again.",
@@ -57,7 +57,7 @@ class TransactionCodeWidget extends StatelessWidget {
         loadedBuilder: (code) => BlocProvider(
             create: (_) => uiDeps.transCodeCubitFactory(code),
             child: BlocBuilder<TransactionCodeCubit, TransactionCodeState>(
-              builder: (context, state) => _buildMainContent(state),
+              builder: (context, state) => _buildMainContent(context, state),
             )),
       ),
     ]);

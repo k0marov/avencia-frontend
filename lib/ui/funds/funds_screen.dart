@@ -16,6 +16,7 @@ class FundsScreen extends StatefulWidget {
 
 class _FundsScreenState extends State<FundsScreen> {
   void _refresh() {
+    print("asdf");
     setState(() {});
   }
 
@@ -38,14 +39,26 @@ class _FundsScreenState extends State<FundsScreen> {
               textAlign: TextAlign.center,
             ),
             for (final entry in userInfo.wallet.entries)
-              ListTile(
-                leading: Text(
-                  entry.key,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.center,
-                ),
-                title: Text(entry.value.toString()),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(children: [
+                  Expanded(
+                    child: Text(
+                      entry.key,
+                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                      textAlign: TextAlign.right,
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Expanded(
+                    child: Text(
+                      entry.value.toString(),
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                ]),
               ),
+            SizedBox(height: 20),
             Text(
               "Withdraw Limits",
               textAlign: TextAlign.center,
