@@ -8,6 +8,8 @@ import 'package:dartz/dartz.dart';
 import '../../config/const.dart';
 import 'internal/entities.dart';
 
+// TODO: remove code duplication within GetWalletUseCase, GetLimitsUseCase and TransactionCodeGetter (rename it to StartTransactionUsecase). Maybe create a general requester that calls some endpoint and uses a given mapper
+
 typedef GetWalletUseCase = Future<Either<Exception, Wallet>> Function();
 
 GetWalletUseCase newGetWalletUseCase(AuthHTTPClient httpClient, WalletMapper mapper) => () {
