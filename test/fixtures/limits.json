@@ -1,0 +1,12 @@
+{
+  "limits": {
+    "USD": {
+      "withdrawn": 420,
+      "max": 1000.5
+    },
+    "RUB": {
+      "withdrawn": 2423.123,
+      "max": 30000.42
+    }
+   }
+}

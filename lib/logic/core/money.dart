@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
 typedef Currency = String;
-typedef MoneyAmount = String;
+typedef MoneyAmount = double;
 
 class Money extends Equatable {
   final Currency currency;
