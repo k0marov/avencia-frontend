@@ -5,8 +5,6 @@ import '../../di.dart';
 import '../../logic/user_info/internal/entities.dart';
 import '../core/simple_future_builder.dart';
 
-// TODO: (concerning backend) fix backend handling an integer value that is used as float64 (it gives 500)
-
 class FundsScreen extends StatefulWidget {
   const FundsScreen({Key? key}) : super(key: key);
 
