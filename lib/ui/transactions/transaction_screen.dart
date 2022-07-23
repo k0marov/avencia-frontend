@@ -49,7 +49,7 @@ class TransactionScreen extends StatelessWidget {
             children: [
               SizedBox(height: 100),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
                 child: LogoWidget(),
               ),
               if (state == TransactionScreenState.initial) ...[
@@ -60,7 +60,7 @@ class TransactionScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 60),
+                SizedBox(height: 45),
               ],
               ..._getMainChildren(state, context.read<TransactionScreenCubit>()),
             ],
