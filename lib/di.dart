@@ -9,14 +9,23 @@ import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
 import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
+
+import 'logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
+import 'logic/theme_brightness/toggle_theme_brightness_usecase.dart';
 
 class UIDeps {
   final AuthFacade authFacade;
   final GetUserInfoUseCase getUserInfo;
+
   final StartTransactionUseCase startTransaction;
   final TransactionCodeCubitFactory transCodeCubitFactory;
 
-  UIDeps._(this.authFacade, this.getUserInfo, this.startTransaction, this.transCodeCubitFactory);
+  final ToggleThemeBrightnessUseCase toggleThemeBrightness;
+  final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
+
+  UIDeps._(this.authFacade, this.getUserInfo, this.startTransaction, this.transCodeCubitFactory,
+      this.toggleThemeBrightness, this.getThemeBrightnessStream);
 }
 
 late final UIDeps uiDeps;
@@ -30,5 +39,9 @@ Future<void> initialize() async {
 
   final getUserInfo = newGetUserInfoUseCase(httpClient, UserInfoMapper(LimitsMapper(), WalletMapper()));
 
-  uiDeps = UIDeps._(authFacade, getUserInfo, startTransaction, transCodeCubitFactory);
+  final sharedPrefs = RxSharedPreferences.getInstance();
+  final toggleTheme = newToggleThemeBrightnessUseCase(sharedPrefs);
+  final getThemeStream = newGetThemeBrightnessUseCase(sharedPrefs);
+
+  uiDeps = UIDeps._(authFacade, getUserInfo, startTransaction, transCodeCubitFactory, toggleTheme, getThemeStream);
 }

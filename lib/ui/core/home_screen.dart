@@ -1,7 +1,7 @@
 import 'package:avencia/ui/funds/funds_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 
+import '../profile/profile_screen.dart';
 import '../transactions/transaction_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,13 +14,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
 
-  static const screens = [
-    TransactionScreen(),
-    FundsScreen(),
-    ProfileScreen(
-      children: [Text("Hello world!")],
-    ),
-  ];
+  static const screens = [TransactionScreen(), FundsScreen(), ProfileScreen()];
 
   @override
   Widget build(BuildContext context) {

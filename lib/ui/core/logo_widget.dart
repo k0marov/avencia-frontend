@@ -5,6 +5,10 @@ class LogoWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Image.asset("assets/logo_title.png");
+    return Image.asset(
+      Theme.of(context).brightness == Brightness.light
+          ? "assets/logo_with_dark_title.png"
+          : "assets/logo_with_light_title.png",
+    );
   }
 }

@@ -14,7 +14,6 @@ class GradientButton extends StatelessWidget {
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [Colors.pink, Colors.blue]),
           borderRadius: BorderRadius.circular(40),
-          border: Border.all(width: 2, color: Colors.grey.shade700),
           boxShadow: <BoxShadow>[
             BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
