@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
-import 'package:avencia/logic/transactions/transaction_code_getter.dart';
+import 'package:avencia/logic/transactions/start_transaction_usecase.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
@@ -18,11 +18,11 @@ class MockCodeMapper extends Mock implements TransactionCodeMapper {}
 void main() {
   late MockAuthClient mockClient;
   late MockCodeMapper mockMapper;
-  late TransactionCodeGetter sut;
+  late StartTransactionUseCase sut;
   setUp(() {
     mockClient = MockAuthClient();
     mockMapper = MockCodeMapper();
-    sut = newTransactionCodeGetter(mockClient, mockMapper);
+    sut = newStartTransactionUseCase(mockClient, mockMapper);
   });
 
   final tTransactionType = randomBool() ? TransactionType.deposit : TransactionType.withdrawal;

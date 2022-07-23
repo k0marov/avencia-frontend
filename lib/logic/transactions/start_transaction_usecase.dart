@@ -8,9 +8,9 @@ import 'package:dartz/dartz.dart';
 
 import 'internal/transaction_code_mapper.dart';
 
-typedef TransactionCodeGetter = Future<Either<Exception, TransactionCode>> Function(TransactionType);
+typedef StartTransactionUseCase = Future<Either<Exception, TransactionCode>> Function(TransactionType);
 
-TransactionCodeGetter newTransactionCodeGetter(AuthHTTPClient httpClient, TransactionCodeMapper codeMapper) =>
+StartTransactionUseCase newStartTransactionUseCase(AuthHTTPClient httpClient, TransactionCodeMapper codeMapper) =>
     (TransactionType type) async {
       return withExceptionHandling(() async {
         final uri = Uri.https(apiHost, genTransactionCodeEndpoint, {transactionTypeKey: transactionTypeValue(type)});

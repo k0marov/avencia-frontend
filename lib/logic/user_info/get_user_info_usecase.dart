@@ -12,7 +12,7 @@ import 'internal/entities.dart';
 
 typedef GetUserInfoUseCase = Future<Either<Exception, UserInfo>> Function();
 
-GetUserInfoUseCase newGetLimitsUseCase(AuthHTTPClient httpClient, UserInfoMapper mapper) => () {
+GetUserInfoUseCase newGetUserInfoUseCase(AuthHTTPClient httpClient, UserInfoMapper mapper) => () {
       return withExceptionHandling(() async {
         final uri = Uri.https(apiHost, getUserInfoEndpoint, {});
         final response = await httpClient.get(uri);

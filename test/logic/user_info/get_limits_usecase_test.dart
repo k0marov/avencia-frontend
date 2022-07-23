@@ -23,7 +23,7 @@ void main() {
   setUp(() {
     mockClient = MockAuthClient();
     mockMapper = MockUserInfoMapper();
-    sut = newGetLimitsUseCase(mockClient, mockMapper);
+    sut = newGetUserInfoUseCase(mockClient, mockMapper);
   });
 
   final wantUri = Uri.https(apiHost, getUserInfoEndpoint, {});

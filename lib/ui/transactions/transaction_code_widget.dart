@@ -44,7 +44,7 @@ class TransactionCodeWidget extends StatelessWidget {
         text: "FINISH",
       ),
       SimpleFutureBuilder<TransactionCode>(
-        future: uiDeps.getTransCode(type),
+        future: uiDeps.startTransaction(type),
         loading: _buildMainContent(null),
         exceptionBuilder: (exception) => Padding(
           padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
