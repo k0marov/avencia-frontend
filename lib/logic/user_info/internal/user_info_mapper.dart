@@ -11,7 +11,7 @@ class UserInfoMapper {
   UserInfoMapper(this.limitsMapper, this.walletMapper);
 
   UserInfo fromJson(Map<String, dynamic> json) => UserInfo(
-        userId: json["user_id"],
+        userId: json["id"],
         limits: limitsMapper.fromJson(json["limits"]),
         wallet: walletMapper.fromJson(json["wallet"]),
       );

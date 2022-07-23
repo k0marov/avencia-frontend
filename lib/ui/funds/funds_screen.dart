@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../di.dart';
+import '../../logic/user_info/internal/entities.dart';
+import '../core/simple_future_builder.dart';
+
 class FundsScreen extends StatefulWidget {
   const FundsScreen({Key? key}) : super(key: key);
 
@@ -16,14 +20,18 @@ class _FundsScreenState extends State<FundsScreen> {
   Widget build(BuildContext context) {
     return RefreshIndicator(
       onRefresh: () async => _refresh(),
-      child: Center(
-        child: FutureBuilder(
-          future: Future.value(DateTime.now()), // todo
-          builder: (context, snapshot) => snapshot.data == null
-              ? CircularProgressIndicator()
-              : ListView(
-                  children: [Text(snapshot.data.toString())],
-                ),
+      child: SingleChildScrollView(
+        child: SimpleFutureBuilder<UserInfo>(
+          future: uiDeps.getUserInfo(),
+          loading: CircularProgressIndicator(),
+          loadedBuilder: (userInfo) => Column(children: [
+            Text(
+              "Your funds",
+            ),
+            Text(userInfo.wallet.toString()),
+            Text(userInfo.limits.toString()),
+          ]),
+          exceptionBuilder: (exception) => Text(exception.toString()),
         ),
       ),
     );

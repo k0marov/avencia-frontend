@@ -1,6 +1,6 @@
 const apiHost = "avencia.skomarov.com";
 
-const getUserInfoEndpoint = "/api/v1/user_info";
+const getUserInfoEndpoint = "/api/v1/user-info";
 
 const genTransactionCodeEndpoint = "/api/v1/atm-transaction/gen-code";
 const transactionTypeKey = "transaction_type";

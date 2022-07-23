@@ -28,7 +28,7 @@ Future<void> initialize() async {
   final startTransaction = newStartTransactionUseCase(httpClient, TransactionCodeMapper());
   final transCodeCubitFactory = newTransactionCodeCubitFactory();
 
-  final getUserInfo = newGetUserInfoUseCase(httpClient, UserInfoMapper(LimitsMapper(), WalletMapper()))
+  final getUserInfo = newGetUserInfoUseCase(httpClient, UserInfoMapper(LimitsMapper(), WalletMapper()));
 
   uiDeps = UIDeps._(authFacade, getUserInfo, startTransaction, transCodeCubitFactory);
 }

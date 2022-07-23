@@ -18,6 +18,9 @@ class AuthHTTPClient extends http.BaseClient {
     request.headers['contentType'] = "application/json";
     request.headers['responseType'] = "application/json";
     request.headers['Authorization'] = "Bearer $token";
+
+    print(request);
+
     final streamedResp = await _inner.send(request);
     if (streamedResp.statusCode != 200) {
       final response = await http.Response.fromStream(streamedResp);
