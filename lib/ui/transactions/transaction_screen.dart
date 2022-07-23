@@ -1,11 +1,9 @@
 import 'package:avencia/config/const.dart';
-import 'package:avencia/di.dart';
 import 'package:avencia/ui/transactions/transaction_code_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
-import '../core/flat_color_button.dart';
 import '../core/gradient_button.dart';
 import '../core/logo_widget.dart';
 
@@ -62,20 +60,9 @@ class TransactionScreen extends StatelessWidget {
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 35),
+                SizedBox(height: 60),
               ],
               ..._getMainChildren(state, context.read<TransactionScreenCubit>()),
-              SizedBox(height: 50),
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 6),
-                child: Divider(
-                  thickness: 4,
-                ),
-              ),
-              FlatColorButton(
-                color: Colors.red.shade300,
-                onPressed: uiDeps.authFacade.logout,
-              ),
             ],
           ),
         ),
