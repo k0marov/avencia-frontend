@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
       title: 'Avencia',
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        brightness: Brightness.dark,
       ),
       home: AuthGate(),
     );

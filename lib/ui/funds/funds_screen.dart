@@ -73,6 +73,8 @@ class _FundsScreenState extends State<FundsScreen> {
                         SizedBox(height: 10),
                         StepProgressIndicator(
                           selectedGradientColor: LinearGradient(colors: [Colors.pink, Colors.blue]),
+                          size: 8,
+                          roundedEdges: Radius.circular(5),
                           currentStep: getCurrentStep(entry.value),
                           totalSteps: 10,
                         ),

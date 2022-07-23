@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     TransactionScreen(),
     FundsScreen(),
     ProfileScreen(
-      actions: [],
+      children: [Text("Hello world!")],
     ),
   ];
 
