@@ -1,3 +1,4 @@
+import 'package:avencia/ui/funds/funds_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   static const screens = [
     TransactionScreen(),
-    SizedBox(),
+    FundsScreen(),
     ProfileScreen(
       actions: [],
     ),

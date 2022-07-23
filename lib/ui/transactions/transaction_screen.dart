@@ -43,42 +43,40 @@ class TransactionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: BlocProvider<TransactionScreenCubit>(
-          create: (_) => TransactionScreenCubit(),
-          child: BlocBuilder<TransactionScreenCubit, TransactionScreenState>(
-            builder: (context, state) => ListView(
-              children: [
-                SizedBox(height: 100),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: LogoWidget(),
-                ),
-                if (state == TransactionScreenState.initial) ...[
-                  Text(
-                    "Welcome!",
-                    style: (Theme.of(context).textTheme.displaySmall ?? TextStyle()).copyWith(
-                      fontWeight: FontWeight.w100,
-                    ),
-                    textAlign: TextAlign.center,
+    return Center(
+      child: BlocProvider<TransactionScreenCubit>(
+        create: (_) => TransactionScreenCubit(),
+        child: BlocBuilder<TransactionScreenCubit, TransactionScreenState>(
+          builder: (context, state) => ListView(
+            children: [
+              SizedBox(height: 100),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                child: LogoWidget(),
+              ),
+              if (state == TransactionScreenState.initial) ...[
+                Text(
+                  "Welcome!",
+                  style: (Theme.of(context).textTheme.displaySmall ?? TextStyle()).copyWith(
+                    fontWeight: FontWeight.w100,
                   ),
-                  SizedBox(height: 35),
-                ],
-                ..._getMainChildren(state, context.read<TransactionScreenCubit>()),
-                SizedBox(height: 50),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 32, vertical: 6),
-                  child: Divider(
-                    thickness: 4,
-                  ),
+                  textAlign: TextAlign.center,
                 ),
-                FlatColorButton(
-                  color: Colors.red.shade300,
-                  onPressed: uiDeps.authFacade.logout,
-                ),
+                SizedBox(height: 35),
               ],
-            ),
+              ..._getMainChildren(state, context.read<TransactionScreenCubit>()),
+              SizedBox(height: 50),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 32, vertical: 6),
+                child: Divider(
+                  thickness: 4,
+                ),
+              ),
+              FlatColorButton(
+                color: Colors.red.shade300,
+                onPressed: uiDeps.authFacade.logout,
+              ),
+            ],
           ),
         ),
       ),
