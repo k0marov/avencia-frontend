@@ -1,7 +1,7 @@
 import 'dart:convert';
 
-import 'package:avencia/logic/funds/internal/entities.dart';
-import 'package:avencia/logic/funds/internal/wallet_mapper.dart';
+import 'package:avencia/logic/user_info/internal/entities.dart';
+import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../../../fixtures/fixture_reader.dart';

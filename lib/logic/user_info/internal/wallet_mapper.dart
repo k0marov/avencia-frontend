@@ -1,4 +1,4 @@
-import 'package:avencia/logic/funds/internal/entities.dart';
+import 'entities.dart';
 
 class WalletMapper {
   Wallet fromJson(Map<String, dynamic> json) {
