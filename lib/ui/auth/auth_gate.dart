@@ -1,6 +1,6 @@
 import 'package:avencia/logic/auth/auth_facade.dart';
+import 'package:avencia/ui/core/home_screen.dart';
 import 'package:avencia/ui/core/splash_screen.dart';
-import 'package:avencia/ui/transactions/home_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 

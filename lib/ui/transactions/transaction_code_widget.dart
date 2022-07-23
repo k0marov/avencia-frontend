@@ -1,4 +1,4 @@
-import 'package:avencia/logic/transactions/presentation/home_screen_cubit/home_screen_cubit.dart';
+import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
@@ -40,7 +40,7 @@ class TransactionCodeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       GradientButton(
-        onPressed: context.read<HomeScreenCubit>().finishPressed,
+        onPressed: context.read<TransactionScreenCubit>().finishPressed,
         text: "FINISH",
       ),
       SimpleFutureBuilder<TransactionCode>(

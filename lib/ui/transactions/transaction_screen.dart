@@ -1,20 +1,20 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/di.dart';
-import 'package:avencia/logic/transactions/presentation/home_screen_cubit/home_screen_cubit.dart';
 import 'package:avencia/ui/transactions/transaction_code_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import '../core/flat_color_button.dart';
 import '../core/gradient_button.dart';
 import '../core/logo_widget.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class TransactionScreen extends StatelessWidget {
+  const TransactionScreen({Key? key}) : super(key: key);
 
-  List<Widget> _getMainChildren(HomeScreenState state, HomeScreenCubit b) {
+  List<Widget> _getMainChildren(TransactionScreenState state, TransactionScreenCubit b) {
     switch (state) {
-      case HomeScreenState.initial:
+      case TransactionScreenState.initial:
         return [
           GradientButton(
             onPressed: b.depositPressed,
@@ -26,13 +26,13 @@ class HomeScreen extends StatelessWidget {
             text: "WITHDRAW",
           ),
         ];
-      case HomeScreenState.depositing:
+      case TransactionScreenState.depositing:
         return [
           TransactionCodeWidget(
             type: TransactionType.deposit,
           ),
         ];
-      case HomeScreenState.withdrawing:
+      case TransactionScreenState.withdrawing:
         return [
           TransactionCodeWidget(
             type: TransactionType.withdrawal,
@@ -45,9 +45,9 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: BlocProvider<HomeScreenCubit>(
-          create: (_) => HomeScreenCubit(),
-          child: BlocBuilder<HomeScreenCubit, HomeScreenState>(
+        child: BlocProvider<TransactionScreenCubit>(
+          create: (_) => TransactionScreenCubit(),
+          child: BlocBuilder<TransactionScreenCubit, TransactionScreenState>(
             builder: (context, state) => ListView(
               children: [
                 SizedBox(height: 100),
@@ -55,7 +55,7 @@ class HomeScreen extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 16.0),
                   child: LogoWidget(),
                 ),
-                if (state == HomeScreenState.initial) ...[
+                if (state == TransactionScreenState.initial) ...[
                   Text(
                     "Welcome!",
                     style: (Theme.of(context).textTheme.displaySmall ?? TextStyle()).copyWith(
@@ -65,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 35),
                 ],
-                ..._getMainChildren(state, context.read<HomeScreenCubit>()),
+                ..._getMainChildren(state, context.read<TransactionScreenCubit>()),
                 SizedBox(height: 50),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 32, vertical: 6),
