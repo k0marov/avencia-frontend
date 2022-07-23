@@ -19,6 +19,7 @@ dependencies:
   http: ^0.13.4
   qr_flutter: ^4.0.0
   step_progress_indicator: ^1.0.2
+  rx_shared_preferences: ^3.0.0
 
 dev_dependencies:
   flutter_test:
