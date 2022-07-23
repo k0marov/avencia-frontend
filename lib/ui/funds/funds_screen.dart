@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../di.dart';
 import '../../logic/user_info/internal/entities.dart';
@@ -18,6 +19,8 @@ class _FundsScreenState extends State<FundsScreen> {
     setState(() {});
   }
 
+  int getCurrentStep(Limit l) => (l.withdrawn / l.max * 10).floor();
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -30,7 +33,7 @@ class _FundsScreenState extends State<FundsScreen> {
           loadedBuilder: (userInfo) => ListView(children: [
             SizedBox(height: 20),
             Text(
-              "Your funds",
+              "Your Funds",
               style: Theme.of(context).textTheme.displaySmall,
               textAlign: TextAlign.center,
             ),
@@ -49,10 +52,51 @@ class _FundsScreenState extends State<FundsScreen> {
               style: Theme.of(context).textTheme.headline5,
             ),
             for (final entry in userInfo.limits.entries)
-              ListTile(
-                leading: Text(entry.key),
-                title: LinearProgressIndicator(value: entry.value.withdrawn / entry.value.max),
-              )
+              Padding(
+                padding: const EdgeInsets.all(4.0),
+                child: Card(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          entry.key,
+                          style: TextStyle(fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 5),
+                        Text(
+                          "${entry.value.withdrawn} of ${entry.value.max}",
+                          textAlign: TextAlign.center,
+                        ),
+                        SizedBox(height: 10),
+                        StepProgressIndicator(
+                          selectedGradientColor: LinearGradient(colors: [Colors.pink, Colors.blue]),
+                          currentStep: getCurrentStep(entry.value),
+                          totalSteps: 10,
+                        ),
+                        SizedBox(height: 5),
+                        Row(children: [
+                          Text("0"),
+                          Spacer(),
+                          Text(entry.value.max.toString()),
+                        ])
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            // title: Column(
+            //   children: [
+            //     LinearProgressIndicator(value: entry.value.withdrawn / entry.value.max),
+            //     Row(children: [
+            //       Align(alignment: Alignment.centerLeft, child: Text("0")),
+            //       Spacer(),
+            //       Align(alignment: Alignment.centerRight, child: Text(entry.value.max.toString())),
+            //     ])
+            //   ],
+            // ),
           ]),
           exceptionBuilder: (exception) => ListView(
             children: [
