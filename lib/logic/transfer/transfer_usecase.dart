@@ -9,7 +9,7 @@ import 'package:dartz/dartz.dart';
 
 typedef TransferUseCase = Future<Either<Exception, void>> Function(TransferData);
 
-TransferUseCase NewTransferUseCase(AuthHTTPClient httpClient, TransferMapper mapper) =>
+TransferUseCase newTransferUseCase(AuthHTTPClient httpClient, TransferMapper mapper) =>
     (t) => withExceptionHandling(() async {
           final reqBody = json.encode(mapper.toJson(t));
           httpClient.post(Uri.https(apiHost, transferEndpoint), body: reqBody);

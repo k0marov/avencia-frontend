@@ -3,6 +3,8 @@ import 'package:avencia/logic/auth/auth_http_client.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import 'package:avencia/logic/transactions/start_transaction_usecase.dart';
+import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
+import 'package:avencia/logic/transfer/transfer_usecase.dart';
 import 'package:avencia/logic/user_info/get_user_info_usecase.dart';
 import 'package:avencia/logic/user_info/internal/limits_mapper.dart';
 import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
@@ -18,14 +20,23 @@ class UIDeps {
   final AuthFacade authFacade;
   final GetUserInfoUseCase getUserInfo;
 
+  final TransferUseCase transfer;
+
   final StartTransactionUseCase startTransaction;
   final TransactionCodeCubitFactory transCodeCubitFactory;
 
   final ToggleThemeBrightnessUseCase toggleThemeBrightness;
   final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
 
-  UIDeps._(this.authFacade, this.getUserInfo, this.startTransaction, this.transCodeCubitFactory,
-      this.toggleThemeBrightness, this.getThemeBrightnessStream);
+  UIDeps._(
+    this.authFacade,
+    this.getUserInfo,
+    this.transfer,
+    this.startTransaction,
+    this.transCodeCubitFactory,
+    this.toggleThemeBrightness,
+    this.getThemeBrightnessStream,
+  );
 }
 
 late final UIDeps uiDeps;
@@ -39,9 +50,19 @@ Future<void> initialize() async {
 
   final getUserInfo = newGetUserInfoUseCase(httpClient, UserInfoMapper(LimitsMapper(), WalletMapper()));
 
+  final transfer = newTransferUseCase(httpClient, TransferMapper());
+
   final sharedPrefs = RxSharedPreferences.getInstance();
   final toggleTheme = newToggleThemeBrightnessUseCase(sharedPrefs);
   final getThemeStream = newGetThemeBrightnessUseCase(sharedPrefs);
 
-  uiDeps = UIDeps._(authFacade, getUserInfo, startTransaction, transCodeCubitFactory, toggleTheme, getThemeStream);
+  uiDeps = UIDeps._(
+    authFacade,
+    getUserInfo,
+    transfer,
+    startTransaction,
+    transCodeCubitFactory,
+    toggleTheme,
+    getThemeStream,
+  );
 }
