@@ -4,6 +4,7 @@ enum TransactionScreenState {
   initial,
   depositing,
   withdrawing,
+  transfering,
 }
 
 class TransactionScreenCubit extends Cubit<TransactionScreenState> {
@@ -11,5 +12,6 @@ class TransactionScreenCubit extends Cubit<TransactionScreenState> {
 
   void depositPressed() => emit(TransactionScreenState.depositing);
   void withdrawPressed() => emit(TransactionScreenState.withdrawing);
+  void transferPressed() => emit(TransactionScreenState.transfering);
   void finishPressed() => emit(TransactionScreenState.initial);
 }

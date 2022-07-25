@@ -1,5 +1,6 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/ui/transactions/transaction_code_widget.dart';
+import 'package:avencia/ui/transactions/transfer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -23,6 +24,11 @@ class TransactionScreen extends StatelessWidget {
             onPressed: b.withdrawPressed,
             text: "WITHDRAW",
           ),
+          SizedBox(height: 25),
+          GradientButton(
+            onPressed: b.transferPressed,
+            text: "TRANSFER",
+          ),
         ];
       case TransactionScreenState.depositing:
         return [
@@ -35,6 +41,10 @@ class TransactionScreen extends StatelessWidget {
           TransactionCodeWidget(
             type: TransactionType.withdrawal,
           ),
+        ];
+      case TransactionScreenState.transfering:
+        return [
+          TransferWidget(),
         ];
     }
   }
