@@ -3,13 +3,14 @@ import 'package:flutter/material.dart';
 class GradientButton extends StatelessWidget {
   final Function() onPressed;
   final String text;
-  const GradientButton({Key? key, required this.onPressed, required this.text}) : super(key: key);
+  final double width;
+  const GradientButton({Key? key, required this.onPressed, required this.text, this.width = 195}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        width: 195,
+        width: width,
         height: 70,
         decoration: BoxDecoration(
           gradient: LinearGradient(colors: [Colors.pink, Colors.blue]),

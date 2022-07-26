@@ -4,6 +4,7 @@ import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart
 import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import 'package:avencia/logic/transactions/start_transaction_usecase.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
+import 'package:avencia/logic/transfer/presentation/transfer_cubit.dart';
 import 'package:avencia/logic/transfer/transfer_usecase.dart';
 import 'package:avencia/logic/user_info/get_user_info_usecase.dart';
 import 'package:avencia/logic/user_info/internal/limits_mapper.dart';
@@ -21,6 +22,7 @@ class UIDeps {
   final GetUserInfoUseCase getUserInfo;
 
   final TransferUseCase transfer;
+  final TransferCubitFactory transferCubitFactory;
 
   final StartTransactionUseCase startTransaction;
   final TransactionCodeCubitFactory transCodeCubitFactory;
@@ -32,6 +34,7 @@ class UIDeps {
     this.authFacade,
     this.getUserInfo,
     this.transfer,
+    this.transferCubitFactory,
     this.startTransaction,
     this.transCodeCubitFactory,
     this.toggleThemeBrightness,
@@ -51,6 +54,7 @@ Future<void> initialize() async {
   final getUserInfo = newGetUserInfoUseCase(httpClient, UserInfoMapper(LimitsMapper(), WalletMapper()));
 
   final transfer = newTransferUseCase(httpClient, TransferMapper());
+  final transferCubitFactory = newTransferCubitFactory();
 
   final sharedPrefs = RxSharedPreferences.getInstance();
   final toggleTheme = newToggleThemeBrightnessUseCase(sharedPrefs);
@@ -60,6 +64,7 @@ Future<void> initialize() async {
     authFacade,
     getUserInfo,
     transfer,
+    transferCubitFactory,
     startTransaction,
     transCodeCubitFactory,
     toggleTheme,
