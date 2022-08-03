@@ -1,0 +1,26 @@
+{
+  "entries": [
+    {
+      "transacted_at": 1659514154,  // Wed, 03 Aug 2022 08:09:14 
+      "source": {
+        "type": "credit-card", 
+        "detail": "42"
+      }, 
+      "money": {
+        "currency": "USD",
+        "amount": 420.42
+      }
+    },
+    {
+      "transacted_at": 922248000,  // Wed, 24 Mar 1999 04:00:00 
+      "source": {
+        "type": "cash", 
+        "detail": "some-detail"
+      }, 
+      "money": {
+        "currency": "RUB",
+        "amount": 1000
+      }
+    }
+  ]
+}
