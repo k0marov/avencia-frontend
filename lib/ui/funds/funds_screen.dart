@@ -27,7 +27,7 @@ class _FundsScreenState extends State<FundsScreen> {
         onRefresh: () async => _refresh(),
         // child: ListView(children: [
         child: SimpleFutureBuilder<UserInfo>(
-          future: uiDeps.getUserInfo(),
+          future: uiDeps.getUserInfo(null),
           loading: CircularProgressIndicator(),
           loadedBuilder: (userInfo) => ListView(children: [
             SizedBox(height: 20),

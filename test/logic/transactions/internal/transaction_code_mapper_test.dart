@@ -1,23 +1,16 @@
-import 'dart:convert';
 
 import 'package:avencia/logic/transactions/internal/transaction_code.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
-import 'package:flutter_test/flutter_test.dart';
 
-import '../../../fixtures/fixture_reader.dart';
+import '../../../shared/base_out_mapper.dart';
 
 void main() {
-  test("should convert a valid fixture to a string code", () async {
-    // arrange
-    final tJson = json.decode(fixture("code.json"));
-    // act
-    final result = TransactionCodeMapper().fromJson(tJson);
-    // assert
-    expect(
-        result,
-        TransactionCode(
+  baseOutMapperTest(
+    entity: TransactionCode(
           "4242",
           DateTime(2022, 7, 19, 4, 49, 25),
-        ));
-  });
+        ),
+    mapper: TransactionCodeMapper(),
+    fixtureName: "code.json",
+  );
 }
