@@ -18,3 +18,4 @@ class NetworkException extends Equatable implements Exception {
 
   const NetworkException(this.statusCode, this.body);
 }
+

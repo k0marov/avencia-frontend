@@ -1,7 +1,8 @@
 
 import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
 
-import '../../../shared/base_out_mapper.dart';
+import '../../../shared/base_mapper.dart';
+
 
 void main() {
   baseOutMapperTest(

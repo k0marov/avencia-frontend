@@ -2,7 +2,8 @@
 import 'package:avencia/logic/transactions/internal/transaction_code.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
 
-import '../../../shared/base_out_mapper.dart';
+import '../../../shared/base_mapper.dart';
+
 
 void main() {
   baseOutMapperTest(

@@ -13,6 +13,9 @@ abstract class OutMapper<T> {
   T fromJson(Map<String, dynamic> json);
 }
 
+abstract class FullMapper<T> implements InpMapper<T>, OutMapper<T> {}
+
+
 typedef URIGetter<Inp> = Uri Function(Inp);
 
 typedef BaseNetworkUseCase<Inp, Out> = Future<Either<Exception, Out>> Function(
