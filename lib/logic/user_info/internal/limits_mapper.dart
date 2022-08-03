@@ -2,7 +2,7 @@ import 'package:avencia/logic/core/network_usecase.dart';
 
 import 'entities.dart';
 
-class LimitsMapper implements Mapper<Limits> {
+class LimitsMapper implements OutMapper<Limits> {
   @override 
   Limits fromJson(Map<String, dynamic> json) {
     final Limits result = {};

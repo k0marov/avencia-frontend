@@ -1,7 +1,7 @@
 import '../../core/network_usecase.dart';
 import 'entities.dart';
 
-class WalletMapper implements Mapper<Wallet> {
+class WalletMapper implements OutMapper<Wallet> {
 
   @override
   Wallet fromJson(Map<String, dynamic> json) {

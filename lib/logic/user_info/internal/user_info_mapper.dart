@@ -5,7 +5,7 @@ import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
 
 // TODO: test this
 
-class UserInfoMapper implements Mapper<UserInfo> {
+class UserInfoMapper implements OutMapper<UserInfo> {
   final LimitsMapper limitsMapper;
   final WalletMapper walletMapper;
 
