@@ -1,5 +1,7 @@
 {
   "recipient_identifier": "sam@skomarov.com",
-  "currency": "USD",
-  "amount": 420.42
+  "money": {
+    "currency": "USD",
+    "amount": 420.42
+  }
 }

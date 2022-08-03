@@ -6,7 +6,9 @@ class TransferMapper implements InpMapper<TransferData> {
   @override
   Map<String, dynamic> toJson(TransferData t) => {
         "recipient_identifier": t.recipientEmail,
-        "currency": t.money.currency,
-        "amount": t.money.amount,
+        "money": {
+          "currency": t.money.currency,
+          "amount": t.money.amount,
+        },
       };
 }
