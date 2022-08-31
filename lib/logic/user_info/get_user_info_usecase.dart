@@ -1,7 +1,5 @@
-import 'dart:convert';
 
 import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/core/error.dart';
 import 'package:avencia/logic/core/network_usecase.dart';
 import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
 import 'package:dartz/dartz.dart';

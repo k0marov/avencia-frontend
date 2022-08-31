@@ -15,20 +15,20 @@ class TransferWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       child: BlocProvider(
         create: (_) => uiDeps.transferCubitFactory(),
         child: BlocBuilder<TransferCubit, TransferState>(
           builder: (context, state) {
             return Column(
               children: [
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 Row(
                   children: [
                     Expanded(
                       child: TextField(
                         onChanged: context.read<TransferCubit>().emailChanged,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: "Email",
                         ),
@@ -38,7 +38,7 @@ class TransferWidget extends StatelessWidget {
                       width: 60,
                       child: TextFormField(
                         onChanged: context.read<TransferCubit>().currencySelected,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                         ),
                       ),
@@ -46,11 +46,11 @@ class TransferWidget extends StatelessWidget {
                     SizedBox(
                       width: 100,
                       child: TextField(
-                        keyboardType: TextInputType.numberWithOptions(decimal: true),
+                        keyboardType: const TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"[0-9\.]"))],
                         onChanged: (amount) =>
                             context.read<TransferCubit>().amountChanged(double.tryParse(amount) ?? 0),
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: "Amount",
                         ),
@@ -59,7 +59,7 @@ class TransferWidget extends StatelessWidget {
                   ],
                 ),
                 if (state.exception != null) Text(state.exception.toString()),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Row(
                   children: [
                     GradientButton(
@@ -67,7 +67,7 @@ class TransferWidget extends StatelessWidget {
                       onPressed: context.read<TransactionScreenCubit>().finishPressed,
                       text: "CANCEL",
                     ),
-                    Spacer(),
+                    const Spacer(),
                     GradientButton(
                       onPressed: () async {
                         final result =

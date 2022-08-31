@@ -1,12 +1,12 @@
 import 'dart:math';
 
-import 'package:avencia/logic/transactions/internal/transaction_code.dart';
+import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:dartz/dartz.dart';
 import 'package:english_words/english_words.dart' as english_words;
 
 String randomNoun() => english_words.nouns[Random().nextInt(english_words.nouns.length)];
 String randomAdjective() => english_words.adjectives[Random().nextInt(english_words.adjectives.length)];
-String randomString() => randomAdjective() + " " + randomNoun();
+String randomString() => "${randomAdjective()} ${randomNoun()}";
 
 Map<String, dynamic> randomJson() => {
       "meta": "this is a random json for test purposes",

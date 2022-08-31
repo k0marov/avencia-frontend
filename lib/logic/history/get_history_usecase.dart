@@ -8,7 +8,11 @@ import '../../config/const.dart';
 
 typedef GetHistoryUseCase = Future<Either<Exception, History>> Function(void);
 
-GetHistoryUseCase newGetHistoryUseCase(AuthHTTPClient client, HistoryMapper mapper,) => newBaseNetworkUseCase(
+GetHistoryUseCase newGetHistoryUseCase(
+  AuthHTTPClient client,
+  HistoryMapper mapper,
+) =>
+    newBaseNetworkUseCase(
       inpMapper: NoInpMapper(),
       getUri: (_) => Uri.https(apiHost, "", {}),
       method: "GET",

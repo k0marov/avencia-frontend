@@ -14,11 +14,11 @@ class FlatColorButton extends StatelessWidget {
         style: TextButton.styleFrom(
             primary: Colors.white,
             backgroundColor: color,
-            fixedSize: Size(200, 30),
-            shape: RoundedRectangleBorder(
+            fixedSize: const Size(200, 30),
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.zero,
             )),
-        child: Text(text, style: TextStyle(fontSize: 18, color: Colors.white)),
+        child: Text(text, style: const TextStyle(fontSize: 18, color: Colors.white)),
       ),
     );
   }

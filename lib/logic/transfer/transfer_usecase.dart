@@ -1,16 +1,11 @@
-import 'dart:convert';
-
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/core/error.dart';
-import 'package:http/http.dart' as http; 
 import 'package:avencia/logic/core/network_usecase.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
 import 'package:dartz/dartz.dart';
 
-typedef TransferUseCase = Future<Either<Exception, void>> Function(
-    TransferData);
+typedef TransferUseCase = Future<Either<Exception, void>> Function(TransferData);
 
 TransferUseCase newTransferUseCase(
   AuthHTTPClient httpClient,

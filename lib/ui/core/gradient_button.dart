@@ -13,9 +13,9 @@ class GradientButton extends StatelessWidget {
         width: width,
         height: 70,
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.pink, Colors.blue]),
+          gradient: const LinearGradient(colors: [Colors.pink, Colors.blue]),
           borderRadius: BorderRadius.circular(40),
-          boxShadow: <BoxShadow>[
+          boxShadow: const <BoxShadow>[
             BoxShadow(
                 color: Color.fromRGBO(0, 0, 0, 0.57), //shadow for button
                 blurRadius: 3) //blur radius of shadow
@@ -30,7 +30,7 @@ class GradientButton extends StatelessWidget {
                 borderRadius: BorderRadius.circular(40),
               )),
           child: Text(text,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 22,
                 color: Colors.white,
                 letterSpacing: 4,

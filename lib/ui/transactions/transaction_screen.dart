@@ -1,4 +1,4 @@
-import 'package:avencia/config/const.dart';
+import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:avencia/ui/transactions/transaction_code_widget.dart';
 import 'package:avencia/ui/transactions/transfer_widget.dart';
 import 'package:flutter/material.dart';
@@ -19,12 +19,12 @@ class TransactionScreen extends StatelessWidget {
             onPressed: b.depositPressed,
             text: "DEPOSIT",
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           GradientButton(
             onPressed: b.withdrawPressed,
             text: "WITHDRAW",
           ),
-          SizedBox(height: 25),
+          const SizedBox(height: 25),
           GradientButton(
             onPressed: b.transferPressed,
             text: "TRANSFER",
@@ -32,19 +32,19 @@ class TransactionScreen extends StatelessWidget {
         ];
       case TransactionScreenState.depositing:
         return [
-          TransactionCodeWidget(
+          const TransactionCodeWidget(
             type: TransactionType.deposit,
           ),
         ];
       case TransactionScreenState.withdrawing:
         return [
-          TransactionCodeWidget(
+          const TransactionCodeWidget(
             type: TransactionType.withdrawal,
           ),
         ];
       case TransactionScreenState.transfering:
         return [
-          TransferWidget(),
+          const TransferWidget(),
         ];
     }
   }
@@ -57,20 +57,20 @@ class TransactionScreen extends StatelessWidget {
         child: BlocBuilder<TransactionScreenCubit, TransactionScreenState>(
           builder: (context, state) => ListView(
             children: [
-              SizedBox(height: 100),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
+              const SizedBox(height: 100),
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 20),
                 child: LogoWidget(),
               ),
               if (state == TransactionScreenState.initial) ...[
                 Text(
                   "Welcome!",
-                  style: (Theme.of(context).textTheme.displaySmall ?? TextStyle()).copyWith(
+                  style: (Theme.of(context).textTheme.displaySmall ?? const TextStyle()).copyWith(
                     fontWeight: FontWeight.w100,
                   ),
                   textAlign: TextAlign.center,
                 ),
-                SizedBox(height: 45),
+                const SizedBox(height: 45),
               ],
               ..._getMainChildren(state, context.read<TransactionScreenCubit>()),
             ],

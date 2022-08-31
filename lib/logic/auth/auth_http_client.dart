@@ -1,5 +1,6 @@
 import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:avencia/logic/core/error.dart';
+import 'package:avencia/logic/core/general.dart';
 import 'package:http/http.dart' as http;
 
 class NoTokenException implements Exception {}
@@ -19,7 +20,7 @@ class AuthHTTPClient extends http.BaseClient {
     request.headers['responseType'] = "application/json";
     request.headers['Authorization'] = "Bearer $token";
 
-    print(request);
+    printDebug(request);
 
     final streamedResp = await _inner.send(request);
     if (streamedResp.statusCode != 200) {

@@ -11,14 +11,14 @@ class AuthScreen extends StatelessWidget {
     return fb_ui.SignInScreen(
       headerMaxExtent: 250,
       headerBuilder: (context, constraints, _) {
-        return Center(
+        return const Center(
           child: Padding(
-            padding: const EdgeInsets.only(top: 100, left: 20, right: 20),
+            padding: EdgeInsets.only(top: 100, left: 20, right: 20),
             child: LogoWidget(),
           ),
         );
       },
-      providerConfigs: [
+      providerConfigs: const [
         fb_ui.EmailProviderConfiguration(),
       ],
     );

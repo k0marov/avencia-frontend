@@ -1,21 +1,9 @@
 const apiHost = "avencia.skomarov.com";
 
-const transferEndpoint = "/api/v1/transfer";
-const getUserInfoEndpoint = "/api/v1/user-info";
+const transferEndpoint = "/api/v1/app/transfer";
+const getUserInfoEndpoint = "/api/v1/app/user-info";
+const historyEndpoint = "/api/v1/app/history"; 
 
-const genTransactionCodeEndpoint = "/api/v1/atm-transaction/gen-code";
-const transactionTypeKey = "transaction_type";
+const genTransactionCodeEndpoint = "/api/v1/app/gen-transaction-code";
 
-enum TransactionType {
-  deposit,
-  withdrawal,
-}
 
-String transactionTypeValue(TransactionType tt) {
-  switch (tt) {
-    case TransactionType.deposit:
-      return "deposit";
-    case TransactionType.withdrawal:
-      return "withdrawal";
-  }
-}

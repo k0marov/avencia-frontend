@@ -20,10 +20,10 @@ class AuthGate extends StatelessWidget {
       stream: _authStream,
       builder: (context, snapshot) => snapshot.hasData
           ? snapshot.data!.fold(
-              () => AuthScreen(),
-              (_) => HomeScreen(),
+              () => const AuthScreen(),
+              (_) => const HomeScreen(),
             )
-          : SplashScreen(),
+          : const SplashScreen(),
     );
   }
 }

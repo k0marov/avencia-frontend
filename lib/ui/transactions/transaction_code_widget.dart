@@ -1,11 +1,10 @@
+import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
-import '../../config/const.dart';
 import '../../di.dart';
-import '../../logic/transactions/internal/transaction_code.dart';
 import '../../logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import '../core/gradient_button.dart';
 import '../core/simple_future_builder.dart';
@@ -19,21 +18,21 @@ class TransactionCodeWidget extends StatelessWidget {
 
   Widget _buildMainContent(BuildContext context, TransactionCodeState? state) => Column(children: [
         Padding(
-          padding: EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
           child: state != null
               ? QrImage(
-                  eyeStyle: QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.black),
+                  eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.black),
                   foregroundColor: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
                   data: state.code.code,
                   version: QrVersions.auto,
                 )
-              : AspectRatio(aspectRatio: 1, child: Center(child: CircularProgressIndicator(strokeWidth: 16))),
+              : const AspectRatio(aspectRatio: 1, child: Center(child: CircularProgressIndicator(strokeWidth: 16))),
         ),
         state != null
             ? state.leftToExpire.isNegative
                 ? Text("Expired.", style: _textStyle.copyWith(color: Colors.red))
                 : Text("Expires in ${displayDuration(state.leftToExpire)}", style: _textStyle)
-            : Text("Loading...", style: _textStyle),
+            : const Text("Loading...", style: _textStyle),
       ]);
 
   @override
@@ -44,10 +43,10 @@ class TransactionCodeWidget extends StatelessWidget {
         text: "FINISH",
       ),
       SimpleFutureBuilder<TransactionCode>(
-        future: uiDeps.startTransaction(type),
+        future: uiDeps.startTransaction(MetaTransaction(type)),
         loading: _buildMainContent(context, null),
-        exceptionBuilder: (exception) => Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 20),
+        exceptionBuilder: (exception) => const Padding(
+          padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
           child: Text("Oops, some error happened. Please, try again.",
               style: TextStyle(
                 fontSize: 22,

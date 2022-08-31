@@ -5,6 +5,9 @@ import '../../di.dart';
 import '../../logic/user_info/internal/entities.dart';
 import '../core/simple_future_builder.dart';
 
+// TODO: replace all stateful widgets with cubits
+// TODO: refactor theme_brightness
+
 class FundsScreen extends StatefulWidget {
   const FundsScreen({Key? key}) : super(key: key);
 
@@ -14,7 +17,6 @@ class FundsScreen extends StatefulWidget {
 
 class _FundsScreenState extends State<FundsScreen> {
   void _refresh() {
-    print("asdf");
     setState(() {});
   }
 
@@ -28,9 +30,9 @@ class _FundsScreenState extends State<FundsScreen> {
         // child: ListView(children: [
         child: SimpleFutureBuilder<UserInfo>(
           future: uiDeps.getUserInfo(null),
-          loading: CircularProgressIndicator(),
+          loading: const CircularProgressIndicator(),
           loadedBuilder: (userInfo) => ListView(children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "Your Funds",
               style: Theme.of(context).textTheme.displaySmall,
@@ -43,20 +45,20 @@ class _FundsScreenState extends State<FundsScreen> {
                   Expanded(
                     child: Text(
                       entry.key,
-                      style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+                      style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
                       textAlign: TextAlign.right,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  const SizedBox(width: 20),
                   Expanded(
                     child: Text(
                       entry.value.toString(),
-                      style: TextStyle(fontSize: 20),
+                      style: const TextStyle(fontSize: 20),
                     ),
                   ),
                 ]),
               ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               "Withdraw Limits",
               textAlign: TextAlign.center,
@@ -73,26 +75,26 @@ class _FundsScreenState extends State<FundsScreen> {
                       children: [
                         Text(
                           entry.key,
-                          style: TextStyle(fontWeight: FontWeight.bold),
+                          style: const TextStyle(fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
                           "${entry.value.withdrawn} of ${entry.value.max}",
                           textAlign: TextAlign.center,
                         ),
-                        SizedBox(height: 10),
+                        const SizedBox(height: 10),
                         StepProgressIndicator(
-                          selectedGradientColor: LinearGradient(colors: [Colors.pink, Colors.blue]),
+                          selectedGradientColor: const LinearGradient(colors: [Colors.pink, Colors.blue]),
                           size: 8,
-                          roundedEdges: Radius.circular(5),
+                          roundedEdges: const Radius.circular(5),
                           currentStep: getCurrentStep(entry.value),
                           totalSteps: 10,
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Row(children: [
-                          Text("0"),
-                          Spacer(),
+                          const Text("0"),
+                          const Spacer(),
                           Text(entry.value.max.toString()),
                         ])
                       ],
