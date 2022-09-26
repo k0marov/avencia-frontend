@@ -6,7 +6,6 @@ import '../../logic/user_info/internal/entities.dart';
 import '../core/simple_future_builder.dart';
 
 // TODO: replace all stateful widgets with cubits
-// TODO: refactor theme_brightness
 
 class FundsScreen extends StatefulWidget {
   const FundsScreen({Key? key}) : super(key: key);

@@ -1,3 +1,4 @@
+import 'package:avencia/logic/core/general.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
@@ -5,6 +6,7 @@ Future<Either<Exception, T>> withExceptionHandling<T>(Future<T> Function() call)
   try {
     return Right(await call());
   } catch (e) {
+    printDebug("caught exception: $e");
     return Left(e is Exception ? e : Exception(e));
   }
 }
@@ -18,4 +20,3 @@ class NetworkException extends Equatable implements Exception {
 
   const NetworkException(this.statusCode, this.body);
 }
-

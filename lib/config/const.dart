@@ -1,9 +1,7 @@
 const apiHost = "avencia.skomarov.com";
 
-const transferEndpoint = "/api/v1/app/transfer";
-const getUserInfoEndpoint = "/api/v1/app/user-info";
-const historyEndpoint = "/api/v1/app/history"; 
+const transferEndpoint = "/v1/app/transfer";
+const getUserInfoEndpoint = "/v1/app/user-info";
+const historyEndpoint = "/v1/app/history";
 
-const genTransactionCodeEndpoint = "/api/v1/app/gen-transaction-code";
-
-
+const genTransactionCodeEndpoint = "/v1/app/gen-transaction-code";

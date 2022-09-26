@@ -18,7 +18,8 @@ class AuthHTTPClient extends http.BaseClient {
     final token = await _getTokenOrThrow();
     request.headers['contentType'] = "application/json";
     request.headers['responseType'] = "application/json";
-    request.headers['Authorization'] = "Bearer $token";
+    request.headers['Authorization'] = token;
+    printDebug("current auth token: $token");
 
     printDebug(request);
 
