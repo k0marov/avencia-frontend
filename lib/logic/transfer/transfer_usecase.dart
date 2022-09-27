@@ -1,6 +1,5 @@
 import 'package:avencia/config/const.dart';
-import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/core/network_usecase.dart';
+import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
 import 'package:dartz/dartz.dart';
@@ -8,13 +7,12 @@ import 'package:dartz/dartz.dart';
 typedef TransferUseCase = Future<Either<Exception, void>> Function(TransferData);
 
 TransferUseCase newTransferUseCase(
-  AuthHTTPClient httpClient,
+  NetworkUseCaseFactory nuc,
   TransferMapper mapper,
 ) =>
-    newBaseNetworkUseCase(
+    nuc.newBaseNetworkUseCase(
       inpMapper: mapper,
-      getUri: (_) => Uri.https(apiHost, transferEndpoint, {}),
+      getUri: (_, host) => Uri.https(host, transferEndpoint, {}),
       method: "POST",
-      client: httpClient,
       outMapper: NoOutMapper(),
     );

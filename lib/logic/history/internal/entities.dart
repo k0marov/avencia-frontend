@@ -1,12 +1,12 @@
-import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/core/money/money.dart';
 import 'package:equatable/equatable.dart';
 
 import 'values.dart';
 
 class HistoryEntry extends Equatable {
-  final DateTime transactedAt; 
-  final TransactionSource source; 
-  final Money money; 
+  final DateTime transactedAt;
+  final TransactionSource source;
+  final Money money;
   @override
   List get props => [transactedAt, source, money];
 
@@ -14,9 +14,9 @@ class HistoryEntry extends Equatable {
 }
 
 class History extends Equatable {
-  final List<HistoryEntry> entries; 
-  @override 
-  List get props => [entries]; 
+  final List<HistoryEntry> entries;
+  @override
+  List get props => [entries];
 
-  const History(this.entries); 
+  const History(this.entries);
 }

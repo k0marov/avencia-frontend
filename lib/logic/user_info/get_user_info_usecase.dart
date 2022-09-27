@@ -1,23 +1,19 @@
-
-import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/core/network_usecase.dart';
+import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../config/const.dart';
 import 'internal/entities.dart';
 
-
 typedef GetUserInfoUseCase = Future<Either<Exception, UserInfo>> Function(void);
 
 GetUserInfoUseCase newGetUserInfoUseCase(
-  AuthHTTPClient httpClient,
+  NetworkUseCaseFactory nuc,
   UserInfoMapper mapper,
 ) =>
-    newBaseNetworkUseCase(
+    nuc.newBaseNetworkUseCase(
       inpMapper: NoInpMapper(),
-      getUri: (_) => Uri.https(apiHost, getUserInfoEndpoint, {}),
+      getUri: (_, host) => Uri.https(host, getUserInfoEndpoint, {}),
       method: "GET",
-      client: httpClient,
       outMapper: mapper,
     );

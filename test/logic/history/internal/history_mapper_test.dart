@@ -1,5 +1,5 @@
-import 'package:avencia/logic/core/money.dart';
-import 'package:avencia/logic/core/money_mapper.dart';
+import 'package:avencia/logic/core/money/money.dart';
+import 'package:avencia/logic/core/money/money_mapper.dart';
 import 'package:avencia/logic/history/internal/entities.dart';
 import 'package:avencia/logic/history/internal/history_mapper.dart';
 import 'package:avencia/logic/history/internal/transaction_source_mapper.dart';

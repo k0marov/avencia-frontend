@@ -1,5 +1,4 @@
-
-import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/core/money/money.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
 

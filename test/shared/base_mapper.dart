@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:avencia/logic/core/network_usecase.dart';
+import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import '../fixtures/fixture_reader.dart';

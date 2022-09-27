@@ -1,4 +1,4 @@
-import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/core/money/money.dart';
 import 'package:equatable/equatable.dart';
 
 class Limit extends Equatable {

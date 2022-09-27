@@ -1,22 +1,5 @@
-import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
-
+import 'entity.dart';
 import 'network_use_case_factory.dart';
-
-class Entity<V extends Value> extends Equatable {
-  final String id;
-  final V o;
-  @override
-  List get props => [...o.props, id];
-  const Entity(this.id, this.o);
-}
-
-typedef Value = Equatable;
-
-typedef Creator<V extends Value> = Future<Either<Exception, Entity<V>>> Function(V);
-typedef Reader<V extends Value> = Future<Either<Exception, Entity<V>>> Function(String id);
-typedef Updater<V extends Value> = Future<Either<Exception, void>> Function(Entity<V>);
-typedef Deleter<V extends Value> = Future<Either<Exception, void>> Function(String id);
 
 class NetworkCRUD {
   final NetworkUseCaseFactory _networkFactory;

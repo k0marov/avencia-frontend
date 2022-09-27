@@ -1,4 +1,4 @@
-import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/core/money/money.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
 import 'package:avencia/ui/core/gradient_button.dart';

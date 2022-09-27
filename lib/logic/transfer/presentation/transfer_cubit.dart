@@ -1,4 +1,4 @@
-import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/core/money/money.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 

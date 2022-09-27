@@ -1,5 +1,7 @@
+import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
+import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
@@ -48,13 +50,14 @@ late final UIDeps uiDeps;
 Future<void> initialize() async {
   final authFacade = FirebaseAuthFacade(FirebaseAuth.instance);
   final httpClient = AuthHTTPClient(authFacade, http.Client());
+  final nucFactory = NetworkUseCaseFactory(apiHost, httpClient);
 
-  final startTransaction = newStartTransactionUseCase(httpClient, MetaTransactionMapper(), TransactionCodeMapper());
+  final startTransaction = newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
   final transCodeCubitFactory = newTransactionCodeCubitFactory();
 
-  final getUserInfo = newGetUserInfoUseCase(httpClient, UserInfoMapper(LimitsMapper(), WalletMapper()));
+  final getUserInfo = newGetUserInfoUseCase(nucFactory, UserInfoMapper(LimitsMapper(), WalletMapper()));
 
-  final transfer = newTransferUseCase(httpClient, TransferMapper());
+  final transfer = newTransferUseCase(nucFactory, TransferMapper());
   final transferCubitFactory = newTransferCubitFactory();
 
   final sharedPrefs = RxSharedPreferences.getInstance();

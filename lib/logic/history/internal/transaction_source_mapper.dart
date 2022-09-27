@@ -1,10 +1,11 @@
-import 'package:avencia/logic/core/network_usecase.dart';
 import 'package:avencia/logic/history/internal/values.dart';
+
+import '../../core/entity/network_use_case_factory.dart';
 
 class UnknownTransactionTypeException implements Exception {}
 
 class TransactionSourceMapper implements OutMapper<TransactionSource> {
-  const TransactionSourceMapper(); 
+  const TransactionSourceMapper();
 
   TransactionSourceType _decodeType(String type) {
     switch (type) {
@@ -12,10 +13,10 @@ class TransactionSourceMapper implements OutMapper<TransactionSource> {
         return TransactionSourceType.creditCard;
       case "cash":
         return TransactionSourceType.cash;
-      case "crypto": 
-        return TransactionSourceType.crypto; 
-      case "transfer": 
-        return TransactionSourceType.transfer; 
+      case "crypto":
+        return TransactionSourceType.crypto;
+      case "transfer":
+        return TransactionSourceType.transfer;
       default:
         throw UnknownTransactionTypeException();
     }

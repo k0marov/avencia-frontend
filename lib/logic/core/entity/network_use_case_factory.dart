@@ -3,15 +3,17 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
-import '../logic/core/error.dart';
+import '../error.dart';
 
 abstract class InpMapper<V> {
-  Map<String, dynamic> toJson(V);
+  Map<String, dynamic> toJson(V v);
 }
 
 abstract class OutMapper<V> {
   V fromJson(Map<String, dynamic> json);
 }
+
+abstract class FullMapper<V> implements InpMapper<V>, OutMapper<V> {}
 
 class NoInpMapper<V> implements InpMapper<V> {
   @override
