@@ -1,3 +1,4 @@
+import 'package:avencia/logic/core/general.dart';
 import 'package:avencia/logic/core/money/money.dart';
 import 'package:avencia/logic/history/internal/entities.dart';
 import 'package:avencia/logic/history/internal/values.dart';
@@ -14,7 +15,7 @@ class HistoryMapper implements OutMapper<History> {
     final entriesJson = json["entries"] as List;
     final entries = entriesJson
         .map((entry) => HistoryEntry(
-              DateTime.fromMillisecondsSinceEpoch(entry["transacted_at"] * 1000).toUtc(),
+              fromUnixSec(entry["transacted_at"]),
               sourceMapper.fromJson(entry["source"]),
               moneyMapper.fromJson(entry["money"]),
             ))

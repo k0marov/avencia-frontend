@@ -1,6 +1,7 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
+import 'package:avencia/logic/core/entity/network_crud.dart';
 import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
@@ -9,6 +10,8 @@ import 'package:avencia/logic/transactions/start_transaction_usecase.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
 import 'package:avencia/logic/transfer/presentation/transfer_cubit.dart';
 import 'package:avencia/logic/transfer/transfer_usecase.dart';
+import 'package:avencia/logic/user_details/internal/mappers.dart';
+import 'package:avencia/logic/user_details/user_details_crud.dart';
 import 'package:avencia/logic/user_info/get_user_info_usecase.dart';
 import 'package:avencia/logic/user_info/internal/limits_mapper.dart';
 import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
@@ -17,8 +20,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
+import 'logic/core/entity/entity.dart';
 import 'logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
 import 'logic/theme_brightness/toggle_theme_brightness_usecase.dart';
+import 'logic/user_details/internal/user_details.dart';
 
 class UIDeps {
   final AuthFacade authFacade;
@@ -33,6 +38,9 @@ class UIDeps {
   final ToggleThemeBrightnessUseCase toggleThemeBrightness;
   final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
 
+  final Updater<UserDetails> updateUserDetails;
+  final Reader<UserDetails> getUserDetails;
+
   UIDeps._(
     this.authFacade,
     this.getUserInfo,
@@ -42,6 +50,8 @@ class UIDeps {
     this.transCodeCubitFactory,
     this.toggleThemeBrightness,
     this.getThemeBrightnessStream,
+    this.updateUserDetails,
+    this.getUserDetails,
   );
 }
 
@@ -64,6 +74,11 @@ Future<void> initialize() async {
   final toggleTheme = newToggleThemeBrightnessUseCase(sharedPrefs);
   final getThemeStream = newGetThemeBrightnessUseCase(sharedPrefs);
 
+  final networkCrud = NetworkCRUD(nucFactory);
+
+  final readUserDetails = newUserDetailsReader(networkCrud, UserDetailsMapper());
+  final updateUserDetails = newUserDetailsUpdater(networkCrud, UserDetailsMapper());
+
   uiDeps = UIDeps._(
     authFacade,
     getUserInfo,
@@ -73,5 +88,7 @@ Future<void> initialize() async {
     transCodeCubitFactory,
     toggleTheme,
     getThemeStream,
+    updateUserDetails,
+    readUserDetails,
   );
 }

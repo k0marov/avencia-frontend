@@ -5,7 +5,11 @@ class NetworkCRUD {
   final NetworkUseCaseFactory _networkFactory;
   const NetworkCRUD(this._networkFactory);
 
-  Creator<V> newCreator<V extends Value>(String endpoint, InpMapper<V> inpMap, OutMapper<Entity<V>> outMap) {
+  Creator<V> newCreator<V extends Value>({
+    required String endpoint,
+    required InpMapper<V> inpMap,
+    required OutMapper<Entity<V>> outMap,
+  }) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: inpMap,
       getUri: (v, host) => Uri.https(host, endpoint),
@@ -14,25 +18,33 @@ class NetworkCRUD {
     );
   }
 
-  Reader<V> newReader<V extends Value>(String endpoint, OutMapper<Entity<V>> outMap) {
+  Reader<V> newReader<V extends Value>({
+    required String endpoint,
+    required bool includeId,
+    required OutMapper<Entity<V>> outMap,
+  }) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: NoInpMapper(),
-      getUri: (id, host) => Uri.https(endpoint + id, host),
+      getUri: (id, host) => Uri.https(endpoint + (includeId ? id : ""), host),
       method: "GET",
       outMapper: outMap,
     );
   }
 
-  Updater<V> newUpdater<V extends Value>(String endpoint, InpMapper<Entity<V>> inpMap) {
+  Updater<V> newUpdater<V extends Value>({
+    required String endpoint,
+    required bool includeId,
+    required InpMapper<Entity<V>> inpMap,
+  }) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: inpMap,
-      getUri: (Entity<V> e, String host) => Uri.https(endpoint + e.id, host),
+      getUri: (Entity<V> e, String host) => Uri.https(endpoint + (includeId ? e.id : ""), host),
       method: "PATCH",
       outMapper: NoOutMapper(),
     );
   }
 
-  Deleter<V> newDeleter<V extends Value>(String endpoint) {
+  Deleter<V> newDeleter<V extends Value>({required String endpoint}) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: NoInpMapper(),
       getUri: (id, host) => Uri.https(endpoint + id, host),
