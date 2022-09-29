@@ -8,6 +8,8 @@ import '../../logic/transactions/presentation/transaction_screen_cubit/transacti
 import '../core/gradient_button.dart';
 import '../core/logo_widget.dart';
 
+// TODO: refactor this
+
 class TransactionScreen extends StatelessWidget {
   const TransactionScreen({Key? key}) : super(key: key);
 

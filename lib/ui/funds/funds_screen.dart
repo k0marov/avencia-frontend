@@ -19,7 +19,7 @@ class _FundsScreenState extends State<FundsScreen> {
     setState(() {});
   }
 
-  int getCurrentStep(Limit l) => (l.withdrawn / l.max * 10).floor();
+  int _getCurrentStep(Limit l) => (l.withdrawn / l.max * 10).floor();
 
   @override
   Widget build(BuildContext context) {
@@ -87,7 +87,7 @@ class _FundsScreenState extends State<FundsScreen> {
                           selectedGradientColor: const LinearGradient(colors: [Colors.pink, Colors.blue]),
                           size: 8,
                           roundedEdges: const Radius.circular(5),
-                          currentStep: getCurrentStep(entry.value),
+                          currentStep: _getCurrentStep(entry.value),
                           totalSteps: 10,
                         ),
                         const SizedBox(height: 5),

@@ -1,6 +1,7 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
+import 'package:avencia/logic/core/cubit_form/form_cubit.dart';
 import 'package:avencia/logic/core/entity/network_crud.dart';
 import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
@@ -20,7 +21,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
-import 'logic/core/entity/entity.dart';
 import 'logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
 import 'logic/theme_brightness/toggle_theme_brightness_usecase.dart';
 import 'logic/user_details/internal/user_details.dart';
@@ -38,8 +38,7 @@ class UIDeps {
   final ToggleThemeBrightnessUseCase toggleThemeBrightness;
   final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
 
-  final Updater<UserDetails> updateUserDetails;
-  final Reader<UserDetails> getUserDetails;
+  final FormCubit<UserDetails> Function() userDetailsFormFactory;
 
   UIDeps._(
     this.authFacade,
@@ -50,8 +49,7 @@ class UIDeps {
     this.transCodeCubitFactory,
     this.toggleThemeBrightness,
     this.getThemeBrightnessStream,
-    this.updateUserDetails,
-    this.getUserDetails,
+    this.userDetailsFormFactory,
   );
 }
 
@@ -88,7 +86,6 @@ Future<void> initialize() async {
     transCodeCubitFactory,
     toggleTheme,
     getThemeStream,
-    updateUserDetails,
-    readUserDetails,
+    () => FormCubit<UserDetails>(readUserDetails, updateUserDetails, ""),
   );
 }
