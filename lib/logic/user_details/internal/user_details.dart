@@ -17,6 +17,23 @@ class UserDetails extends Equatable {
     required this.birthDate,
     required this.address,
   });
+
+  UserDetails copyWith({
+    String? fullName,
+    String? displayName,
+    String? email,
+    String? phone,
+    DateTime? birthDate,
+    Address? address,
+  }) =>
+      UserDetails(
+        fullName: fullName ?? this.fullName,
+        displayName: displayName ?? this.displayName,
+        email: email ?? this.email,
+        phone: phone ?? this.phone,
+        birthDate: birthDate ?? this.birthDate,
+        address: address ?? this.address,
+      );
 }
 
 class Address extends Equatable {
@@ -34,4 +51,19 @@ class Address extends Equatable {
     required this.nation,
     required this.zipCode,
   });
+
+  Address copyWith({
+    String? address,
+    String? city,
+    String? state,
+    String? nation,
+    String? zipCode,
+  }) =>
+      Address(
+        address: address ?? this.address,
+        city: city ?? this.city,
+        state: state ?? this.state,
+        nation: nation ?? this.nation,
+        zipCode: zipCode ?? this.zipCode,
+      );
 }

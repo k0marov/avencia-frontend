@@ -1,4 +1,5 @@
 import 'package:avencia/di.dart';
+import 'package:avencia/ui/user_details/user_details_widget.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -12,6 +13,7 @@ class ProfileScreen extends StatelessWidget {
         onPressed: uiDeps.authFacade.logout,
         child: Text("Logout", style: TextStyle(color: Colors.red)),
       ),
+      UserDetailsForm(),
     ]));
   }
 }
