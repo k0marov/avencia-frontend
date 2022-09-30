@@ -7,26 +7,28 @@ import 'auth/auth_gate.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
+
+  ThemeMode _getThemeMode(ThemeBrightness brightness) {
+    switch (brightness) {
+      case ThemeBrightness.dark:
+        return ThemeMode.dark;
+      case ThemeBrightness.light:
+        return ThemeMode.light;
+      case ThemeBrightness.unset:
+        return ThemeMode.system;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<ThemeBrightness>(
         stream: uiDeps.getThemeBrightnessStream(),
-        builder: (context, snapshot) {
-          final brightness = snapshot.data ?? ThemeBrightness.light;
-          late final ThemeMode theme;
-          switch (brightness) {
-            case ThemeBrightness.dark:
-              theme = ThemeMode.dark;
-              break;
-            case ThemeBrightness.light:
-              theme = ThemeMode.light;
-              break;
-          }
+        builder: (context, brightness) {
           return MaterialApp(
             title: 'Avencia',
             theme: ThemeData.light(),
             darkTheme: ThemeData.dark(),
-            themeMode: theme,
+            themeMode: _getThemeMode(brightness.data ?? ThemeBrightness.unset),
             home: AuthGate(),
           );
         });

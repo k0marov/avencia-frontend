@@ -1,7 +1,7 @@
-enum ThemeBrightness { dark, light }
+enum ThemeBrightness { dark, light, unset }
 
 ThemeBrightness tbFromValue(String? value) => value == null
-    ? ThemeBrightness.light
+    ? ThemeBrightness.unset
     : value == lightThemeValue
         ? ThemeBrightness.light
         : ThemeBrightness.dark;

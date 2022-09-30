@@ -8,7 +8,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Column(children: [
+        child: ListView(children: [
       TextButton(
         onPressed: uiDeps.authFacade.logout,
         child: Text("Logout", style: TextStyle(color: Colors.red)),
