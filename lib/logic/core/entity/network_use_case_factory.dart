@@ -48,7 +48,7 @@ class NetworkUseCaseFactory {
         request.body = json.encode(inpMapper.toJson(inp));
         final respStream = await _client.send(request);
         final resp = await http.Response.fromStream(respStream);
-        final respBody = json.decode(resp.body);
+        final respBody = resp.body.isNotEmpty ? json.decode(resp.body) : Map<String, dynamic>();
         return outMapper.fromJson(respBody);
       });
     };

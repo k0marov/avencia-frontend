@@ -5,6 +5,10 @@ class NetworkCRUD {
   final NetworkUseCaseFactory _networkFactory;
   const NetworkCRUD(this._networkFactory);
 
+  Uri _getURLWithId(String endpoint, String host, String id, bool includeId) =>
+      Uri.https(host, endpoint + (includeId ? id : ""));
+  Uri _getURL(String host, String endpoint) => Uri.https(host, endpoint);
+
   Creator<V> newCreator<V extends Value>({
     required String endpoint,
     required InpMapper<V> inpMap,
@@ -12,7 +16,7 @@ class NetworkCRUD {
   }) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: inpMap,
-      getUri: (v, host) => Uri.https(host, endpoint),
+      getUri: (v, host) => _getURL(endpoint, host),
       method: "POST",
       outMapper: outMap,
     );
@@ -25,7 +29,7 @@ class NetworkCRUD {
   }) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: NoInpMapper(),
-      getUri: (id, host) => Uri.https(endpoint + (includeId ? id : ""), host),
+      getUri: (id, host) => _getURLWithId(endpoint, host, id, includeId),
       method: "GET",
       outMapper: outMap,
     );
@@ -38,7 +42,12 @@ class NetworkCRUD {
   }) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: inpMap,
-      getUri: (Entity<V> e, String host) => Uri.https(endpoint + (includeId ? e.id : ""), host),
+      getUri: (Entity<V> e, String host) => _getURLWithId(
+        endpoint,
+        host,
+        e.id,
+        includeId,
+      ),
       method: "PATCH",
       outMapper: NoOutMapper(),
     );
@@ -47,7 +56,7 @@ class NetworkCRUD {
   Deleter<V> newDeleter<V extends Value>({required String endpoint}) {
     return _networkFactory.newBaseNetworkUseCase(
       inpMapper: NoInpMapper(),
-      getUri: (id, host) => Uri.https(endpoint + id, host),
+      getUri: (id, host) => _getURLWithId(endpoint, host, id, true),
       method: "DELETE",
       outMapper: NoOutMapper(),
     );

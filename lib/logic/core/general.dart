@@ -7,7 +7,8 @@ void printDebug(dynamic message) {
 }
 
 DateTime fromUnixSec(int unixSec) {
-  return DateTime.fromMillisecondsSinceEpoch(unixSec * 1000).toUtc();
+  // No conversion to UTC since Unix time is already UTC
+  return DateTime.fromMillisecondsSinceEpoch(unixSec * 1000);
 }
 
-int toUnixSec(DateTime dt) => (dt.millisecondsSinceEpoch / 1000).floor();
+int toUnixSec(DateTime dt) => (dt.toUtc().millisecondsSinceEpoch / 1000).floor();

@@ -20,7 +20,7 @@ class UserDetailsMapper implements InpMapper<Entity<UserDetails>>, OutMapper<Ent
           city: json["address"]["city"],
           state: json["address"]["state"],
           nation: json["address"]["nation"],
-          zipCode: json["address"]["zip_code"],
+          zipCode: json["address"]["zipcode"],
         ),
       ),
     );

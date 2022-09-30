@@ -2,13 +2,26 @@ import 'package:avencia/logic/core/entity/entity.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
+enum UpdateState {
+  unchanged,
+  updating,
+  updated,
+}
+
 class FormCubitState<V> extends Equatable {
+  final V? _initial;
   final V? val;
-  final bool updated;
+  final UpdateState upd;
   final Exception? exception;
   @override
-  List get props => [val, updated, exception];
-  const FormCubitState([this.val, this.updated = false, this.exception]);
+  List get props => [_initial, val, upd, exception];
+  const FormCubitState([this._initial, this.val, this.upd = UpdateState.unchanged, this.exception]);
+
+  bool updateAvailable() => _initial != val && val != null;
+
+  FormCubitState<V> withValue(V? val) => FormCubitState<V>(_initial, val, upd, exception);
+  FormCubitState<V> withUpdState(UpdateState upd) => FormCubitState<V>(_initial, val, upd, exception);
+  FormCubitState<V> withException(Exception? e) => FormCubitState<V>(_initial, val, upd, e);
 }
 
 class FormCubit<V extends Value> extends Cubit<FormCubitState<V>> {
@@ -24,7 +37,7 @@ class FormCubit<V extends Value> extends Cubit<FormCubitState<V>> {
   }
 
   void valueEdited(V newValue) {
-    emit(FormCubitState(newValue, false, state.exception));
+    emit(state.withUpdState(UpdateState.unchanged).withValue(newValue));
   }
 
   void updatePressed() {
@@ -37,17 +50,18 @@ class FormCubit<V extends Value> extends Cubit<FormCubitState<V>> {
   void _fetchAndEmit() {
     _read(_id).then(
       (res) => res.fold(
-        (e) => emit(FormCubitState(state.val, false, e)),
-        (newV) => emit(FormCubitState(newV.o)),
+        (e) => emit(state.withException(e)),
+        (newV) => emit(FormCubitState(newV.o, newV.o)),
       ),
     );
   }
 
   void _updateAndEmit(V newV) {
+    emit(state.withUpdState(UpdateState.updating));
     _upd(Entity<V>(_id, newV)).then(
       (res) => res.fold(
-        (e) => emit(FormCubitState(state.val, true, e)),
-        (success) => emit(FormCubitState(newV, true)),
+        (e) => emit(state.withUpdState(UpdateState.unchanged).withException(e)),
+        (success) => emit(FormCubitState(newV, newV, UpdateState.updated)),
       ),
     );
   }

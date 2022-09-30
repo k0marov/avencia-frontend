@@ -29,14 +29,31 @@ class FormWidget<V extends Value> extends StatelessWidget {
                   ),
                 Row(children: [
                   if (state.exception != null) Text(state.exception.toString()),
-                  if (state.updated) Icon(Icons.check, color: Colors.green),
+                  _getUpdIcon(state.upd),
                   ElevatedButton(
-                    onPressed: state.val != null ? context.read<FormCubit<V>>().updatePressed : null,
+                    onPressed: state.updateAvailable() ? context.read<FormCubit<V>>().updatePressed : null,
                     child: Text("Update"),
                   ),
                 ])
               ])),
     );
+  }
+
+  Widget _getUpdIcon(UpdateState upd) {
+    switch (upd) {
+      case UpdateState.unchanged:
+        return Container();
+      case UpdateState.updating:
+        return const SizedBox(
+          height: 20,
+          width: 20,
+          child: CircularProgressIndicator(),
+        );
+        // TODO: Handle this case.
+        break;
+      case UpdateState.updated:
+        return Icon(Icons.check, size: 20, color: Colors.green);
+    }
   }
 }
 
