@@ -4,6 +4,7 @@ import 'package:avencia/ui/core/forms/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
 import '../core/forms/date_picker_field.dart';
+import '../core/forms/form_field_structure.dart';
 import '../core/forms/form_section_widget.dart';
 import '../core/forms/form_widget.dart';
 
@@ -50,10 +51,16 @@ class _PersonalDetailsSection extends StatelessWidget {
           updValue: (val) => i.update(i.current.copyWith(displayName: val)),
           getValue: (val) => val.displayName,
         ),
-        CustomTextField<UserDetails>(
+        FormFieldStructure(
           label: "email",
-          updValue: (val) => i.update(i.current.copyWith(email: val)),
-          getValue: (val) => val.email,
+          onTap: null,
+          current: '',
+          postfix: Center(
+            child: InkWell(
+              onTap: () {},
+              child: Icon(Icons.check, color: Colors.green),
+            ),
+          ),
         ),
         CustomTextField<UserDetails>(
           label: "phone",
