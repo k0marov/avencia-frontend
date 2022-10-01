@@ -3,7 +3,7 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../di.dart';
 import '../../logic/user_info/internal/entities.dart';
-import '../core/simple_future_builder.dart';
+import '../core/general/simple_future_builder.dart';
 
 // TODO: replace all stateful widgets with cubits
 

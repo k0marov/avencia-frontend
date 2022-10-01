@@ -6,9 +6,9 @@ import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../di.dart';
 import '../../logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
-import '../core/gradient_button.dart';
-import '../core/simple_future_builder.dart';
-import '../shared/helpers.dart';
+import '../core/buttons/gradient_button.dart';
+import '../core/general/helpers.dart';
+import '../core/general/simple_future_builder.dart';
 
 class TransactionCodeWidget extends StatelessWidget {
   final TransactionType type;

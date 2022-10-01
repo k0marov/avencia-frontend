@@ -1,10 +1,11 @@
 import 'package:avencia/di.dart';
 import 'package:avencia/logic/user_details/internal/user_details.dart';
-import 'package:avencia/ui/core/custom_text_field.dart';
-import 'package:avencia/ui/core/date_picker_field.dart';
-import 'package:avencia/ui/core/form_section_widget.dart';
-import 'package:avencia/ui/core/form_widget.dart';
+import 'package:avencia/ui/core/forms/custom_text_field.dart';
 import 'package:flutter/material.dart';
+
+import '../core/forms/date_picker_field.dart';
+import '../core/forms/form_section_widget.dart';
+import '../core/forms/form_widget.dart';
 
 class UserDetailsForm extends StatelessWidget {
   const UserDetailsForm({Key? key}) : super(key: key);
@@ -26,6 +27,52 @@ class UserDetailsForm extends StatelessWidget {
   }
 }
 
+class _PersonalDetailsSection extends StatelessWidget {
+  final FormInfo<UserDetails> i;
+  const _PersonalDetailsSection({
+    required this.i,
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return FormSectionWidget(
+      title: "Personal Details",
+      updButton: i.action,
+      fields: [
+        CustomTextField<UserDetails>(
+          label: "full name",
+          updValue: (val) => i.update(i.current.copyWith(fullName: val)),
+          getValue: (val) => val.fullName,
+        ),
+        CustomTextField<UserDetails>(
+          label: "display name",
+          updValue: (val) => i.update(i.current.copyWith(displayName: val)),
+          getValue: (val) => val.displayName,
+        ),
+        CustomTextField<UserDetails>(
+          label: "email",
+          updValue: (val) => i.update(i.current.copyWith(email: val)),
+          getValue: (val) => val.email,
+        ),
+        CustomTextField<UserDetails>(
+          label: "phone",
+          updValue: (val) => i.update(i.current.copyWith(phone: val)),
+          getValue: (val) => val.phone,
+        ),
+        DatePickerField<UserDetails>(
+          updValue: (val) => i.update(i.current.copyWith(birthDate: val)),
+          current: i.current.birthDate,
+          format: (dt) => "${dt.month}/${dt.day}/${dt.year}",
+          label: "birth date",
+          first: DateTime(1900),
+          last: DateTime.now(),
+        ),
+      ],
+    );
+  }
+}
+
 class _AddressSection extends StatelessWidget {
   final FormInfo<UserDetails> i;
   const _AddressSection({
@@ -38,78 +85,32 @@ class _AddressSection extends StatelessWidget {
     void updAddr(Address addr) => i.update(i.current.copyWith(address: addr));
     return FormSectionWidget(
       title: "Your Address",
-      updButton: i.updButton,
+      updButton: i.action,
       fields: [
-        CustomTextField(
-          initial: a.address,
-          label: "Address",
-          onChanged: (val) => updAddr(a.copyWith(address: val)),
+        CustomTextField<UserDetails>(
+          label: "address",
+          updValue: (val) => updAddr(a.copyWith(address: val)),
+          getValue: (val) => val.address.address,
         ),
-        CustomTextField(
-          initial: a.city,
-          label: "City",
-          onChanged: (val) => updAddr(a.copyWith(city: val)),
+        CustomTextField<UserDetails>(
+          label: "city",
+          updValue: (val) => updAddr(a.copyWith(city: val)),
+          getValue: (val) => val.address.city,
         ),
-        CustomTextField(
-          initial: a.state,
-          label: "State",
-          onChanged: (val) => updAddr(a.copyWith(state: val)),
+        CustomTextField<UserDetails>(
+          label: "state",
+          updValue: (val) => updAddr(a.copyWith(state: val)),
+          getValue: (val) => val.address.state,
         ),
-        CustomTextField(
-          initial: a.nation,
-          label: "Nationality",
-          onChanged: (val) => updAddr(a.copyWith(nation: val)),
+        CustomTextField<UserDetails>(
+          label: "nationality",
+          updValue: (val) => updAddr(a.copyWith(nation: val)),
+          getValue: (val) => val.address.nation,
         ),
-        CustomTextField(
-          initial: a.zipCode,
-          label: "Zip Code",
-          onChanged: (val) => updAddr(a.copyWith(zipCode: val)),
-        ),
-      ],
-    );
-  }
-}
-
-class _PersonalDetailsSection extends StatelessWidget {
-  final FormInfo<UserDetails> i;
-  const _PersonalDetailsSection({
-    required this.i,
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return FormSectionWidget(
-      title: "Personal Details",
-      updButton: i.updButton,
-      fields: [
-        CustomTextField(
-          initial: i.current.fullName,
-          label: "Full Name",
-          onChanged: (val) => i.update(i.current.copyWith(fullName: val)),
-        ),
-        CustomTextField(
-          initial: i.current.displayName,
-          label: "Display Name",
-          onChanged: (val) => i.update(i.current.copyWith(displayName: val)),
-        ),
-        CustomTextField(
-          initial: i.current.email,
-          label: "Email",
-          onChanged: (val) => i.update(i.current.copyWith(email: val)),
-        ),
-        CustomTextField(
-          initial: i.current.phone,
-          label: "Phone",
-          onChanged: (val) => i.update(i.current.copyWith(phone: val)),
-        ),
-        DatePickerField(
-          onChanged: (val) => i.update(i.current.copyWith(birthDate: val)),
-          current: i.current.birthDate,
-          format: (dt) => "${dt.month}/${dt.day}/${dt.year}",
-          label: "Birth Date",
-          first: DateTime(1900),
-          last: DateTime.now(),
+        CustomTextField<UserDetails>(
+          label: "zip code",
+          updValue: (val) => updAddr(a.copyWith(zipCode: val)),
+          getValue: (val) => val.address.zipCode,
         ),
       ],
     );

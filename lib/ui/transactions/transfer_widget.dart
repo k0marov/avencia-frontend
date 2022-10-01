@@ -1,13 +1,13 @@
 import 'package:avencia/logic/core/money/money.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
-import 'package:avencia/ui/core/gradient_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di.dart';
 import '../../logic/transfer/presentation/transfer_cubit.dart';
+import '../core/buttons/gradient_button.dart';
 
 class TransferWidget extends StatelessWidget {
   const TransferWidget({Key? key}) : super(key: key);

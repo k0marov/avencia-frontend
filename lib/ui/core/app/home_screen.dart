@@ -1,8 +1,8 @@
 import 'package:avencia/ui/funds/funds_screen.dart';
 import 'package:flutter/material.dart';
 
-import '../profile/profile_screen.dart';
-import '../transactions/transaction_screen.dart';
+import '../../profile/profile_screen.dart';
+import '../../transactions/transaction_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);

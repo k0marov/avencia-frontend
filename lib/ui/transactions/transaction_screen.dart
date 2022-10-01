@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
-import '../core/gradient_button.dart';
-import '../core/logo_widget.dart';
+import '../core/app/logo_widget.dart';
+import '../core/buttons/gradient_button.dart';
 
 // TODO: refactor this
 

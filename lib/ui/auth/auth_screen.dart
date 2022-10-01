@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart' as fb_ui;
 
-import '../core/logo_widget.dart';
+import '../core/app/logo_widget.dart';
 
 class AuthScreen extends StatelessWidget {
   const AuthScreen({Key? key}) : super(key: key);
