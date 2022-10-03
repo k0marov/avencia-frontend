@@ -3,16 +3,14 @@ import 'package:equatable/equatable.dart';
 class UserDetails extends Equatable {
   final String fullName;
   final String displayName;
-  final String email;
   final String phone;
   final DateTime birthDate;
   final Address address;
   @override
-  List get props => [fullName, displayName, email, phone, birthDate, address];
+  List get props => [fullName, displayName, phone, birthDate, address];
   const UserDetails({
     required this.fullName,
     required this.displayName,
-    required this.email,
     required this.phone,
     required this.birthDate,
     required this.address,
@@ -21,7 +19,6 @@ class UserDetails extends Equatable {
   UserDetails copyWith({
     String? fullName,
     String? displayName,
-    String? email,
     String? phone,
     DateTime? birthDate,
     Address? address,
@@ -29,7 +26,6 @@ class UserDetails extends Equatable {
       UserDetails(
         fullName: fullName ?? this.fullName,
         displayName: displayName ?? this.displayName,
-        email: email ?? this.email,
         phone: phone ?? this.phone,
         birthDate: birthDate ?? this.birthDate,
         address: address ?? this.address,

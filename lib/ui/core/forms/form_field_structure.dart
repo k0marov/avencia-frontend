@@ -35,6 +35,7 @@ class FormFieldStructure extends StatelessWidget {
             child: Row(
               children: [
                 Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       label,

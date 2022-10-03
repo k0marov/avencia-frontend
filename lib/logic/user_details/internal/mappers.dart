@@ -12,7 +12,6 @@ class UserDetailsMapper implements InpMapper<Entity<UserDetails>>, OutMapper<Ent
       UserDetails(
         fullName: json["full_name"],
         displayName: json["display_name"],
-        email: json["email"],
         phone: json["phone"],
         birthDate: fromUnixSec(json["birth_date"]),
         address: Address(
@@ -31,7 +30,6 @@ class UserDetailsMapper implements InpMapper<Entity<UserDetails>>, OutMapper<Ent
         "id": v.id,
         "full_name": v.o.fullName,
         "display_name": v.o.displayName,
-        "email": v.o.email,
         "phone": v.o.phone,
         "birth_date": toUnixSec(v.o.birthDate),
         "address": {
