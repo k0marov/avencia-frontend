@@ -1,7 +1,6 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/core/cubit_form/form_cubit.dart';
 import 'package:avencia/logic/core/entity/network_crud.dart';
 import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
@@ -21,6 +20,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
+import 'logic/core/forms/form_cubit.dart';
 import 'logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
 import 'logic/theme_brightness/toggle_theme_brightness_usecase.dart';
 import 'logic/user_details/internal/user_details.dart';
@@ -60,10 +60,12 @@ Future<void> initialize() async {
   final httpClient = AuthHTTPClient(authFacade, http.Client());
   final nucFactory = NetworkUseCaseFactory(apiHost, httpClient);
 
-  final startTransaction = newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
+  final startTransaction =
+      newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
   final transCodeCubitFactory = newTransactionCodeCubitFactory();
 
-  final getUserInfo = newGetUserInfoUseCase(nucFactory, UserInfoMapper(LimitsMapper(), WalletMapper()));
+  final getUserInfo =
+      newGetUserInfoUseCase(nucFactory, UserInfoMapper(LimitsMapper(), WalletMapper()));
 
   final transfer = newTransferUseCase(nucFactory, TransferMapper());
   final transferCubitFactory = newTransferCubitFactory();

@@ -1,5 +1,7 @@
 import 'package:avencia/di.dart';
 import 'package:avencia/logic/auth/email_field_cubit.dart';
+import 'package:avencia/ui/err/bloc_provider_with_exceptions.dart';
+import 'package:avencia/ui/err/state_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -11,17 +13,18 @@ class EmailField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
+    return BlocProviderWithExceptions<EmailFieldCubit, LoadedState>(
       create: (context) => EmailFieldCubit(uiDeps.authFacade),
       child: BlocBuilder<EmailFieldCubit, EmailFieldState>(
         builder: (context, state) {
-          print(state);
-          final postfix = state.fold(
-            () => Container(),
-            (some) => some.fold(
-              (e) => Container(),
-              (email) => Center(
-                child: email.current.isVerified
+          return stateSwitch<LoadedState>(
+            state: state,
+            loadedBuilder: (loaded) => FormFieldStructure(
+              current: loaded.current.email,
+              label: 'email',
+              onTap: () => showEmailDialog(context),
+              postfix: Center(
+                child: loaded.current.isVerified
                     ? Icon(
                         Icons.check,
                         color: Colors.green,
@@ -32,18 +35,6 @@ class EmailField extends StatelessWidget {
                       ),
               ),
             ),
-          );
-          return FormFieldStructure(
-            label: "email",
-            onTap: () => showEmailDialog(context),
-            current: state.fold(
-              () => "",
-              (some) => some.fold(
-                (e) => "Ooops. Some error happened", // TODO: handle exception
-                (state) => state.current.email,
-              ),
-            ),
-            postfix: postfix,
           );
         },
       ),

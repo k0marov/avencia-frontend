@@ -3,12 +3,14 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
+import '../err/bloc_state.dart';
+
 enum CurrentAction {
   updating,
   verifying,
 }
 
-typedef EmailFieldState = Option<Either<Exception, LoadedState>>;
+typedef EmailFieldState = BlocState<LoadedState>;
 
 class LoadedState extends Equatable {
   final EmailState current;

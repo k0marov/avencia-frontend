@@ -1,9 +1,9 @@
-import 'package:avencia/logic/core/cubit_form/form_cubit.dart';
 import 'package:avencia/ui/core/forms/form_field_structure.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../logic/core/entity/entity.dart';
+import '../../../logic/core/forms/form_cubit.dart';
 
 class DatePickerField<V extends Value> extends StatelessWidget {
   final DateTime current;

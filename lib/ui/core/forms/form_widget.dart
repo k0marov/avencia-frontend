@@ -1,10 +1,10 @@
-import 'package:avencia/logic/core/cubit_form/form_cubit.dart';
 import 'package:avencia/ui/core/general/style.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../logic/core/entity/entity.dart';
+import '../../../logic/core/forms/form_cubit.dart';
 
 // TODO: remove this strange connection between personal details and address (maybe by making them separate entities)
 
@@ -108,5 +108,3 @@ class FormWidget<V extends Value> extends StatelessWidget {
     }
   }
 }
-
-// TODO: add a general function for converting exceptions to user-readable text

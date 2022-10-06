@@ -3,8 +3,8 @@ import 'package:dartz/dartz.dart' show Left;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../logic/core/cubit_form/form_cubit.dart';
 import '../../../logic/core/entity/entity.dart';
+import '../../../logic/core/forms/form_cubit.dart';
 
 class CustomFormTextField<V extends Value> extends StatefulWidget {
   final String? Function(V) getValue;
