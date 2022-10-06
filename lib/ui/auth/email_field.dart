@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../core/forms/form_field_structure.dart';
+import 'email_dialog.dart';
 
 class EmailField extends StatelessWidget {
   const EmailField({Key? key}) : super(key: key);
@@ -20,25 +21,26 @@ class EmailField extends StatelessWidget {
             (some) => some.fold(
               (e) => Container(),
               (email) => Center(
-                child: InkWell(
-                  child: email.isVerified
-                      ? Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        )
-                      : Icon(Icons.close, color: Colors.red),
-                ),
+                child: email.current.isVerified
+                    ? Icon(
+                        Icons.check,
+                        color: Colors.green,
+                      )
+                    : Icon(
+                        Icons.close,
+                        color: Colors.red,
+                      ),
               ),
             ),
           );
           return FormFieldStructure(
             label: "email",
-            onTap: null,
+            onTap: () => showEmailDialog(context),
             current: state.fold(
               () => "",
               (some) => some.fold(
                 (e) => "Ooops. Some error happened", // TODO: handle exception
-                (email) => email.email,
+                (state) => state.current.email,
               ),
             ),
             postfix: postfix,

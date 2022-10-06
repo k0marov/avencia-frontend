@@ -1,9 +1,9 @@
 import 'package:avencia/di.dart';
 import 'package:avencia/logic/user_details/internal/user_details.dart';
 import 'package:avencia/ui/auth/email_field.dart';
-import 'package:avencia/ui/core/forms/custom_text_field.dart';
 import 'package:flutter/material.dart';
 
+import '../core/forms/custom_form_text_field.dart';
 import '../core/forms/date_picker_field.dart';
 import '../core/forms/form_section_widget.dart';
 import '../core/forms/form_widget.dart';
@@ -41,18 +41,18 @@ class _PersonalDetailsSection extends StatelessWidget {
       title: "Personal Details",
       updButton: i.action,
       fields: [
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "full name",
           updValue: (val) => i.update(i.current.copyWith(fullName: val)),
           getValue: (val) => val.fullName,
         ),
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "display name",
           updValue: (val) => i.update(i.current.copyWith(displayName: val)),
           getValue: (val) => val.displayName,
         ),
         EmailField(),
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "phone",
           updValue: (val) => i.update(i.current.copyWith(phone: val)),
           getValue: (val) => val.phone,
@@ -84,27 +84,27 @@ class _AddressSection extends StatelessWidget {
       title: "Your Address",
       updButton: i.action,
       fields: [
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "address",
           updValue: (val) => updAddr(a.copyWith(address: val)),
           getValue: (val) => val.address.address,
         ),
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "city",
           updValue: (val) => updAddr(a.copyWith(city: val)),
           getValue: (val) => val.address.city,
         ),
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "state",
           updValue: (val) => updAddr(a.copyWith(state: val)),
           getValue: (val) => val.address.state,
         ),
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "nationality",
           updValue: (val) => updAddr(a.copyWith(nation: val)),
           getValue: (val) => val.address.nation,
         ),
-        CustomTextField<UserDetails>(
+        CustomFormTextField<UserDetails>(
           label: "zip code",
           updValue: (val) => updAddr(a.copyWith(zipCode: val)),
           getValue: (val) => val.address.zipCode,

@@ -1,4 +1,4 @@
-import 'package:avencia/logic/core/error.dart';
+import 'package:avencia/logic/err/errors.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -31,7 +31,7 @@ class FirebaseAuthFacade implements AuthFacade {
   Future<Option<AuthToken>> getToken() => _userToToken(_fbAuth.currentUser);
 
   @override
-  Stream<Option<AuthToken>> getTokenStream() => _fbAuth.userChanges().asyncMap(_userToToken);
+  Stream<Option<AuthToken>> getTokenStream() => _fbAuth.authStateChanges().asyncMap(_userToToken);
 
   @override
   Future<Either<Exception, EmailState>> getEmail() => withExceptionHandling(() async {

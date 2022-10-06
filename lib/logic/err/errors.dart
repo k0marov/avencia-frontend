@@ -11,6 +11,11 @@ Future<Either<Exception, T>> withExceptionHandling<T>(Future<T> Function() call)
   }
 }
 
+String displayException(Exception e) {
+  // TODO: add more error messages
+  return "Ooops. Some error happened.";
+}
+
 class NetworkException extends Equatable implements Exception {
   final int statusCode;
   final String body;

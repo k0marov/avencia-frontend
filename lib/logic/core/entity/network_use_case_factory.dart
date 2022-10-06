@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dartz/dartz.dart';
 import 'package:http/http.dart' as http;
 
-import '../error.dart';
+import '../../err/errors.dart';
 
 abstract class InpMapper<V> {
   Map<String, dynamic> toJson(V v);

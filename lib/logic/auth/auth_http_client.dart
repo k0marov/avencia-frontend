@@ -1,6 +1,6 @@
 import 'package:avencia/logic/auth/auth_facade.dart';
-import 'package:avencia/logic/core/error.dart';
 import 'package:avencia/logic/core/general.dart';
+import 'package:avencia/logic/err/errors.dart';
 import 'package:http/http.dart' as http;
 
 class NoTokenException implements Exception {}
