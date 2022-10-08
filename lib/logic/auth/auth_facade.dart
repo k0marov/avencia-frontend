@@ -16,6 +16,7 @@ class EmailState extends Equatable {
 }
 
 abstract class AuthFacade {
+  Future<Either<Exception, void>> refresh();
   Stream<Option<AuthToken>> getTokenStream();
   Future<Option<AuthToken>> getToken();
   Future<Either<Exception, EmailState>> getEmail();
@@ -56,4 +57,9 @@ class FirebaseAuthFacade implements AuthFacade {
 
   Future<Option<AuthToken>> _userToToken(User? user) async =>
       user != null ? Some(await user.getIdToken()) : const None();
+
+  @override
+  Future<Either<Exception, void>> refresh() => withExceptionHandling(() async {
+        await _fbAuth.currentUser?.reload();
+      });
 }

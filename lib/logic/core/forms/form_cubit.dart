@@ -23,7 +23,8 @@ class FormCubitState<V> extends Equatable {
 
   bool updateAvailable() => initial != val && val != null;
   FormCubitState<V> withValue(V? val) => FormCubitState<V>(initial, val, upd, exception);
-  FormCubitState<V> withUpdState(UpdateState upd) => FormCubitState<V>(initial, val, upd, exception);
+  FormCubitState<V> withUpdState(UpdateState upd) =>
+      FormCubitState<V>(initial, val, upd, exception);
   FormCubitState<V> withException(Exception? e) => FormCubitState<V>(initial, val, upd, e);
 }
 

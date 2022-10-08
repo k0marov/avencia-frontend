@@ -1,3 +1,4 @@
+import 'package:avencia/logic/err/errors.dart';
 import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:flutter/material.dart';
@@ -22,11 +23,14 @@ class TransactionCodeWidget extends StatelessWidget {
           child: state != null
               ? QrImage(
                   eyeStyle: const QrEyeStyle(eyeShape: QrEyeShape.circle, color: Colors.black),
-                  foregroundColor: Theme.of(context).brightness == Brightness.light ? Colors.black : Colors.white,
+                  foregroundColor: Theme.of(context).brightness == Brightness.light
+                      ? Colors.black
+                      : Colors.white,
                   data: state.code.code,
                   version: QrVersions.auto,
                 )
-              : const AspectRatio(aspectRatio: 1, child: Center(child: CircularProgressIndicator(strokeWidth: 16))),
+              : const AspectRatio(
+                  aspectRatio: 1, child: Center(child: CircularProgressIndicator(strokeWidth: 16))),
         ),
         state != null
             ? state.leftToExpire.isNegative
@@ -45,9 +49,9 @@ class TransactionCodeWidget extends StatelessWidget {
       SimpleFutureBuilder<TransactionCode>(
         future: uiDeps.startTransaction(MetaTransaction(type)),
         loading: _buildMainContent(context, null),
-        exceptionBuilder: (exception) => const Padding(
+        exceptionBuilder: (exception) => Padding(
           padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-          child: Text("Oops, some error happened. Please, try again.",
+          child: Text(displayException(exception),
               style: TextStyle(
                 fontSize: 22,
                 fontStyle: FontStyle.italic,

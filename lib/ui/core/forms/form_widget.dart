@@ -1,4 +1,6 @@
 import 'package:avencia/ui/core/general/style.dart';
+import 'package:avencia/ui/err/bloc_exception_listener.dart';
+import 'package:avencia/ui/err/state_switch.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,27 +32,35 @@ class FormWidget<V extends Value> extends StatelessWidget {
         _bodyBuilder = bodyBuilder,
         super(key: key);
 
+  Widget _buildForm(BuildContext context, FormCubitState<V> state) {
+    print(state);
+    if (state.val == null) {
+      if (state.exception == null) {
+        return loadingWidget;
+      } else {
+        return ExceptionWidget(exception: state.exception!);
+      }
+    } else {
+      return _bodyBuilder(
+        FormInfo(
+          state.val!,
+          context.read<FormCubit<V>>().valueEdited,
+          _buildAction(context, state),
+          state.isEditing,
+        ),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => _cubitFactory(),
-      child: BlocBuilder<FormCubit<V>, FormCubitState<V>>(
-        builder: (context, FormCubitState<V> state) => state.val == null && state.exception == null
-            ? AspectRatio(
-                aspectRatio: 1,
-                child: Padding(
-                  padding: const EdgeInsets.all(80),
-                  child: CircularProgressIndicator(),
-                ),
-              )
-            : _bodyBuilder(
-                FormInfo(
-                  state.val!,
-                  context.read<FormCubit<V>>().valueEdited,
-                  _buildAction(context, state),
-                  state.isEditing,
-                ),
-              ),
+      child: BlocExceptionListener<FormCubit<V>, FormCubitState<V>>(
+        getException: (s) => s.exception,
+        child: BlocBuilder<FormCubit<V>, FormCubitState<V>>(
+          builder: (context, state) => _buildForm(context, state),
+        ),
       ),
     );
   }

@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 
+// TODO: replace this with some general cubit creator
+
 class SimpleFutureBuilder<T> extends StatelessWidget {
   final Future<Either<Exception, T>> future;
   final Widget loading;

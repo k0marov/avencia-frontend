@@ -1,5 +1,5 @@
 import 'package:avencia/di.dart';
-import 'package:avencia/ui/user_details/user_details_widget.dart';
+import 'package:avencia/ui/user_details/user_details_form.dart';
 import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatelessWidget {
