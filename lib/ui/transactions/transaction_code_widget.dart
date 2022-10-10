@@ -1,4 +1,3 @@
-import 'package:avencia/logic/err/errors.dart';
 import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:flutter/material.dart';
@@ -9,7 +8,7 @@ import '../../di.dart';
 import '../../logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import '../core/buttons/gradient_button.dart';
 import '../core/general/helpers.dart';
-import '../core/general/simple_future_builder.dart';
+import '../core/general/simple_cubit_builder.dart';
 
 class TransactionCodeWidget extends StatelessWidget {
   final TransactionType type;
@@ -46,18 +45,9 @@ class TransactionCodeWidget extends StatelessWidget {
         onPressed: context.read<TransactionScreenCubit>().finishPressed,
         text: "FINISH",
       ),
-      SimpleFutureBuilder<TransactionCode>(
-        future: uiDeps.startTransaction(MetaTransaction(type)),
-        loading: _buildMainContent(context, null),
-        exceptionBuilder: (exception) => Padding(
-          padding: EdgeInsets.symmetric(horizontal: 35, vertical: 20),
-          child: Text(displayException(exception),
-              style: TextStyle(
-                fontSize: 22,
-                fontStyle: FontStyle.italic,
-              )),
-        ),
-        loadedBuilder: (code) => BlocProvider(
+      SimpleCubitBuilder<TransactionCode>(
+        load: () => uiDeps.startTransaction(MetaTransaction(type)),
+        loadedBuilder: (code, _) => BlocProvider(
             create: (_) => uiDeps.transCodeCubitFactory(code),
             child: BlocBuilder<TransactionCodeCubit, TransactionCodeState>(
               builder: (context, state) => _buildMainContent(context, state),

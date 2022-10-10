@@ -3,34 +3,21 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../di.dart';
 import '../../logic/user_info/internal/entities.dart';
-import '../core/general/simple_future_builder.dart';
+import '../core/general/simple_cubit_builder.dart';
 
-// TODO: replace all stateful widgets with cubits
-
-class FundsScreen extends StatefulWidget {
+class FundsScreen extends StatelessWidget {
   const FundsScreen({Key? key}) : super(key: key);
-
-  @override
-  State<FundsScreen> createState() => _FundsScreenState();
-}
-
-class _FundsScreenState extends State<FundsScreen> {
-  void _refresh() {
-    setState(() {});
-  }
 
   int _getCurrentStep(Limit l) => (l.withdrawn / l.max * 10).floor();
 
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RefreshIndicator(
-        onRefresh: () async => _refresh(),
-        // child: ListView(children: [
-        child: SimpleFutureBuilder<UserInfo>(
-          future: uiDeps.getUserInfo(null),
-          loading: const CircularProgressIndicator(),
-          loadedBuilder: (userInfo) => ListView(children: [
+      child: SimpleCubitBuilder<UserInfo>(
+        load: () => uiDeps.getUserInfo(null),
+        loadedBuilder: (userInfo, cubit) => RefreshIndicator(
+          onRefresh: () async => cubit.refresh(),
+          child: ListView(children: [
             const SizedBox(height: 20),
             Text(
               "Your Funds",
@@ -84,7 +71,8 @@ class _FundsScreenState extends State<FundsScreen> {
                         ),
                         const SizedBox(height: 10),
                         StepProgressIndicator(
-                          selectedGradientColor: const LinearGradient(colors: [Colors.pink, Colors.blue]),
+                          selectedGradientColor:
+                              const LinearGradient(colors: [Colors.pink, Colors.blue]),
                           size: 8,
                           roundedEdges: const Radius.circular(5),
                           currentStep: _getCurrentStep(entry.value),
@@ -112,14 +100,9 @@ class _FundsScreenState extends State<FundsScreen> {
             //   ],
             // ),
           ]),
-          exceptionBuilder: (exception) => ListView(
-            children: [
-              Text(exception.toString()),
-            ],
-          ),
         ),
-        // ]),
       ),
+      // ]),
     );
   }
 }
