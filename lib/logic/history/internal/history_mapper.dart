@@ -1,9 +1,9 @@
-import 'package:avencia/logic/core/general.dart';
-import 'package:avencia/logic/core/money/money.dart';
 import 'package:avencia/logic/history/internal/entities.dart';
 import 'package:avencia/logic/history/internal/values.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/general.dart';
 
-import '../../core/entity/network_use_case_factory.dart';
+import '../../core/money.dart';
 
 class HistoryMapper implements OutMapper<History> {
   final OutMapper<TransactionSource> sourceMapper;

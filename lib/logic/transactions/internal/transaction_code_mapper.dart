@@ -1,4 +1,5 @@
-import '../../core/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
+
 import 'values.dart';
 
 class TransactionCodeMapper implements OutMapper<TransactionCode> {

@@ -2,13 +2,12 @@ import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/ui/general/helpers.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 import '../../di.dart';
 import '../../logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import '../core/buttons/gradient_button.dart';
-import '../core/general/helpers.dart';
-import '../core/general/simple_cubit_builder.dart';
 
 class TransactionCodeWidget extends StatelessWidget {
   final TransactionType type;
@@ -45,7 +44,7 @@ class TransactionCodeWidget extends StatelessWidget {
         onPressed: context.read<TransactionScreenCubit>().finishPressed,
         text: "FINISH",
       ),
-      SimpleCubitBuilder<TransactionCode>(
+      uiDeps.simpleBuilder<TransactionCode>(
         load: () => uiDeps.startTransaction(MetaTransaction(type)),
         loadedBuilder: (code, _) => BlocProvider(
             create: (_) => uiDeps.transCodeCubitFactory(code),

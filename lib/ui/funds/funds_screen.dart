@@ -3,7 +3,6 @@ import 'package:step_progress_indicator/step_progress_indicator.dart';
 
 import '../../di.dart';
 import '../../logic/user_info/internal/entities.dart';
-import '../core/general/simple_cubit_builder.dart';
 
 class FundsScreen extends StatelessWidget {
   const FundsScreen({Key? key}) : super(key: key);
@@ -13,7 +12,7 @@ class FundsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: SimpleCubitBuilder<UserInfo>(
+      child: uiDeps.simpleBuilder<UserInfo>(
         load: () => uiDeps.getUserInfo(null),
         loadedBuilder: (userInfo, cubit) => RefreshIndicator(
           onRefresh: () async => cubit.refresh(),

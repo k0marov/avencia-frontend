@@ -1,29 +1,7 @@
-import 'package:avencia/logic/err/errors.dart';
 import 'package:dartz/dartz.dart';
-import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-class UnauthenticatedException implements Exception {}
-
-typedef AuthToken = String;
-
-class EmailState extends Equatable {
-  final String email;
-  final bool isVerified;
-  @override
-  List get props => [email, isVerified];
-  const EmailState(this.email, this.isVerified);
-}
-
-abstract class AuthFacade {
-  Future<Either<Exception, void>> refresh();
-  Stream<Option<AuthToken>> getTokenStream();
-  Future<Option<AuthToken>> getToken();
-  Future<Either<Exception, EmailState>> getEmail();
-  Future<Either<Exception, void>> updateEmail(String email);
-  Future<Either<Exception, void>> verifyEmail();
-  Future<Either<Exception, void>> logout();
-}
+import 'package:helpers/logic/auth/auth_facade.dart';
+import 'package:helpers/logic/errors/errors.dart';
 
 class FirebaseAuthFacade implements AuthFacade {
   final FirebaseAuth _fbAuth;

@@ -1,6 +1,6 @@
-import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
 import 'package:dartz/dartz.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
 import '../../config/const.dart';
 import 'internal/entities.dart';

@@ -1,5 +1,6 @@
-import 'package:avencia/logic/core/money/money.dart';
 import 'package:equatable/equatable.dart';
+
+import '../../core/money.dart';
 
 class Limit extends Equatable {
   final MoneyAmount withdrawn;

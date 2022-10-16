@@ -1,8 +1,5 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_facade.dart';
-import 'package:avencia/logic/auth/auth_http_client.dart';
-import 'package:avencia/logic/core/entity/network_crud.dart';
-import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
@@ -17,12 +14,19 @@ import 'package:avencia/logic/user_info/internal/limits_mapper.dart';
 import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
 import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:helpers/logic/auth/auth_facade.dart';
+import 'package:helpers/logic/auth/auth_http_client.dart';
+import 'package:helpers/logic/entity/network_crud.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/forms/form_cubit.dart';
+import 'package:helpers/logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
+import 'package:helpers/logic/theme_brightness/toggle_theme_brightness_usecase.dart';
+import 'package:helpers/ui/errors/bloc_exception_listener.dart';
+import 'package:helpers/ui/forms/form_widget.dart';
+import 'package:helpers/ui/general/simple_cubit_builder.dart';
 import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
-import 'logic/core/forms/form_cubit.dart';
-import 'logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
-import 'logic/theme_brightness/toggle_theme_brightness_usecase.dart';
 import 'logic/user_details/internal/user_details.dart';
 
 class UIDeps {
@@ -40,6 +44,10 @@ class UIDeps {
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
 
+  final SimpleBuilderFactory simpleBuilder;
+  final FormWidgetFactory formWidget;
+  final BlocExceptionListenerFactory exceptionListener;
+
   UIDeps._(
     this.authFacade,
     this.getUserInfo,
@@ -50,6 +58,9 @@ class UIDeps {
     this.toggleThemeBrightness,
     this.getThemeBrightnessStream,
     this.userDetailsFormFactory,
+    this.simpleBuilder,
+    this.formWidget,
+    this.exceptionListener,
   );
 }
 
@@ -79,6 +90,10 @@ Future<void> initialize() async {
   final readUserDetails = newUserDetailsReader(networkCrud, UserDetailsMapper());
   final updateUserDetails = newUserDetailsUpdater(networkCrud, UserDetailsMapper());
 
+  final exceptionListener = newBlocExceptionListenerFactory(authFacade);
+  final formWidget = newFormWidgetFactory(exceptionListener);
+  final simpleBuilder = newSimpleBuilderFactory(exceptionListener);
+
   uiDeps = UIDeps._(
     authFacade,
     getUserInfo,
@@ -89,5 +104,8 @@ Future<void> initialize() async {
     toggleTheme,
     getThemeStream,
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails, ""),
+    simpleBuilder,
+    formWidget,
+    exceptionListener,
   );
 }

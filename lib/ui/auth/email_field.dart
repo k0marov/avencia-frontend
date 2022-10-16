@@ -1,12 +1,11 @@
 import 'package:avencia/di.dart';
 import 'package:avencia/logic/auth/email_field_cubit.dart';
-import 'package:avencia/logic/err/bloc_state.dart';
-import 'package:avencia/ui/err/bloc_exception_listener.dart';
-import 'package:avencia/ui/err/state_switch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/errors/bloc_state.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
+import 'package:helpers/ui/forms/form_field_structure.dart';
 
-import '../core/forms/form_field_structure.dart';
 import 'email_dialog.dart';
 
 class EmailField extends StatelessWidget {
@@ -16,9 +15,9 @@ class EmailField extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocProvider<EmailFieldCubit>(
       create: (context) => EmailFieldCubit(uiDeps.authFacade),
-      child: BlocExceptionListener<EmailFieldCubit, EmailFieldState>(
-        getException: (s) => s.getException(),
-        child: BlocBuilder<EmailFieldCubit, EmailFieldState>(
+      child: uiDeps.exceptionListener<EmailFieldCubit, EmailFieldState>(
+        (s) => s.getException(),
+        BlocBuilder<EmailFieldCubit, EmailFieldState>(
           builder: (context, state) {
             return stateSwitch<LoadedState>(
               state: state,

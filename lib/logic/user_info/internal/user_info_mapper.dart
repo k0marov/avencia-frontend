@@ -1,8 +1,7 @@
 import 'package:avencia/logic/user_info/internal/entities.dart';
 import 'package:avencia/logic/user_info/internal/limits_mapper.dart';
 import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
-
-import '../../core/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
 class UserInfoMapper implements OutMapper<UserInfo> {
   final LimitsMapper limitsMapper;

@@ -1,9 +1,8 @@
-import 'package:avencia/logic/auth/auth_facade.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
-
-import '../err/bloc_state.dart';
+import 'package:helpers/logic/auth/auth_facade.dart';
+import 'package:helpers/logic/core.dart';
 
 enum CurrentAction {
   updating,
@@ -45,9 +44,13 @@ class EmailFieldCubit extends Cubit<EmailFieldState> {
       () => null,
       (some) => some.fold(
         (e) => null,
-        (loaded) => loaded.action == CurrentAction.updating
-            ? _auth.updateEmail(loaded.edited)
-            : _auth.verifyEmail(),
+        (loaded) async => (loaded.action == CurrentAction.updating
+                ? await _auth.updateEmail(loaded.edited)
+                : await _auth.verifyEmail())
+            .fold(
+          (e) => emit(Some(Left(e))),
+          (success) => null,
+        ),
       ),
     );
   }

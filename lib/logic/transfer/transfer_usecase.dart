@@ -1,8 +1,8 @@
 import 'package:avencia/config/const.dart';
-import 'package:avencia/logic/core/entity/network_use_case_factory.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
 import 'package:dartz/dartz.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
 typedef TransferUseCase = Future<Either<Exception, void>> Function(TransferData);
 

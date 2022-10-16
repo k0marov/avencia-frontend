@@ -1,4 +1,3 @@
-import 'package:avencia/logic/core/money/money.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_screen_cubit/transaction_screen_cubit.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../di.dart';
+import '../../logic/core/money.dart';
 import '../../logic/transfer/presentation/transfer_cubit.dart';
 import '../core/buttons/gradient_button.dart';
 
@@ -48,8 +48,9 @@ class TransferWidget extends StatelessWidget {
                       child: TextField(
                         keyboardType: const TextInputType.numberWithOptions(decimal: true),
                         inputFormatters: [FilteringTextInputFormatter.allow(RegExp(r"[0-9\.]"))],
-                        onChanged: (amount) =>
-                            context.read<TransferCubit>().amountChanged(double.tryParse(amount) ?? 0),
+                        onChanged: (amount) => context
+                            .read<TransferCubit>()
+                            .amountChanged(double.tryParse(amount) ?? 0),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           hintText: "Amount",
@@ -70,8 +71,9 @@ class TransferWidget extends StatelessWidget {
                     const Spacer(),
                     GradientButton(
                       onPressed: () async {
-                        final result =
-                            await uiDeps.transfer(TransferData(state.email, Money(state.currency, state.amount)));
+                        final result = await uiDeps.transfer(
+                          TransferData(state.email, Money(state.currency, state.amount)),
+                        );
                         result.fold(
                           (exception) => context.read<TransferCubit>().exceptionThrown(exception),
                           (success) => context.read<TransactionScreenCubit>().finishPressed(),

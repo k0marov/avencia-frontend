@@ -1,6 +1,6 @@
-import 'package:avencia/logic/core/money/money.dart';
 import 'package:equatable/equatable.dart';
 
+import '../../core/money.dart';
 import 'values.dart';
 
 class HistoryEntry extends Equatable {

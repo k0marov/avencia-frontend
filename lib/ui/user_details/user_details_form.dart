@@ -2,20 +2,19 @@ import 'package:avencia/di.dart';
 import 'package:avencia/logic/user_details/internal/user_details.dart';
 import 'package:avencia/ui/auth/email_field.dart';
 import 'package:flutter/material.dart';
-
-import '../core/forms/custom_form_text_field.dart';
-import '../core/forms/date_picker_field.dart';
-import '../core/forms/form_section_widget.dart';
-import '../core/forms/form_widget.dart';
+import 'package:helpers/ui/forms/custom_form_text_field.dart';
+import 'package:helpers/ui/forms/date_picker_field.dart';
+import 'package:helpers/ui/forms/form_section_widget.dart';
+import 'package:helpers/ui/forms/form_widget.dart';
 
 class UserDetailsForm extends StatelessWidget {
   const UserDetailsForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return FormWidget<UserDetails>(
-      cubitFactory: uiDeps.userDetailsFormFactory,
-      bodyBuilder: (info) => Column(
+    return uiDeps.formWidget<UserDetails>(
+      uiDeps.userDetailsFormFactory,
+      (info) => Column(
         children: [
           _PersonalDetailsSection(
             i: info,

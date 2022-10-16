@@ -1,6 +1,5 @@
 import 'package:avencia/logic/transfer/internal%20/transfer_data.dart';
-
-import '../../core/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
 class TransferMapper implements InpMapper<TransferData> {
   @override

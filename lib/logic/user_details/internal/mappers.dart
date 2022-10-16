@@ -1,8 +1,7 @@
-import 'package:avencia/logic/core/general.dart';
 import 'package:avencia/logic/user_details/internal/user_details.dart';
-
-import '../../core/entity/entity.dart';
-import '../../core/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/entity/entity.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/general.dart';
 
 class UserDetailsMapper implements InpMapper<Entity<UserDetails>>, OutMapper<Entity<UserDetails>> {
   @override

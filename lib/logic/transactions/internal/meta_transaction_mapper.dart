@@ -1,6 +1,5 @@
 import 'package:avencia/logic/transactions/internal/values.dart';
-
-import '../../core/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
 class MetaTransactionMapper implements InpMapper<MetaTransaction> {
   @override

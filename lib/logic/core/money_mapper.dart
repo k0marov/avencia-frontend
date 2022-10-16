@@ -1,6 +1,6 @@
-import 'package:avencia/logic/core/money/money.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
-import '../entity/network_use_case_factory.dart';
+import 'money.dart';
 
 class MoneyMapper implements OutMapper<Money> {
   const MoneyMapper();

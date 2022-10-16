@@ -1,10 +1,9 @@
 import 'package:avencia/logic/auth/email_field_cubit.dart';
-import 'package:avencia/ui/err/state_switch.dart';
 import 'package:dartz/dartz.dart' show Right;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
-import '../core/forms/custom_text_field.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
+import 'package:helpers/ui/forms/custom_text_field.dart';
 
 void showEmailDialog(BuildContext context) {
   showDialog(
@@ -26,7 +25,8 @@ class EmailDialog extends StatelessWidget {
         state: state,
         loadedBuilder: (loaded) => AlertDialog(
           title: Text("Change email"),
-          content: Container(
+          content: SizedBox(
+            width: 250,
             child: CustomTextField(
               enabled: true,
               label: "email",
@@ -47,7 +47,7 @@ class EmailDialog extends StatelessWidget {
   }
 
   Widget _getActionButton(BuildContext context, LoadedState state) {
-    return TextButton(
+    return ElevatedButton(
       onPressed: state.actionEnabled
           ? () {
               context.read<EmailFieldCubit>().actionPressed();
