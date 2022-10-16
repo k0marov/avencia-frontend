@@ -15,7 +15,6 @@ import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import 'logic/core/uploader/uploader.dart';
 import 'logic/features/auth/auth_facade.dart';
-import 'logic/features/kyc/state_management/passport_cubit.dart';
 import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
 import 'logic/features/transactions/internal/transaction_code_mapper.dart';
 import 'logic/features/transactions/internal/values.dart';
@@ -24,6 +23,7 @@ import 'logic/features/transactions/usecases.dart';
 import 'logic/features/transfer/internal /transfer_mapper.dart';
 import 'logic/features/transfer/state_management/transfer_cubit.dart';
 import 'logic/features/transfer/usecases.dart';
+import 'logic/features/user/kyc/state_management/passport_cubit.dart';
 import 'logic/features/user/user_details/internal/mappers.dart';
 import 'logic/features/user/user_details/internal/user_details.dart';
 import 'logic/features/user/user_details/user_details_crud.dart';

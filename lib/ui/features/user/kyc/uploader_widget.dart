@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
 import '../../../../logic/core/uploader/simple_file.dart';
-import '../../../../logic/features/kyc/state_management/passport_cubit.dart';
+import '../../../../logic/features/user/kyc/state_management/passport_cubit.dart';
 
 class UploaderWidget extends StatelessWidget {
   final FileUploadState state;

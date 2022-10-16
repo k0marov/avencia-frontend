@@ -3,8 +3,8 @@ import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../../core/uploader/simple_file.dart';
-import '../../../core/uploader/uploader.dart';
+import '../../../../core/uploader/simple_file.dart';
+import '../../../../core/uploader/uploader.dart';
 
 // TODO: maybe the passport cubit could be a FormCubit with a wisely chosen State
 
