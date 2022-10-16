@@ -9,9 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   helpers:
-    git:
-      url: https://github.com/k0marov/flutter-helpers.git
-#      ref: HEAD^
+    path: ./helpers
   cupertino_icons: ^1.0.2
   firebase_auth: ^3.4.2
   dartz: ^0.10.1

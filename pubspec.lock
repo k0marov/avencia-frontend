@@ -416,11 +416,9 @@ packages:
   helpers:
     dependency: "direct main"
     description:
-      path: "."
-      ref: HEAD
-      resolved-ref: f2f3798e91639f389ab02cbd9403cb4de221bd69
-      url: "https://github.com/k0marov/flutter-helpers.git"
-    source: git
+      path: helpers
+      relative: true
+    source: path
     version: "1.0.3"
   http:
     dependency: "direct main"
