@@ -1,5 +1,7 @@
 const apiHost = "avencia.skomarov.com";
 
+// TODO: update all of the url usages, since now endpoints does NOT contain a trailing slash
+
 const transferEndpoint = "/v1/app/transfer";
 const getUserInfoEndpoint = "/v1/app/user";
 const historyEndpoint = "/v1/app/history";
