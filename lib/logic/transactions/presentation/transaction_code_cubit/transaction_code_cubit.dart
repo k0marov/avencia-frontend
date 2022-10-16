@@ -25,7 +25,3 @@ class TransactionCodeCubit extends Cubit<TransactionCodeState> {
       TransactionCodeState(code, _computeLeftToExpire(code.expiresAt));
   static Duration _computeLeftToExpire(DateTime expiresAt) => expiresAt.difference(DateTime.now());
 }
-
-typedef TransactionCodeCubitFactory = TransactionCodeCubit Function(TransactionCode);
-
-TransactionCodeCubitFactory newTransactionCodeCubitFactory() => (code) => TransactionCodeCubit(code);

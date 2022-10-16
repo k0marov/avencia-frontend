@@ -6,6 +6,8 @@ import 'package:equatable/equatable.dart';
 import '../../core/uploader/simple_file.dart';
 import '../../core/uploader/uploader.dart';
 
+// TODO: maybe the passport cubit could be a FormCubit with a wisely chosen State
+
 // TODO: add the pending state for the case when user has already uploaded his passport
 
 // true means the file is successfully uploaded; false means the user have not even started the upload

@@ -1,7 +1,10 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/auth/auth_facade.dart';
+import 'package:avencia/logic/core/uploader/uploader.dart';
+import 'package:avencia/logic/kyc/presentation/passport_cubit.dart';
 import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
 import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
+import 'package:avencia/logic/transactions/internal/values.dart';
 import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
 import 'package:avencia/logic/transactions/start_transaction_usecase.dart';
 import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
@@ -37,12 +40,14 @@ class UIDeps {
   final TransferCubitFactory transferCubitFactory;
 
   final StartTransactionUseCase startTransaction;
-  final TransactionCodeCubitFactory transCodeCubitFactory;
+  final TransactionCodeCubit Function(TransactionCode code) transCodeCubitFactory;
 
   final ToggleThemeBrightnessUseCase toggleThemeBrightness;
   final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
+
+  final PassportCubit Function() passportCubitFactory;
 
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
@@ -58,6 +63,7 @@ class UIDeps {
     this.toggleThemeBrightness,
     this.getThemeBrightnessStream,
     this.userDetailsFormFactory,
+    this.passportCubitFactory,
     this.simpleBuilder,
     this.formWidget,
     this.exceptionListener,
@@ -73,7 +79,6 @@ Future<void> initialize() async {
 
   final startTransaction =
       newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
-  final transCodeCubitFactory = newTransactionCodeCubitFactory();
 
   final getUserInfo =
       newGetUserInfoUseCase(nucFactory, UserInfoMapper(LimitsMapper(), WalletMapper()));
@@ -90,6 +95,8 @@ Future<void> initialize() async {
   final readUserDetails = newUserDetailsReader(networkCrud, UserDetailsMapper());
   final updateUserDetails = newUserDetailsUpdater(networkCrud, UserDetailsMapper());
 
+  final uploader = newUploader(httpClient, apiHost);
+
   final exceptionListener = newBlocExceptionListenerFactory(authFacade);
   final formWidget = newFormWidgetFactory(exceptionListener);
   final simpleBuilder = newSimpleBuilderFactory(exceptionListener);
@@ -100,10 +107,11 @@ Future<void> initialize() async {
     transfer,
     transferCubitFactory,
     startTransaction,
-    transCodeCubitFactory,
+    (code) => TransactionCodeCubit(code),
     toggleTheme,
     getThemeStream,
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails, ""),
+    () => PassportCubit(uploader),
     simpleBuilder,
     formWidget,
     exceptionListener,

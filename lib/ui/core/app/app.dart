@@ -19,6 +19,8 @@ class MyApp extends StatelessWidget {
     return BrightnessBuilder(
       getBrightnessStream: uiDeps.getThemeBrightnessStream,
       builder: (context, brightness) => MaterialApp(
+        darkTheme: ThemeData.dark(),
+        theme: ThemeData.light(),
         themeMode: brightness,
         home: AuthGate(
           auth: uiDeps.authFacade,
