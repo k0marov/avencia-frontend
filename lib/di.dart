@@ -1,21 +1,4 @@
 import 'package:avencia/config/const.dart';
-import 'package:avencia/logic/auth/auth_facade.dart';
-import 'package:avencia/logic/core/uploader/uploader.dart';
-import 'package:avencia/logic/kyc/presentation/passport_cubit.dart';
-import 'package:avencia/logic/transactions/internal/meta_transaction_mapper.dart';
-import 'package:avencia/logic/transactions/internal/transaction_code_mapper.dart';
-import 'package:avencia/logic/transactions/internal/values.dart';
-import 'package:avencia/logic/transactions/presentation/transaction_code_cubit/transaction_code_cubit.dart';
-import 'package:avencia/logic/transactions/start_transaction_usecase.dart';
-import 'package:avencia/logic/transfer/internal%20/transfer_mapper.dart';
-import 'package:avencia/logic/transfer/presentation/transfer_cubit.dart';
-import 'package:avencia/logic/transfer/transfer_usecase.dart';
-import 'package:avencia/logic/user_details/internal/mappers.dart';
-import 'package:avencia/logic/user_details/user_details_crud.dart';
-import 'package:avencia/logic/user_info/get_user_info_usecase.dart';
-import 'package:avencia/logic/user_info/internal/limits_mapper.dart';
-import 'package:avencia/logic/user_info/internal/user_info_mapper.dart';
-import 'package:avencia/logic/user_info/internal/wallet_mapper.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
 import 'package:helpers/logic/auth/auth_http_client.dart';
@@ -30,7 +13,24 @@ import 'package:helpers/ui/general/simple_cubit_builder.dart';
 import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
-import 'logic/user_details/internal/user_details.dart';
+import 'logic/core/uploader/uploader.dart';
+import 'logic/features/auth/auth_facade.dart';
+import 'logic/features/kyc/state_management/passport_cubit.dart';
+import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
+import 'logic/features/transactions/internal/transaction_code_mapper.dart';
+import 'logic/features/transactions/internal/values.dart';
+import 'logic/features/transactions/state_management/transaction_code_cubit/transaction_code_cubit.dart';
+import 'logic/features/transactions/usecases.dart';
+import 'logic/features/transfer/internal /transfer_mapper.dart';
+import 'logic/features/transfer/state_management/transfer_cubit.dart';
+import 'logic/features/transfer/usecases.dart';
+import 'logic/features/user/user_details/internal/mappers.dart';
+import 'logic/features/user/user_details/internal/user_details.dart';
+import 'logic/features/user/user_details/user_details_crud.dart';
+import 'logic/features/user/user_info/internal/limits_mapper.dart';
+import 'logic/features/user/user_info/internal/user_info_mapper.dart';
+import 'logic/features/user/user_info/internal/wallet_mapper.dart';
+import 'logic/features/user/user_info/usecases.dart';
 
 class UIDeps {
   final AuthFacade authFacade;
