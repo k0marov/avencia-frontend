@@ -4,6 +4,7 @@ import 'package:helpers/logic/auth/auth_facade.dart';
 import 'package:helpers/logic/auth/auth_http_client.dart';
 import 'package:helpers/logic/entity/network_crud.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/entity/unique_network_crud.dart';
 import 'package:helpers/logic/forms/form_cubit.dart';
 import 'package:helpers/logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
 import 'package:helpers/logic/theme_brightness/toggle_theme_brightness_usecase.dart';
@@ -91,9 +92,10 @@ Future<void> initialize() async {
   final getThemeStream = newGetThemeBrightnessUseCase(sharedPrefs);
 
   final networkCrud = NetworkCRUD(nucFactory);
+  final uniqueNetworkCrud = UniqueNetworkCRUD(nucFactory);
 
-  final readUserDetails = newUserDetailsReader(networkCrud, UserDetailsMapper());
-  final updateUserDetails = newUserDetailsUpdater(networkCrud, UserDetailsMapper());
+  final readUserDetails = newUserDetailsReader(uniqueNetworkCrud, UserDetailsMapper());
+  final updateUserDetails = newUserDetailsUpdater(uniqueNetworkCrud, UserDetailsMapper());
 
   final uploader = newUploader(httpClient, apiHost);
 
@@ -110,7 +112,7 @@ Future<void> initialize() async {
     (code) => TransactionCodeCubit(code),
     toggleTheme,
     getThemeStream,
-    () => FormCubit<UserDetails>(readUserDetails, updateUserDetails, ""),
+    () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     () => PassportCubit(uploader),
     simpleBuilder,
     formWidget,
