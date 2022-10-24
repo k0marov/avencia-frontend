@@ -4,6 +4,7 @@ import 'package:avencia/logic/core/uploader/simple_file.dart';
 import 'package:helpers/logic/auth/auth_http_client.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/errors/errors.dart';
+import 'package:helpers/logic/http.dart';
 import 'package:http/http.dart' as http;
 
 const fileUploadField = "file";
@@ -13,7 +14,7 @@ typedef Uploader = Future<UseCaseRes<void>> Function(String endpoint, SimpleFile
 
 Uploader newUploader(AuthHTTPClient client, String apiHost) =>
     (endpoint, file) => withExceptionHandling(() async {
-          final request = http.MultipartRequest("PUT", Uri.https(apiHost, endpoint));
+          final request = http.MultipartRequest(HTTPMethods.put, Uri.https(apiHost, endpoint));
           final fileBytes = File(file.path).readAsBytesSync();
           request.files.add(http.MultipartFile.fromBytes(
             fileUploadField,

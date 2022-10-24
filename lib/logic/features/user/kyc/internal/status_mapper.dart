@@ -24,6 +24,7 @@ class StatusMapper implements FullMapper<Status> {
 
   @override
   Status fromJson(Map<String, dynamic> json) {
+    print(json);
     switch (json["status"]) {
       case "unset":
         return Status.unset;
@@ -34,7 +35,7 @@ class StatusMapper implements FullMapper<Status> {
       case "accepted":
         return Status.verified;
       default:
-        throw Exception("unknown status"); // TODO: replace with a proper Failure
+        throw Exception("unknown status ${json["status"]}"); // TODO: replace with a proper Failure
     }
   }
 }
