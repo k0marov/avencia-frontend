@@ -30,27 +30,19 @@ class EmailFieldCubit extends Cubit<EmailFieldState> {
   }
 
   void edited(String newVal) {
-    state.fold(
-      () => null,
-      (some) => some.fold(
-        (e) => null,
-        (loaded) => emit(Some(Right(loaded.withEdited(newVal)))),
-      ),
+    state.forLoaded(
+      (loaded) => emit(Some(Right(loaded.withEdited(newVal)))),
     );
   }
 
   void actionPressed() {
-    state.fold(
-      () => null,
-      (some) => some.fold(
-        (e) => null,
-        (loaded) async => (loaded.action == CurrentAction.updating
-                ? await _auth.updateEmail(loaded.edited)
-                : await _auth.verifyEmail())
-            .fold(
-          (e) => emit(Some(Left(e))),
-          (success) => null,
-        ),
+    state.forLoaded(
+      (loaded) async => (loaded.action == CurrentAction.updating
+              ? await _auth.updateEmail(loaded.edited)
+              : await _auth.verifyEmail())
+          .fold(
+        (e) => emit(Some(Left(e))),
+        (success) => null,
       ),
     );
   }
