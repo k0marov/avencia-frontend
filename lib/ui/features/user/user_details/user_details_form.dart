@@ -1,4 +1,5 @@
 import 'package:avencia/di.dart';
+import 'package:avencia/ui/core/general/style.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_form_text_field.dart';
 import 'package:helpers/ui/forms/date_picker_field.dart';
@@ -38,6 +39,7 @@ class _PersonalDetailsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormSectionWidget(
+      cardColor: formCardColor,
       title: "Personal Details",
       updButton: i.action,
       fields: [
@@ -81,6 +83,7 @@ class _AddressSection extends StatelessWidget {
     final a = i.current.address;
     void updAddr(Address addr) => i.update(i.current.copyWith(address: addr));
     return FormSectionWidget(
+      cardColor: formCardColor,
       title: "Your Address",
       updButton: i.action,
       fields: [
