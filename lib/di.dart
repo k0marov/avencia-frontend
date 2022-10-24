@@ -1,4 +1,6 @@
 import 'package:avencia/config/const.dart';
+import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
+import 'package:avencia/logic/features/user/kyc/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
 import 'package:helpers/logic/auth/auth_http_client.dart';
@@ -113,7 +115,11 @@ Future<void> initialize() async {
     toggleTheme,
     getThemeStream,
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
-    () => PassportCubit(uploader),
+    () => PassportCubit(
+      uploader,
+      newPassportStatusGetter(uniqueNetworkCrud, StatusMapper()),
+      newPassportSubmitter(nucFactory),
+    ),
     simpleBuilder,
     formWidget,
     exceptionListener,

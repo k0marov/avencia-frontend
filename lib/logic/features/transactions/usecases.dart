@@ -1,6 +1,7 @@
 import 'package:avencia/config/const.dart';
 import 'package:dartz/dartz.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/http.dart';
 
 import 'internal/meta_transaction_mapper.dart';
 import 'internal/transaction_code_mapper.dart';
@@ -20,6 +21,6 @@ StartTransactionUseCase newStartTransactionUseCase(
         host,
         genTransactionCodeEndpoint,
       ),
-      method: "POST",
+      method: HTTPMethods.post,
       outMapper: codeMapper,
     );
