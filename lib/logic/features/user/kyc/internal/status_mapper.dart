@@ -35,7 +35,7 @@ class StatusMapper implements FullMapper<Status> {
       case "accepted":
         return Status.verified;
       default:
-        throw Exception("unknown status ${json["status"]}"); // TODO: replace with a proper Failure
+        throw Exception("unknown status ${json["status"]}");
     }
   }
 }
