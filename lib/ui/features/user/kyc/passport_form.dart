@@ -61,7 +61,6 @@ class StatusWidget extends StatelessWidget {
           ],
         );
       case Status.rejected:
-        // TODO: maybe add a reason here
         return Text(
             "Sorry, but the passport you have submitted previously has been rejected. Please, try again.");
     }

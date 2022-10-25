@@ -2,7 +2,7 @@ import 'package:avencia/config/const.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/entity/unique_network_crud.dart';
-import 'package:helpers/logic/http.dart';
+import 'package:helpers/logic/http/http.dart';
 
 import 'internal/status.dart';
 

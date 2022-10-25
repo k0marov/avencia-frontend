@@ -3,17 +3,16 @@ import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
-import 'package:helpers/logic/auth/auth_http_client.dart';
 import 'package:helpers/logic/entity/network_crud.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/entity/unique_network_crud.dart';
 import 'package:helpers/logic/forms/form_cubit.dart';
+import 'package:helpers/logic/http/auth_http_client.dart';
 import 'package:helpers/logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
 import 'package:helpers/logic/theme_brightness/toggle_theme_brightness_usecase.dart';
 import 'package:helpers/ui/errors/bloc_exception_listener.dart';
 import 'package:helpers/ui/forms/form_widget.dart';
 import 'package:helpers/ui/general/simple_cubit_builder.dart';
-import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import 'logic/core/uploader/uploader.dart';
@@ -77,8 +76,8 @@ late final UIDeps uiDeps;
 
 Future<void> initialize() async {
   final authFacade = FirebaseAuthFacade(FirebaseAuth.instance);
-  final httpClient = AuthHTTPClient(authFacade, http.Client());
-  final nucFactory = NetworkUseCaseFactory(apiHost, httpClient);
+  final authClientFactory = newAuthHTTPClientFactory(authFacade);
+  final nucFactory = NetworkUseCaseFactory(apiHost, authClientFactory);
 
   final startTransaction =
       newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
@@ -99,7 +98,7 @@ Future<void> initialize() async {
   final readUserDetails = newUserDetailsReader(uniqueNetworkCrud, UserDetailsMapper());
   final updateUserDetails = newUserDetailsUpdater(uniqueNetworkCrud, UserDetailsMapper());
 
-  final uploader = newUploader(httpClient, apiHost);
+  final uploader = newUploader(authClientFactory, apiHost);
 
   final exceptionListener = newBlocExceptionListenerFactory(authFacade);
   final formWidget = newFormWidgetFactory(exceptionListener);

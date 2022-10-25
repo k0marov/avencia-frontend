@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
-import 'package:helpers/logic/http.dart';
+import 'package:helpers/logic/http/http.dart';
 
 import '../../../../config/const.dart';
 import 'internal/entities.dart';
