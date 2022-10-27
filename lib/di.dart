@@ -1,4 +1,6 @@
 import 'package:avencia/config/const.dart';
+import 'package:avencia/logic/features/user/kyc/internal/state_management/kyc_images_cubit.dart';
+import 'package:avencia/logic/features/user/kyc/internal/state_management/kyc_status_cubit.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -25,7 +27,7 @@ import 'logic/features/transactions/usecases.dart';
 import 'logic/features/transfer/internal /transfer_mapper.dart';
 import 'logic/features/transfer/state_management/transfer_cubit.dart';
 import 'logic/features/transfer/usecases.dart';
-import 'logic/features/user/kyc/state_management/passport_cubit.dart';
+import 'logic/features/user/kyc/internal/state_management/kyc_cubits.dart';
 import 'logic/features/user/user_details/internal/mappers.dart';
 import 'logic/features/user/user_details/internal/user_details.dart';
 import 'logic/features/user/user_details/user_details_crud.dart';
@@ -47,9 +49,9 @@ class UIDeps {
   final ToggleThemeBrightnessUseCase toggleThemeBrightness;
   final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
 
-  final FormCubit<UserDetails> Function() userDetailsFormFactory;
+  final KycCubits passportCubits;
 
-  final PassportCubit Function() passportCubitFactory;
+  final FormCubit<UserDetails> Function() userDetailsFormFactory;
 
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
@@ -64,8 +66,8 @@ class UIDeps {
     this.transCodeCubitFactory,
     this.toggleThemeBrightness,
     this.getThemeBrightnessStream,
+    this.passportCubits,
     this.userDetailsFormFactory,
-    this.passportCubitFactory,
     this.simpleBuilder,
     this.formWidget,
     this.exceptionListener,
@@ -113,12 +115,14 @@ Future<void> initialize() async {
     (code) => TransactionCodeCubit(code),
     toggleTheme,
     getThemeStream,
-    () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
-    () => PassportCubit(
-      uploader,
-      newPassportStatusGetter(uniqueNetworkCrud, StatusMapper()),
-      newPassportSubmitter(nucFactory),
+    KycCubits(
+      () => KycImagesCubit([passportBackEndpoint, passportFrontEndpoint], uploader),
+      () => KycStatusCubit(
+        newKycStatusGetter(uniqueNetworkCrud, passportStatusEndpoint, StatusMapper()),
+        newKycStatusSubmitter(nucFactory, passportStatusEndpoint),
+      ),
     ),
+    () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     simpleBuilder,
     formWidget,
     exceptionListener,

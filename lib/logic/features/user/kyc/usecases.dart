@@ -1,4 +1,3 @@
-import 'package:avencia/config/const.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/entity/unique_network_crud.dart';
@@ -6,23 +5,24 @@ import 'package:helpers/logic/http/http.dart';
 
 import 'internal/status.dart';
 
-typedef PassportStatusGetter = Future<UseCaseRes<Status>> Function();
-typedef PassportSubmitter = Future<UseCaseRes<void>> Function();
+typedef KycStatusGetter = Future<UseCaseRes<Status>> Function();
+typedef KycStatusSubmitter = Future<UseCaseRes<void>> Function();
 
-PassportStatusGetter newPassportStatusGetter(
+KycStatusGetter newKycStatusGetter(
   UniqueNetworkCRUD crud,
+  String endpoint,
   OutMapper<Status> map,
 ) {
   return crud.newReader(
-    endpoint: passportStatusEndpoint,
+    endpoint: endpoint,
     outMap: map,
   );
 }
 
-PassportSubmitter newPassportSubmitter(NetworkUseCaseFactory nuc) {
+KycStatusSubmitter newKycStatusSubmitter(NetworkUseCaseFactory nuc, String endpoint) {
   final uc = nuc.newBaseNetworkUseCase(
     inpMapper: NoInpMapper(),
-    getUri: (_, host) => Uri.https(host, passportStatusEndpoint),
+    getUri: (_, host) => Uri.https(host, endpoint),
     method: HTTPMethods.patch,
     outMapper: NoOutMapper(),
   );

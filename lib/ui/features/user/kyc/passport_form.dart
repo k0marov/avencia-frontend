@@ -5,7 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
-import '../../../../logic/features/user/kyc/state_management/passport_cubit.dart';
+import '../../../../logic/features/user/kyc/internal/state_management/kyc_images_cubit.dart';
+import '../../../../logic/features/user/kyc/internal/state_management/kyc_status_cubit.dart';
 
 // TODO: refactor the new features and move the general stuff to the helpers package
 
@@ -14,24 +15,29 @@ class PassportForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-        create: (_) => uiDeps.passportCubitFactory(),
-        child: BlocBuilder<PassportCubit, PassportState>(
+    return MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (_) => uiDeps.passportCubits.images()),
+          BlocProvider(create: (_) => uiDeps.passportCubits.status()),
+        ],
+        child: BlocBuilder<KycStatusCubit, KycStatusState>(
           builder: (context, state) => stateSwitch(
             state: state,
-            loadedBuilder: (LoadedState loaded) => Column(children: [
-              StatusWidget(status: loaded.status),
-              if (loaded.status != Status.pending && loaded.status != Status.verified)
-                Column(
-                  children: [
-                    FilesForm(state: loaded.images),
-                    ElevatedButton(
-                      onPressed: loaded.canBeSubmitted
-                          ? context.read<PassportCubit>().submitPressed
-                          : null,
-                      child: Text("Submit for verification"),
-                    ),
-                  ],
+            loadedBuilder: (Status status) => Column(children: [
+              StatusWidget(status: status),
+              if (status != Status.pending && status != Status.verified)
+                BlocBuilder<KycImagesCubit, KycImagesState>(
+                  builder: (context, images) => Column(
+                    children: [
+                      FilesForm(state: images),
+                      ElevatedButton(
+                        onPressed: context.read<KycImagesCubit>().allFilled()
+                            ? context.read<KycStatusCubit>().submit
+                            : null,
+                        child: Text("Submit for verification"),
+                      ),
+                    ],
+                  ),
                 ),
             ]),
           ),
@@ -68,7 +74,7 @@ class StatusWidget extends StatelessWidget {
 }
 
 class FilesForm extends StatelessWidget {
-  final ImagesState state;
+  final KycImagesState state;
   const FilesForm({Key? key, required this.state}) : super(key: key);
 
   @override
@@ -76,13 +82,13 @@ class FilesForm extends StatelessWidget {
     return Column(children: [
       const Text("Back"),
       UploaderWidget(
-        state: state.back,
-        onFileChosen: context.read<PassportCubit>().backUploadPressed,
+        state: state[0],
+        onFileChosen: (file) => context.read<KycImagesCubit>().upload(0, file),
       ),
       const Text("Front"),
       UploaderWidget(
-        state: state.front,
-        onFileChosen: context.read<PassportCubit>().frontUploadPressed,
+        state: state[1],
+        onFileChosen: (file) => context.read<KycImagesCubit>().upload(1, file),
       ),
     ]);
   }
