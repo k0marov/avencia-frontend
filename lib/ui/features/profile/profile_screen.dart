@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../user/kyc/passport_form.dart';
 
-// TODO: add agreements
-
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
 

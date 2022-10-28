@@ -119,6 +119,7 @@ Future<void> initialize() async {
         newKycStatusGetter(uniqueNetworkCrud, passportStatusEndpoint, StatusMapper()),
         newKycStatusSubmitter(nucFactory, passportStatusEndpoint),
       ),
+      AgreementsDeps(2),
     ),
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     simpleBuilder,

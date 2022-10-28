@@ -27,6 +27,7 @@ class PassportForm extends StatelessWidget {
                 Column(
                   children: [
                     FilesForm(state: state.images),
+                    AgreementsForm(state: state.agreements),
                     ElevatedButton(
                       onPressed: context.read<KycCubit>().submitAllowed
                           ? context.read<KycCubit>().submit
@@ -87,6 +88,30 @@ class FilesForm extends StatelessWidget {
       UploaderWidget(
         state: state[1],
         onFileChosen: (file) => context.read<KycCubit>().uploadImg(1, file),
+      ),
+    ]);
+  }
+}
+
+class AgreementsForm extends StatelessWidget {
+  final AgreementsState state;
+  const AgreementsForm({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(children: [
+      CheckboxListTile(
+        title: Text("I agree to the first one."),
+        value: state[0],
+        onChanged: (val) => context.read<KycCubit>().toggleOn(0),
+      ),
+      CheckboxListTile(
+        title: Text("I agree to the second one."),
+        value: state[1],
+        onChanged: (val) => context.read<KycCubit>().toggleOn(1),
       ),
     ]);
   }
