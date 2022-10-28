@@ -10,12 +10,12 @@ import 'package:helpers/logic/forms/form_cubit.dart';
 import 'package:helpers/logic/http/auth_http_client.dart';
 import 'package:helpers/logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
 import 'package:helpers/logic/theme_brightness/toggle_theme_brightness_usecase.dart';
+import 'package:helpers/logic/uploader/uploader.dart';
 import 'package:helpers/ui/errors/bloc_exception_listener.dart';
 import 'package:helpers/ui/forms/form_widget.dart';
 import 'package:helpers/ui/general/simple_cubit_builder.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
-import 'logic/core/uploader/uploader.dart';
 import 'logic/features/auth/auth_facade.dart';
 import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
 import 'logic/features/transactions/internal/transaction_code_mapper.dart';

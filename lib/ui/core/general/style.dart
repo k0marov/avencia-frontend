@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+// TODO; copy all the styles from Figma
+
 final formCardColor = Colors.grey[800]!;
 final labelStyle = TextStyle(fontSize: 16, color: Colors.grey[400]);
 const fieldFill = Colors.white12;

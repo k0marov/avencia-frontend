@@ -1,8 +1,8 @@
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:helpers/logic/uploader/simple_file.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
-import '../../../../logic/core/uploader/simple_file.dart';
 import '../../../../logic/features/user/kyc/internal/state_management/kyc_cubit.dart';
 
 class UploaderWidget extends StatelessWidget {

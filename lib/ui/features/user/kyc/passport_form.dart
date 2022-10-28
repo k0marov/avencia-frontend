@@ -7,8 +7,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:helpers/logic/errors/bloc_state.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
-// TODO: refactor the new features and move the general stuff to the helpers package
-
 class PassportForm extends StatelessWidget {
   const PassportForm({Key? key}) : super(key: key);
 

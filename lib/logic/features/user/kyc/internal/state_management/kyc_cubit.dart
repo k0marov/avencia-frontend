@@ -1,10 +1,10 @@
-import 'package:avencia/logic/core/uploader/uploader.dart';
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:helpers/logic/core.dart';
+import 'package:helpers/logic/uploader/simple_file.dart';
+import 'package:helpers/logic/uploader/uploader.dart';
 
-import '../../../../../core/uploader/simple_file.dart';
 import '../../usecases.dart';
 import '../status.dart';
 
