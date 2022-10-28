@@ -4,6 +4,7 @@ import 'package:avencia/logic/features/user/kyc/internal/status.dart';
 import 'package:avencia/ui/features/user/kyc/uploader_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/errors/bloc_state.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
 // TODO: refactor the new features and move the general stuff to the helpers package
@@ -14,8 +15,10 @@ class PassportForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-        create: (_) => uiDeps.passportCubitFactory(),
-        child: BlocBuilder<KycCubit, KycState>(
+      create: (_) => uiDeps.passportCubitFactory(),
+      child: uiDeps.exceptionListener<KycCubit, KycState>(
+        (s) => s.status.getException(),
+        BlocBuilder<KycCubit, KycState>(
           builder: (context, state) => stateSwitch(
             state: state.status,
             loadedBuilder: (Status status) => Column(children: [
@@ -34,7 +37,9 @@ class PassportForm extends StatelessWidget {
                 ),
             ]),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }
 

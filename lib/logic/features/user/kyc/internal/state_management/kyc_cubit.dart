@@ -30,7 +30,9 @@ class KycCubit extends Cubit<KycState> {
       : super(KycState(
           initialImagesState(_imgDeps),
           initialStatusState(_statusDeps),
-        ));
+        )) {
+    refreshStatus();
+  }
 
   bool get submitAllowed => _imgsFilled();
 }

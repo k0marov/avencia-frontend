@@ -29,7 +29,8 @@ extension ImagesExtension on KycCubit {
   }
 
   void _setImageState(int index, FileUploadState newState) {
-    final changedState = state.images;
+    // you have to copy the current images state, otherwise it will not be changed
+    final changedState = [...state.images];
     changedState[index] = newState;
     emit(state.withImages(changedState));
   }
