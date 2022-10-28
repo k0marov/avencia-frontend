@@ -1,6 +1,4 @@
 import 'package:avencia/config/const.dart';
-import 'package:avencia/logic/features/user/kyc/internal/state_management/kyc_images_cubit.dart';
-import 'package:avencia/logic/features/user/kyc/internal/state_management/kyc_status_cubit.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -27,7 +25,7 @@ import 'logic/features/transactions/usecases.dart';
 import 'logic/features/transfer/internal /transfer_mapper.dart';
 import 'logic/features/transfer/state_management/transfer_cubit.dart';
 import 'logic/features/transfer/usecases.dart';
-import 'logic/features/user/kyc/internal/state_management/kyc_cubits.dart';
+import 'logic/features/user/kyc/internal/state_management/kyc_cubit.dart';
 import 'logic/features/user/user_details/internal/mappers.dart';
 import 'logic/features/user/user_details/internal/user_details.dart';
 import 'logic/features/user/user_details/user_details_crud.dart';
@@ -49,7 +47,7 @@ class UIDeps {
   final ToggleThemeBrightnessUseCase toggleThemeBrightness;
   final GetThemeBrightnessStreamUseCase getThemeBrightnessStream;
 
-  final KycCubits passportCubits;
+  final KycCubit Function() passportCubitFactory;
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
 
@@ -66,7 +64,7 @@ class UIDeps {
     this.transCodeCubitFactory,
     this.toggleThemeBrightness,
     this.getThemeBrightnessStream,
-    this.passportCubits,
+    this.passportCubitFactory,
     this.userDetailsFormFactory,
     this.simpleBuilder,
     this.formWidget,
@@ -115,9 +113,9 @@ Future<void> initialize() async {
     (code) => TransactionCodeCubit(code),
     toggleTheme,
     getThemeStream,
-    KycCubits(
-      () => KycImagesCubit([passportBackEndpoint, passportFrontEndpoint], uploader),
-      () => KycStatusCubit(
+    () => KycCubit(
+      ImagesDeps(const [passportBackEndpoint, passportFrontEndpoint], uploader),
+      StatusDeps(
         newKycStatusGetter(uniqueNetworkCrud, passportStatusEndpoint, StatusMapper()),
         newKycStatusSubmitter(nucFactory, passportStatusEndpoint),
       ),
