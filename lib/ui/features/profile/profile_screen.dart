@@ -1,7 +1,9 @@
 import 'package:avencia/di.dart';
+import 'package:avencia/ui/features/profile/toggle_theme_widget.dart';
 import 'package:flutter/material.dart';
 
 import '../user/kyc/passport_form.dart';
+import '../user/user_details/user_details_form.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -17,8 +19,9 @@ class ProfileScreen extends StatelessWidget {
           style: Theme.of(context).textTheme.titleLarge?.copyWith(fontSize: 36),
         ),
       ),
-      // const UserDetailsForm(),
+      const UserDetailsForm(),
       const PassportForm(),
+      const ToggleThemeWidget(),
       TextButton(
         onPressed: uiDeps.authFacade.logout,
         child: const Text("Logout", style: TextStyle(color: Colors.red)),

@@ -1,9 +1,9 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/app/splash_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/app/auth_gate.dart';
-import 'package:helpers/ui/app/brightness_builder.dart';
 import 'package:helpers/ui/app/home_screen.dart';
 
 import '../../features/auth/auth_screen.dart';
@@ -16,12 +16,13 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BrightnessBuilder(
-      getBrightnessStream: uiDeps.getThemeBrightnessStream,
-      builder: (context, brightness) => MaterialApp(
-        darkTheme: ThemeData.dark(),
-        theme: ThemeData.light(),
-        themeMode: brightness,
+    return AdaptiveTheme(
+      light: ThemeData.light(),
+      dark: ThemeData.dark(),
+      initial: AdaptiveThemeMode.system,
+      builder: (theme, darkTheme) => MaterialApp(
+        darkTheme: darkTheme,
+        theme: theme,
         home: AuthGate(
           auth: uiDeps.authFacade,
           homeScreen: const HomeScreen(
