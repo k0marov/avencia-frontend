@@ -24,7 +24,6 @@ class StatusMapper implements FullMapper<Status> {
 
   @override
   Status fromJson(Map<String, dynamic> json) {
-    print(json);
     switch (json["status"]) {
       case "unset":
         return Status.unset;
