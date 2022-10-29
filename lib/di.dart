@@ -100,11 +100,11 @@ Future<void> initialize() async {
     startTransaction,
     (code) => TransactionCodeCubit(code),
     () => KycCubit(
-      ImagesDeps(const [passportBackEndpoint, passportFrontEndpoint], uploader),
       StatusDeps(
         newKycStatusGetter(uniqueNetworkCrud, passportStatusEndpoint, StatusMapper()),
         newKycStatusSubmitter(nucFactory, passportStatusEndpoint),
       ),
+      ImagesDeps(const [passportBackEndpoint, passportFrontEndpoint], uploader),
       AgreementsDeps(2),
     ),
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),

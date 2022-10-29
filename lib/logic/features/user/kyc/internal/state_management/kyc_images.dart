@@ -1,6 +1,6 @@
 part of 'kyc_cubit.dart';
 
-// true means the file is successfully uploaded; false means the user have not even started the upload
+// true means the file is successfully uploaded; false means the user has not even started the upload
 // none means the file is uploading
 
 typedef FileUploadState = Option<Either<Exception, bool>>;
@@ -13,14 +13,19 @@ class ImagesDeps extends Equatable {
   const ImagesDeps(this.endpoints, this.upld);
 }
 
-ImagesState initialImagesState(ImagesDeps deps) =>
-    List.filled(deps.endpoints.length, Some(Right(false)));
+class ImagesExtension {
+  final ImagesDeps _deps;
+  final ExtensionEmitter<ImagesState> _emit;
+  final StateGetter<ImagesState> _getState;
+  const ImagesExtension(this._deps, this._emit, this._getState);
 
-extension ImagesExtension on KycCubit {
-  void uploadImg(int index, SimpleFile file) {
+  static ImagesState initialState(ImagesDeps deps) =>
+      List.filled(deps.endpoints.length, Some(Right(false)));
+
+  void upld(int index, SimpleFile file) {
     _setImageState(index, None());
 
-    _imgDeps.upld(_imgDeps.endpoints[index], file).then(
+    _deps.upld(_deps.endpoints[index], file).then(
           (result) => result.fold(
             (e) => _setImageState(index, Some(Left(e))),
             (success) => _setImageState(index, Some(Right(true))),
@@ -30,12 +35,12 @@ extension ImagesExtension on KycCubit {
 
   void _setImageState(int index, FileUploadState newState) {
     // you have to copy the current images state, otherwise it will not be changed
-    final changedState = [...state.images];
+    final changedState = [..._getState()];
     changedState[index] = newState;
-    emit(state.withImages(changedState));
+    _emit(changedState);
   }
 
-  bool _imgsFilled() => state.images.every(
+  bool _imgsFilled() => _getState().every(
         (s) => s.fold(
           () => false,
           (some) => some.fold(

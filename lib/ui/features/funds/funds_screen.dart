@@ -88,16 +88,6 @@ class FundsScreen extends StatelessWidget {
                   ),
                 ),
               ),
-            // title: Column(
-            //   children: [
-            //     LinearProgressIndicator(value: entry.value.withdrawn / entry.value.max),
-            //     Row(children: [
-            //       Align(alignment: Alignment.centerLeft, child: Text("0")),
-            //       Spacer(),
-            //       Align(alignment: Alignment.centerRight, child: Text(entry.value.max.toString())),
-            //     ])
-            //   ],
-            // ),
           ]),
         ),
       ),

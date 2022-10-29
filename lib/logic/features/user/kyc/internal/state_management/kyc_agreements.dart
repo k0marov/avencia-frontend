@@ -14,12 +14,22 @@ AgreementsState initialAgreementsState(AgreementsDeps deps) => List.filled(
       false,
     );
 
-extension AgreementsExtension on KycCubit {
+class AgreementsExtension {
+  final AgreementsDeps _deps;
+  final ExtensionEmitter<AgreementsState> _emit;
+  final StateGetter<AgreementsState> _getState;
+  const AgreementsExtension(this._deps, this._emit, this._getState);
+
+  static AgreementsState initialState(AgreementsDeps deps) => List.filled(
+        deps.agreementsCount,
+        false,
+      );
+
   void toggleOn(int index) {
-    final changed = state.agreements.toList();
+    final changed = _getState().toList();
     changed[index] = !changed[index];
-    emit(state.withAgreements(changed));
+    _emit(changed);
   }
 
-  bool _allAgreed() => state.agreements.every((a) => a);
+  bool _allAgreed() => _getState().every((a) => a);
 }
