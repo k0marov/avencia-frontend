@@ -1,6 +1,8 @@
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/app/splash_screen.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
+import 'package:avencia/ui/features/dashboard/dashboard_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/app/auth_gate.dart';
@@ -9,7 +11,6 @@ import 'package:helpers/ui/app/home_screen.dart';
 import '../../features/auth/auth_screen.dart';
 import '../../features/funds/funds_screen.dart';
 import '../../features/profile/profile_screen.dart';
-import '../../features/transactions/transaction_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -17,10 +18,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      light: ThemeData.light(),
-      dark: ThemeData.dark(),
+      light: createLightTheme(),
+      dark: createLightTheme(),
       initial: AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => MaterialApp(
+        debugShowCheckedModeBanner: false,
         darkTheme: darkTheme,
         theme: theme,
         home: AuthGate(
@@ -28,7 +30,7 @@ class MyApp extends StatelessWidget {
           homeScreen: const HomeScreen(
             screens: [
               Tuple2(
-                TransactionScreen(),
+                DashboardScreen(),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.request_quote),
                   label: 'Transactions',
