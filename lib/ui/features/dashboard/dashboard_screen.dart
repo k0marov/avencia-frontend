@@ -36,7 +36,7 @@ class DashboardScreen extends StatelessWidget {
                     ]),
                     Card(
                       child: Padding(
-                        padding: const EdgeInsets.all(10),
+                        padding: const EdgeInsets.all(16),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
@@ -107,6 +107,30 @@ class DashboardScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Card(
+                        child: Padding(
+                      padding: EdgeInsets.all(16),
+                      child: Row(children: [
+                        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text("Transactions", style: Theme.of(context).textTheme.titleMedium),
+                          Text("34,405",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(fontWeight: FontWeight.bold)),
+                        ]),
+                        Spacer(),
+                        SizedBox(
+                          width: 45,
+                          height: 45,
+                          child: SimpleButton(
+                            iconSize: 20,
+                            onPressed: () {},
+                            icon: Icons.send,
+                          ),
+                        ),
+                      ]),
+                    ))
                   ],
                 ),
               ),
