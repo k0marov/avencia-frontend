@@ -2,8 +2,9 @@ part of 'theme.dart';
 
 abstract class AppColors {
   static const whiteBG = Color(0xFFFFFFFF);
-  static const whiteCard = Color(0xffEFEFF1);
+  static const whiteCard = Color(0xfff3f3f1);
   static const whiteIcon = Color(0xffEEEFF0);
+  static const whiteButton = Color(0x11000000);
   static const darkText = Color(0xFF515151);
   static const darkLabelText = Color(0xFFAAAAB2);
   static const darkTitleText = Color(0xFF403D51);

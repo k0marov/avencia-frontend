@@ -18,16 +18,13 @@ ThemeData createLightTheme() {
       onBackground: AppColors.darkText,
       surface: AppColors.whiteCard,
       onSurface: AppColors.darkText,
+      surfaceTint: AppColors.whiteCard,
     ),
+    backgroundColor: AppColors.whiteBG,
+    buttonTheme: ButtonThemeData(buttonColor: AppColors.whiteButton),
+    cardTheme: CardTheme(surfaceTintColor: null),
     cardColor: AppColors.whiteCard,
     iconTheme: iconTheme,
-    // outlinedButtonTheme: OutlinedButtonThemeData(
-    //   style: OutlinedButton.styleFrom(
-    //     backgroundColor: AppColors.whiteCard,
-    //     side: BorderSide.none,
-    //     shape: CircleBorder(),
-    //   ),
-    // ),
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: AppColors.whiteCard),
       iconTheme: iconTheme,
