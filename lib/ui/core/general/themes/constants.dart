@@ -18,7 +18,7 @@ abstract class TextColors {
   static const darkLabelText = Color(0xFF515151);
   static const greyText = Color(0xFFAAAAB2);
   static const darkTitleText = Color(0xFF403D51);
-  static const darkEmphasisText = Color(0xFF0C0C0C);
+  static const darkEmphasisText = Color(0xFF4C495F);
   static const whiteText = Color(0xFFF5EBFE);
   static const whiteHighlight = Color(0xFFF5F3FA);
 }

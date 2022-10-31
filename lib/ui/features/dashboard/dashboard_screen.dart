@@ -13,9 +13,11 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
       appBar: createAvenciaAppBar(context),
       body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 10),
+        padding: EdgeInsets.symmetric(horizontal: 12),
         child: ListView(
           children: [
+            Text("Dashboard", style: Theme.of(context).textTheme.headline1),
+            SizedBox(height: 15),
             Material(
               elevation: 5,
               color: Theme.of(context).backgroundColor,
