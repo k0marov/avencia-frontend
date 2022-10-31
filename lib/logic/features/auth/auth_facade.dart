@@ -10,7 +10,8 @@ class FirebaseAuthFacade implements AuthFacade {
   Future<Option<AuthToken>> getToken() => _userToToken(_fbAuth.currentUser);
 
   @override
-  Stream<Option<AuthToken>> getTokenStream() => _fbAuth.authStateChanges().asyncMap(_userToToken);
+  Stream<Option<AuthToken>> getTokenStream() =>
+      _fbAuth.idTokenChanges().asyncMap((_) => getToken());
 
   @override
   Future<Either<Exception, EmailState>> getEmail() => withExceptionHandling(() async {
@@ -25,7 +26,7 @@ class FirebaseAuthFacade implements AuthFacade {
   Future<Either<Exception, void>> verifyEmail() => withExceptionHandling(
         () async => _fbAuth.currentUser?.sendEmailVerification(),
       );
-  @override
+
   Future<Either<Exception, void>> updateEmail(String email) => withExceptionHandling(
         () async => _fbAuth.currentUser?.verifyBeforeUpdateEmail(email),
       );
@@ -33,8 +34,11 @@ class FirebaseAuthFacade implements AuthFacade {
   @override
   Future<Either<Exception, void>> logout() => withExceptionHandling(() async => _fbAuth.signOut());
 
-  Future<Option<AuthToken>> _userToToken(User? user) async =>
-      user != null ? Some(await user.getIdToken()) : const None();
+  Future<Option<AuthToken>> _userToToken(User? user) async => user != null
+      ? Some(
+          await user.getIdToken(),
+        )
+      : None();
 
   @override
   Future<Either<Exception, void>> refresh() => withExceptionHandling(() async {

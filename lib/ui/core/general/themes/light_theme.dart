@@ -2,28 +2,29 @@ part of 'theme.dart';
 
 ThemeData createLightTheme() {
   const iconTheme = IconThemeData(
-    color: AppColors.darkLabelText,
+    color: TextColors.greyText,
   );
   return ThemeData.light().copyWith(
+    textTheme: createTextTheme(),
     useMaterial3: true,
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
       primary: AppColors.purple,
-      onPrimary: AppColors.whiteText,
+      onPrimary: TextColors.whiteText,
       secondary: AppColors.gradientPink,
-      onSecondary: AppColors.whiteText,
+      onSecondary: TextColors.whiteText,
       error: AppColors.red,
-      onError: AppColors.whiteText,
+      onError: TextColors.whiteText,
       background: AppColors.whiteBG,
-      onBackground: AppColors.darkText,
+      onBackground: TextColors.darkLabelText,
       surface: AppColors.whiteCard,
-      onSurface: AppColors.darkText,
+      onSurface: TextColors.darkLabelText,
       surfaceTint: AppColors.whiteCard,
     ),
     backgroundColor: AppColors.whiteBG,
     buttonTheme: ButtonThemeData(buttonColor: AppColors.whiteButton),
     cardTheme: CardTheme(surfaceTintColor: null),
-    cardColor: AppColors.whiteCard,
+    cardColor: Colors.black,
     iconTheme: iconTheme,
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: AppColors.whiteCard),

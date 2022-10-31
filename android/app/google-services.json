@@ -29,6 +29,13 @@
             {
               "client_id": "199022843767-732hh8dpkadp7bcv67uprjrs7hlelm2o.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "199022843767-a0t4et1uqqfdod1ak85kv8o37po35i09.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.avencia"
+              }
             }
           ]
         }

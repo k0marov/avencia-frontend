@@ -20,8 +20,8 @@ AppBar createAvenciaAppBar(BuildContext context) => AppBar(
           ),
           SizedBox(width: 15),
           Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text("vino_costa", style: Theme.of(context).textTheme.titleLarge),
-            Text("Unverified", style: Theme.of(context).textTheme.subtitle1),
+            Text("vino_costa", style: Theme.of(context).textTheme.headline3),
+            Text("Unverified", style: Theme.of(context).textTheme.headline5),
           ]),
         ],
       ),

@@ -27,7 +27,7 @@ class DashboardScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Row(children: [
-                      Text("Overview", style: Theme.of(context).textTheme.titleLarge),
+                      Text("Overview", style: Theme.of(context).textTheme.headline4),
                       Spacer(),
                       IconButton(
                         onPressed: () {},
@@ -42,14 +42,9 @@ class DashboardScreen extends StatelessWidget {
                           children: [
                             Text(
                               "Balance",
-                              style: Theme.of(context).textTheme.titleMedium,
+                              style: Theme.of(context).textTheme.headline5,
                             ),
-                            Text(
-                              "\$156,153,517,892",
-                              style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                            ),
+                            Text("\$156,153,517,892", style: Theme.of(context).textTheme.headline2),
                             SizedBox(height: 20),
                             SizedBox(
                               height: 40,
@@ -88,14 +83,12 @@ class DashboardScreen extends StatelessWidget {
                                         Icon(
                                           Icons.arrow_downward,
                                           size: 20,
-                                          color: Theme.of(context).colorScheme.onPrimary,
+                                          color: Theme.of(context).textTheme.button?.color,
                                         ),
                                         SizedBox(width: 8),
                                         Text(
                                           "Deposit",
-                                          style: TextStyle(
-                                              letterSpacing: 1.5,
-                                              color: Theme.of(context).colorScheme.onPrimary),
+                                          style: Theme.of(context).textTheme.button,
                                         )
                                       ]),
                                     ),
@@ -107,17 +100,14 @@ class DashboardScreen extends StatelessWidget {
                         ),
                       ),
                     ),
+                    SizedBox(height: 15),
                     Card(
                         child: Padding(
                       padding: EdgeInsets.all(16),
                       child: Row(children: [
                         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Text("Transactions", style: Theme.of(context).textTheme.titleMedium),
-                          Text("34,405",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .titleLarge
-                                  ?.copyWith(fontWeight: FontWeight.bold)),
+                          Text("Transactions", style: Theme.of(context).textTheme.headline5),
+                          Text("34,405", style: Theme.of(context).textTheme.headline2),
                         ]),
                         Spacer(),
                         SizedBox(
