@@ -38,6 +38,8 @@ class DashboardScreen extends StatelessWidget {
                   TransactionsCard(),
                   SizedBox(height: _cardSpacing),
                   WalletsCard(),
+                  SizedBox(height: _cardSpacing),
+                  LastActivityCard(),
                 ],
               ),
             )
@@ -145,6 +147,23 @@ class WalletsCard extends StatelessWidget {
           ),
         )
       ]),
+    );
+  }
+}
+
+class LastActivityCard extends StatelessWidget {
+  const LastActivityCard({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final text = theme.textTheme;
+    return DashboardCard(
+      title: "Last Activity",
+      content: SizedBox(
+        width: double.infinity,
+        child: Text("19 Nov, 2019", style: text.headline2),
+      ),
     );
   }
 }
