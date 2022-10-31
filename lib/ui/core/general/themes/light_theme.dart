@@ -23,8 +23,10 @@ ThemeData createLightTheme() {
     ),
     backgroundColor: AppColors.whiteBG,
     buttonTheme: ButtonThemeData(buttonColor: AppColors.whiteButton),
-    cardTheme: CardTheme(surfaceTintColor: null),
-    cardColor: Colors.black,
+    cardTheme: CardTheme(
+      color: AppColors.whiteCard,
+      surfaceTintColor: null,
+    ),
     iconTheme: iconTheme,
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(statusBarColor: AppColors.whiteCard),

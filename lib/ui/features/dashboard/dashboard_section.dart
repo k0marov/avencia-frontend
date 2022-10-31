@@ -22,7 +22,7 @@ class DashboardSection extends StatelessWidget {
       borderRadius: BorderRadius.circular(25),
       shadowColor: Colors.black,
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: EdgeInsets.all(14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
