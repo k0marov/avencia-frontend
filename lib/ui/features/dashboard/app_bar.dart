@@ -1,41 +1,45 @@
 import 'package:avencia/ui/features/dashboard/simple_button.dart';
 import 'package:flutter/material.dart';
 
-AppBar createAvenciaAppBar(BuildContext context) => AppBar(
-      leadingWidth: Theme.of(context).appBarTheme.toolbarHeight,
-      leading: Padding(
-        padding: const EdgeInsets.all(10),
-        child: SimpleButton(
-          onPressed: () {},
-          icon: Icons.list,
+AppBar createAvenciaAppBar(BuildContext context) {
+  final theme = Theme.of(context);
+  return AppBar(
+    leadingWidth: theme.appBarTheme.toolbarHeight,
+    leading: Padding(
+      padding: const EdgeInsets.all(14),
+      child: SimpleButton(
+        onPressed: () {},
+        iconSize: 18,
+        icon: Icons.list,
+      ),
+    ),
+    title: Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        SizedBox(
+          height: 50,
+          width: 50,
+          child: Avatar(),
         ),
-      ),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          SizedBox(
-            height: 50,
-            width: 50,
-            child: Avatar(),
-          ),
-          SizedBox(width: 15),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text("vino_costa", style: Theme.of(context).textTheme.headline3),
-            Text("Unverified", style: Theme.of(context).textTheme.headline5),
-          ]),
-        ],
-      ),
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: SimpleButton(
-            iconSize: 35,
-            onPressed: () {},
-            icon: Icons.keyboard_arrow_down,
-          ),
-        )
+        SizedBox(width: 15),
+        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Text("vino_costa", style: theme.textTheme.headline3),
+          Text("Unverified", style: theme.textTheme.headline5),
+        ]),
       ],
-    );
+    ),
+    actions: [
+      Padding(
+        padding: const EdgeInsets.all(12),
+        child: SimpleButton(
+          iconSize: 28,
+          onPressed: () {},
+          icon: Icons.keyboard_arrow_down,
+        ),
+      )
+    ],
+  );
+}
 
 class Avatar extends StatelessWidget {
   const Avatar({Key? key}) : super(key: key);
