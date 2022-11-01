@@ -45,3 +45,5 @@ flutter:
     - assets/logo_with_dark_title.png
     - assets/logo_square_big.png
     - assets/avatar.png
+    - assets/currencies/BTC.png
+    - assets/currencies/ETH.png

@@ -21,6 +21,11 @@ ThemeData createLightTheme() {
       onSurface: TextColors.darkLabelText,
       surfaceTint: AppColors.whiteCard,
     ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: TextColors.darkTitleText,
+      ),
+    ),
     backgroundColor: AppColors.whiteBG,
     buttonTheme: ButtonThemeData(buttonColor: AppColors.whiteButton),
     cardTheme: CardTheme(

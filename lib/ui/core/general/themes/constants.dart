@@ -15,6 +15,7 @@ abstract class AppColors {
 }
 
 abstract class TextColors {
+  static const bodyText = Color(0xFF4F4E63);
   static const darkLabelText = Color(0xFF515151);
   static const greyText = Color(0xFFAAAAB2);
   static const darkTitleText = Color(0xFF403D51);

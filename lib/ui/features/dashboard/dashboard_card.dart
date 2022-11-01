@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class DashboardCard extends StatelessWidget {
-  final String title;
+  final String? title;
   final Widget content;
   const DashboardCard({
     Key? key,
-    required this.title,
+    this.title,
     required this.content,
   }) : super(key: key);
 
@@ -16,10 +16,12 @@ class DashboardCard extends StatelessWidget {
     return Card(
       child: Padding(
         padding: EdgeInsets.all(16),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(title, style: text.headline5),
-          content,
-        ]),
+        child: title != null
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text(title!, style: text.headline5),
+                content,
+              ])
+            : content,
       ),
     );
   }

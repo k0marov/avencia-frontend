@@ -1,9 +1,12 @@
 part of 'theme.dart';
 
-// TODO: implement the text theme
-
 TextTheme createTextTheme() {
   return Typography.blackCupertino.copyWith(
+      bodyText1: GoogleFonts.roboto(
+        fontWeight: FontWeight.w600,
+        color: TextColors.bodyText,
+        fontSize: 14,
+      ),
       headline5: GoogleFonts.montserrat(
         fontWeight: FontWeight.w500,
         color: TextColors.darkLabelText,

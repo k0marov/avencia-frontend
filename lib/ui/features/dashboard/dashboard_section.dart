@@ -17,7 +17,7 @@ class DashboardSection extends StatelessWidget {
     final theme = Theme.of(context);
     final text = theme.textTheme;
     return Material(
-      elevation: 5,
+      elevation: 3,
       color: theme.backgroundColor,
       borderRadius: BorderRadius.circular(25),
       shadowColor: Colors.black,
