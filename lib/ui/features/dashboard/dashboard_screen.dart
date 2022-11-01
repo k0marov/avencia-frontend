@@ -1,6 +1,7 @@
 import 'package:avencia/ui/features/dashboard/app_bar.dart';
-import 'package:avencia/ui/features/dashboard/sections/digital_wallets_section.dart';
-import 'package:avencia/ui/features/dashboard/sections/overview_section.dart';
+import 'package:avencia/ui/features/dashboard/sections/digital_wallets.dart';
+import 'package:avencia/ui/features/dashboard/sections/overview.dart';
+import 'package:avencia/ui/features/dashboard/sections/recent_activities.dart';
 import 'package:flutter/material.dart';
 
 const sectionSpacing = 15.0;
@@ -25,6 +26,8 @@ class DashboardScreen extends StatelessWidget {
             OverviewSection(),
             const SizedBox(height: sectionSpacing),
             DigitalWalletsSection(),
+            const SizedBox(height: sectionSpacing),
+            RecentAcitvitiesSection(),
           ],
         ),
       ),

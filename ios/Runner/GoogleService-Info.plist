@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>199022843767-a0t4et1uqqfdod1ak85kv8o37po35i09.apps.googleusercontent.com</string>
+	<string>686584026595-f8tsrj667pkt7kpre4ae9pov529qblc6.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.199022843767-a0t4et1uqqfdod1ak85kv8o37po35i09</string>
+	<string>com.googleusercontent.apps.686584026595-f8tsrj667pkt7kpre4ae9pov529qblc6</string>
 	<key>API_KEY</key>
-	<string>AIzaSyAkraCUHW_aaeKDAQweuXp46EoVAz28G4E</string>
+	<string>AIzaSyDTAd-apg40iAPM_vvllFGXKwecEWdwSs8</string>
 	<key>GCM_SENDER_ID</key>
-	<string>199022843767</string>
+	<string>686584026595</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.example.avencia</string>
 	<key>PROJECT_ID</key>
-	<string>avencia-crypto</string>
+	<string>crypto-avencia</string>
 	<key>STORAGE_BUCKET</key>
-	<string>avencia-crypto.appspot.com</string>
+	<string>crypto-avencia.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:199022843767:ios:26998906776b19d53af372</string>
+	<string>1:686584026595:ios:b1109f2c1e3a06145cfcd6</string>
 </dict>
 </plist>

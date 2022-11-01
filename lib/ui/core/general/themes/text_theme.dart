@@ -7,6 +7,11 @@ TextTheme createTextTheme() {
         color: TextColors.bodyText,
         fontSize: 14,
       ),
+      bodyText2: GoogleFonts.roboto(
+        fontWeight: FontWeight.w600,
+        color: TextColors.bodyText,
+        fontSize: 18,
+      ),
       headline5: GoogleFonts.montserrat(
         fontWeight: FontWeight.w500,
         color: TextColors.darkLabelText,

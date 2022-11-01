@@ -10,6 +10,7 @@ abstract class AppColors {
   static const green = Color(0xFF51E289);
   static const red = Color(0xFFF65973);
   static const purple = Color(0xFF9C42F5);
+  static const purpleHighlight = Color(0x329C42F5);
   static const gradientPink = Color(0xFFE720C1);
   static const gradientPurple = Color(0xFF7035E7);
 }

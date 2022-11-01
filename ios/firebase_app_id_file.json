@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:199022843767:ios:26998906776b19d53af372",
-  "FIREBASE_PROJECT_ID": "avencia-crypto",
-  "GCM_SENDER_ID": "199022843767"
+  "GOOGLE_APP_ID": "1:686584026595:ios:b1109f2c1e3a06145cfcd6",
+  "FIREBASE_PROJECT_ID": "crypto-avencia",
+  "GCM_SENDER_ID": "686584026595"
 }
