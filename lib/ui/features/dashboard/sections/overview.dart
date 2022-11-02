@@ -1,3 +1,4 @@
+import 'package:avencia/ui/features/dashboard/icon_with_text.dart';
 import 'package:flutter/material.dart';
 
 import '../dashboard_card.dart';
@@ -63,19 +64,11 @@ class _BalanceCard extends StatelessWidget {
               onPressed: () {},
               content: Padding(
                 padding: EdgeInsets.symmetric(horizontal: 4),
-                child: Row(children: [
-                  Icon(
-                    Icons.arrow_downward,
-                    // TODO: remove the need for specifying the style of gradient button's contents
-                    //  by overriding the default theme inside GradientButton
-                    color: theme.textTheme.button?.color,
-                  ),
-                  SizedBox(width: 8),
-                  Text(
-                    "Deposit",
-                    style: text.button,
-                  )
-                ]),
+                child: IconWithText(
+                  icon: Icons.arrow_downward,
+                  text: "Deposit",
+                  style: text.button,
+                ),
               ),
             ),
           ]),

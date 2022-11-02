@@ -4,6 +4,8 @@ import 'package:avencia/ui/features/dashboard/sections/overview.dart';
 import 'package:avencia/ui/features/dashboard/sections/recent_activities.dart';
 import 'package:flutter/material.dart';
 
+import 'navigation_menu/navigation_menu.dart';
+
 const sectionSpacing = 15.0;
 const cardSpacing = 12.0;
 const buttonSize = 40.0;
@@ -16,6 +18,7 @@ class DashboardScreen extends StatelessWidget {
     final theme = Theme.of(context);
     final text = theme.textTheme;
     return Scaffold(
+      drawer: NavigationMenuDrawer(),
       appBar: createAvenciaAppBar(context),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
@@ -27,6 +30,7 @@ class DashboardScreen extends StatelessWidget {
           DigitalWalletsSection(),
           const SizedBox(height: sectionSpacing),
           RecentAcitvitiesSection(),
+          const SizedBox(height: sectionSpacing),
         ]),
       ),
     );

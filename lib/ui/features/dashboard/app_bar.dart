@@ -1,46 +1,62 @@
-import 'package:avencia/ui/features/dashboard/navigation_menu.dart';
 import 'package:avencia/ui/features/dashboard/simple_button.dart';
 import 'package:flutter/material.dart';
-import 'package:helpers/ui/general/helpers.dart';
 
-AppBar createAvenciaAppBar(BuildContext context) {
-  final theme = Theme.of(context);
-  return AppBar(
-    leadingWidth: theme.appBarTheme.toolbarHeight,
-    leading: Padding(
-      padding: const EdgeInsets.all(14),
-      child: SimpleButton(
-        onPressed: () => pushRoute(context, NavigationMenu()),
-        iconSize: 18,
-        icon: Icons.list,
-      ),
-    ),
-    title: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        SizedBox(
-          height: 50,
-          width: 50,
-          child: Avatar(),
-        ),
-        SizedBox(width: 15),
-        Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text("vino_costa", style: theme.textTheme.headline3),
-          Text("Unverified", style: theme.textTheme.headline5),
-        ]),
-      ],
-    ),
-    actions: [
-      Padding(
-        padding: const EdgeInsets.all(12),
-        child: SimpleButton(
-          iconSize: 28,
-          onPressed: () {},
-          icon: Icons.keyboard_arrow_down,
-        ),
-      )
-    ],
+PreferredSizeWidget createAvenciaAppBar(BuildContext context) {
+  final preferredSize = Theme.of(context).appBarTheme.toolbarHeight;
+  if (preferredSize == null) {
+    throw Exception(
+      "No AppBar toolbar height was provided.",
+    );
+  }
+  return PreferredSize(
+    preferredSize: Size.fromHeight(preferredSize),
+    child: AvenciaAppBar(),
   );
+}
+
+class AvenciaAppBar extends StatelessWidget {
+  const AvenciaAppBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return AppBar(
+      leadingWidth: theme.appBarTheme.toolbarHeight,
+      leading: Padding(
+        padding: const EdgeInsets.all(14),
+        child: SimpleButton(
+          onPressed: () => Scaffold.of(context).openDrawer(),
+          iconSize: 18,
+          icon: Icons.list,
+        ),
+      ),
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          SizedBox(
+            height: 50,
+            width: 50,
+            child: Avatar(),
+          ),
+          SizedBox(width: 15),
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text("vino_costa", style: theme.textTheme.headline3),
+            Text("Unverified", style: theme.textTheme.headline5),
+          ]),
+        ],
+      ),
+      actions: [
+        Padding(
+          padding: const EdgeInsets.all(12),
+          child: SimpleButton(
+            iconSize: 28,
+            onPressed: () {},
+            icon: Icons.keyboard_arrow_down,
+          ),
+        )
+      ],
+    );
+  }
 }
 
 class Avatar extends StatelessWidget {

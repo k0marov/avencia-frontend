@@ -5,6 +5,7 @@ part of 'theme.dart';
 abstract class AppColors {
   static const whiteBG = Color(0xFFFFFFFF);
   static const whiteCard = Color(0xFFF6F6F6);
+  static const greyCard = Color(0xFFE9E7EE);
   static const whiteIcon = Color(0xffEEEFF0);
   static const whiteButton = Color(0x11000000);
   static const green = Color(0xFF51E289);

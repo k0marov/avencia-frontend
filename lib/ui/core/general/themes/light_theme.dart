@@ -20,6 +20,7 @@ ThemeData createLightTheme() {
       surface: AppColors.whiteCard,
       onSurface: TextColors.darkLabelText,
       surfaceTint: AppColors.whiteCard,
+      secondaryContainer: AppColors.greyCard,
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
