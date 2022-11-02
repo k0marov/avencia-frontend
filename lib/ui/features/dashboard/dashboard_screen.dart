@@ -19,17 +19,15 @@ class DashboardScreen extends StatelessWidget {
       appBar: createAvenciaAppBar(context),
       body: Padding(
         padding: EdgeInsets.symmetric(vertical: 5, horizontal: 12),
-        child: ListView(
-          children: [
-            Text("Dashboard", style: text.headline1),
-            const SizedBox(height: sectionSpacing),
-            OverviewSection(),
-            const SizedBox(height: sectionSpacing),
-            DigitalWalletsSection(),
-            const SizedBox(height: sectionSpacing),
-            RecentAcitvitiesSection(),
-          ],
-        ),
+        child: ListView(children: [
+          Text("Dashboard", style: text.headline1),
+          const SizedBox(height: sectionSpacing),
+          OverviewSection(),
+          const SizedBox(height: sectionSpacing),
+          DigitalWalletsSection(),
+          const SizedBox(height: sectionSpacing),
+          RecentAcitvitiesSection(),
+        ]),
       ),
     );
   }

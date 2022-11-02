@@ -1,5 +1,7 @@
+import 'package:avencia/ui/features/dashboard/navigation_menu.dart';
 import 'package:avencia/ui/features/dashboard/simple_button.dart';
 import 'package:flutter/material.dart';
+import 'package:helpers/ui/general/helpers.dart';
 
 AppBar createAvenciaAppBar(BuildContext context) {
   final theme = Theme.of(context);
@@ -8,7 +10,7 @@ AppBar createAvenciaAppBar(BuildContext context) {
     leading: Padding(
       padding: const EdgeInsets.all(14),
       child: SimpleButton(
-        onPressed: () {},
+        onPressed: () => pushRoute(context, NavigationMenu()),
         iconSize: 18,
         icon: Icons.list,
       ),
