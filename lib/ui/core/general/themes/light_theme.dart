@@ -19,6 +19,7 @@ ThemeData createLightTheme() {
       onBackground: TextColors.darkLabelText,
       surface: AppColors.whiteCard,
       onSurface: TextColors.darkLabelText,
+      onSecondaryContainer: AppColors.whiteButton,
       surfaceTint: AppColors.whiteCard,
       secondaryContainer: AppColors.greyCard,
     ),

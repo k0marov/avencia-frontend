@@ -38,7 +38,7 @@ class _PersonalDetailsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FormSectionWidget(
-      title: "Personal Details",
+      title: "Personal Info",
       updButton: i.action,
       fields: [
         CustomFormTextField<UserDetails>(

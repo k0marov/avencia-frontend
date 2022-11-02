@@ -2,7 +2,6 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/app/splash_screen.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
-import 'package:avencia/ui/features/dashboard/dashboard_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/app/auth_gate.dart';
@@ -10,7 +9,8 @@ import 'package:helpers/ui/app/home_screen.dart';
 
 import '../../features/auth/auth_screen.dart';
 import '../../features/funds/funds_screen.dart';
-import '../../features/profile/profile_screen.dart';
+import '../../features/new/dashboard/dashboard_screen.dart';
+import '../../features/new/profile/profile_screen.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -44,7 +44,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               Tuple2(
-                ProfileScreen(),
+                NewProfileScreen(),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.person),
                   label: 'Profile',

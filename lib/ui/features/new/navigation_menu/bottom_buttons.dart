@@ -1,7 +1,7 @@
+import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/general/themes/theme.dart';
-import '../icon_with_text.dart';
 
 class BottomButtons extends StatelessWidget {
   const BottomButtons({Key? key}) : super(key: key);

@@ -1,4 +1,3 @@
-import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:flutter/material.dart';
 
 class SimpleButton extends StatelessWidget {
@@ -18,7 +17,7 @@ class SimpleButton extends StatelessWidget {
       aspectRatio: 1,
       child: IconButton(
         style: IconButton.styleFrom(
-          backgroundColor: AppColors.whiteButton,
+          backgroundColor: Theme.of(context).colorScheme.onSecondaryContainer,
         ),
         onPressed: onPressed,
         iconSize: iconSize,

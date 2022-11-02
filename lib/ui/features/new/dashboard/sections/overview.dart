@@ -1,10 +1,10 @@
-import 'package:avencia/ui/features/dashboard/icon_with_text.dart';
 import 'package:flutter/material.dart';
 
 import '../dashboard_card.dart';
 import '../dashboard_screen.dart';
 import '../dashboard_section.dart';
 import '../gradient_button.dart';
+import '../icon_with_text.dart';
 import '../simple_button.dart';
 
 class OverviewSection extends StatelessWidget {

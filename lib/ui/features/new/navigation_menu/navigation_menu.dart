@@ -1,8 +1,8 @@
-import 'package:avencia/ui/features/dashboard/navigation_menu/bottom_buttons.dart';
-import 'package:avencia/ui/features/dashboard/navigation_menu/route_buttons.dart';
 import 'package:flutter/material.dart';
 
+import 'bottom_buttons.dart';
 import 'header.dart';
+import 'route_buttons.dart';
 
 class NavigationMenuDrawer extends StatelessWidget {
   const NavigationMenuDrawer({Key? key}) : super(key: key);

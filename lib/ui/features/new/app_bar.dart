@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/dashboard/simple_button.dart';
+import 'package:avencia/ui/features/new/dashboard/simple_button.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget createAvenciaAppBar(BuildContext context) {

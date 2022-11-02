@@ -1,10 +1,10 @@
-import 'package:avencia/ui/features/dashboard/app_bar.dart';
-import 'package:avencia/ui/features/dashboard/sections/digital_wallets.dart';
-import 'package:avencia/ui/features/dashboard/sections/overview.dart';
-import 'package:avencia/ui/features/dashboard/sections/recent_activities.dart';
+import 'package:avencia/ui/features/new/dashboard/sections/digital_wallets.dart';
+import 'package:avencia/ui/features/new/dashboard/sections/overview.dart';
+import 'package:avencia/ui/features/new/dashboard/sections/recent_activities.dart';
 import 'package:flutter/material.dart';
 
-import 'navigation_menu/navigation_menu.dart';
+import '../app_bar.dart';
+import '../navigation_menu/navigation_menu.dart';
 
 const sectionSpacing = 15.0;
 const cardSpacing = 12.0;

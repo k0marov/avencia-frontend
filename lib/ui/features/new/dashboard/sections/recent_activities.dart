@@ -1,6 +1,7 @@
 import 'package:avencia/ui/core/general/themes/theme.dart';
-import 'package:avencia/ui/features/dashboard/dashboard_section.dart';
 import 'package:flutter/material.dart';
+
+import '../dashboard_section.dart';
 
 class RecentAcitvitiesSection extends StatelessWidget {
   const RecentAcitvitiesSection({Key? key}) : super(key: key);
