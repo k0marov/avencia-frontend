@@ -29,7 +29,6 @@ ThemeData createLightTheme() {
       ),
     ),
     backgroundColor: AppColors.whiteBG,
-    buttonTheme: ButtonThemeData(buttonColor: AppColors.whiteButton),
     cardTheme: CardTheme(
       color: AppColors.whiteCard,
       surfaceTintColor: null,

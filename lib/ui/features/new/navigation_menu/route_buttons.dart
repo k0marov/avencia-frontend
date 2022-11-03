@@ -1,4 +1,3 @@
-import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -33,8 +32,6 @@ class RouteButtons extends StatelessWidget {
   }
 }
 
-// TODO: make TextColors.greyText some button theme's constant
-
 class _RouteButton extends StatelessWidget {
   final bool isSelected;
   final IconData icon;
@@ -60,7 +57,7 @@ class _RouteButton extends StatelessWidget {
             Icon(
               icon,
               size: 30,
-              color: isSelected ? theme.colorScheme.primary : TextColors.greyText,
+              color: isSelected ? theme.colorScheme.primary : theme.iconTheme.color,
             ),
             SizedBox(width: 20),
             Text(text, style: theme.textTheme.headline3),
