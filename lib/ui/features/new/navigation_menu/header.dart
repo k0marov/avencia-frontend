@@ -1,3 +1,4 @@
+import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/app/logo_widget.dart';
@@ -93,72 +94,31 @@ class _BalanceActions extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
-    const spacing = 5.0;
-    return Column(
-      children: [
-        _BalanceAdditionalInfo(),
-        SizedBox(height: spacing),
-        Row(children: [
-          _BalanceActionButton(
-            contents: IconWithText(
-              icon: Icons.arrow_downward,
-              text: Text(
-                "Deposit",
-                style: text.button,
-              ),
+    return CardWithButtons(
+      body: _BalanceAdditionalInfo(),
+      buttons: [
+        ButtonData(
+          onPressed: () {},
+          contents: IconWithText(
+            icon: Icons.arrow_downward,
+            text: Text(
+              "Deposit",
+              style: text.button,
             ),
-            borders: BorderRadius.only(bottomLeft: _actionsBorderRadius),
-            bgColor: theme.colorScheme.primary,
           ),
-          SizedBox(width: spacing),
-          _BalanceActionButton(
-            contents: IconWithText(
-              icon: Icons.arrow_upward,
-              text: Text(
-                "Withdraw",
-                style: text.button?.copyWith(color: TextColors.bodyText),
-              ),
-            ),
-            borders: BorderRadius.only(bottomRight: _actionsBorderRadius),
-            bgColor: theme.colorScheme.secondaryContainer,
-          ),
-        ])
-      ],
-    );
-  }
-}
-
-class _BalanceActionButton extends StatelessWidget {
-  final Widget contents;
-  final BorderRadius borders;
-  final Color bgColor;
-  const _BalanceActionButton({
-    Key? key,
-    required this.contents,
-    required this.borders,
-    required this.bgColor,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final text = theme.textTheme;
-    return Expanded(
-      child: SizedBox(
-        height: 40,
-        child: Material(
-          color: bgColor,
-          borderRadius: borders,
-          child: InkWell(
-            borderRadius: borders,
-            splashColor: Colors.white,
-            onTap: () {},
-            child: Center(
-              child: contents,
+          highlighted: true,
+        ),
+        ButtonData(
+          onPressed: () {},
+          contents: IconWithText(
+            icon: Icons.arrow_upward,
+            text: Text(
+              "Withdraw",
+              style: text.button?.copyWith(color: TextColors.bodyText),
             ),
           ),
         ),
-      ),
+      ],
     );
   }
 }
@@ -170,40 +130,28 @@ class _BalanceAdditionalInfo extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.secondaryContainer,
-        borderRadius: BorderRadius.only(
-          topLeft: _actionsBorderRadius,
-          topRight: _actionsBorderRadius,
-        ),
+    return Column(children: [
+      Row(
+        children: [
+          Icon(Icons.label, size: 12),
+          SizedBox(width: 8),
+          Text("Profits", style: text.bodyText2),
+          Spacer(),
+          Text("+13,5%", style: text.bodyText2?.copyWith(color: AppColors.green)),
+          Spacer(),
+          Text("+ 0.0525 BTC", style: text.bodyText2),
+        ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(12),
-        child: Column(children: [
-          Row(
-            children: [
-              Icon(Icons.label, size: 12),
-              SizedBox(width: 8),
-              Text("Profits", style: text.bodyText2),
-              Spacer(),
-              Text("+13,5%", style: text.bodyText2?.copyWith(color: AppColors.green)),
-              Spacer(),
-              Text("+ 0.0525 BTC", style: text.bodyText2),
-            ],
-          ),
-          SizedBox(height: 10),
-          Row(
-            children: [
-              Icon(Icons.timer, size: 12),
-              SizedBox(width: 8),
-              Text("Deposit in orders", style: text.bodyText2),
-              Spacer(),
-              Text("+ 0.005400 BTC", style: text.bodyText2),
-            ],
-          )
-        ]),
-      ),
-    );
+      SizedBox(height: 10),
+      Row(
+        children: [
+          Icon(Icons.timer, size: 12),
+          SizedBox(width: 8),
+          Text("Deposit in orders", style: text.bodyText2),
+          Spacer(),
+          Text("+ 0.005400 BTC", style: text.bodyText2),
+        ],
+      )
+    ]);
   }
 }

@@ -8,13 +8,16 @@ class BottomButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return SimpleButton(
-      onPressed: () {},
-      contents: IconWithText(
-        icon: Icons.question_mark_outlined,
-        text: Text(
-          "Support",
-          style: theme.textTheme.headline3,
+    return Padding(
+      padding: const EdgeInsets.all(8.0),
+      child: SimpleButton(
+        onPressed: () {},
+        contents: IconWithText(
+          icon: Icons.question_mark_outlined,
+          text: Text(
+            "Support",
+            style: theme.textTheme.headline3,
+          ),
         ),
       ),
     );

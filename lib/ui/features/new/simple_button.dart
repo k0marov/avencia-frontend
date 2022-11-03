@@ -3,20 +3,24 @@ import 'package:flutter/material.dart';
 class SimpleButton extends StatelessWidget {
   final Widget contents;
   final void Function() onPressed;
+  final BorderRadius? borderRadius;
+  final Color? background;
   const SimpleButton({
     Key? key,
     required this.onPressed,
     required this.contents,
+    this.borderRadius,
+    this.background,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final borderRadius = BorderRadius.all(Radius.circular(20));
+    final displayBRadius = borderRadius ?? const BorderRadius.all(Radius.circular(20));
     return Material(
-      color: Theme.of(context).colorScheme.onSecondaryContainer,
-      borderRadius: borderRadius,
+      color: background ?? Theme.of(context).colorScheme.onSecondaryContainer,
+      borderRadius: displayBRadius,
       child: InkWell(
-        borderRadius: borderRadius,
+        borderRadius: displayBRadius,
         onTap: onPressed,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 10),
