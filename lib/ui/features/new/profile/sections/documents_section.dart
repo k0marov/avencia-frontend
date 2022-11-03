@@ -1,6 +1,7 @@
 import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/features/new/dashboard/dashboard_card.dart';
 import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
+import 'package:avencia/ui/features/new/dashboard/gradient_button.dart';
 import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
 import 'package:avencia/ui/features/new/icon_text_button.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,16 @@ class DocumentsSection extends StatelessWidget {
         _FileUploadWidget(title: "Upload Your Front Copy"),
         spacing,
         _FileUploadWidget(title: "Upload Your Back Copy"),
+        spacing,
+        _Agreements(),
+        spacing,
+        GradientButton(
+          content: Text(
+            "Process for Verify",
+            style: Theme.of(context).textTheme.button,
+          ),
+          onPressed: () {},
+        ),
       ]),
     );
   }
@@ -163,5 +174,36 @@ class _DocumentChoiceChip extends StatelessWidget {
         side: selected ? BorderSide(color: AppColors.purple, width: 2) : BorderSide.none,
       ),
     );
+  }
+}
+
+class _Agreements extends StatelessWidget {
+  const _Agreements({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final text = theme.textTheme;
+    return Column(children: [
+      Row(children: [
+        Checkbox(value: false, onChanged: (_) {}),
+        Expanded(
+          child: Text(
+            "I have read Terms Of Condition and Privacy Policy",
+            style: text.bodyText2,
+          ),
+        ),
+      ]),
+      SizedBox(height: 15),
+      Row(children: [
+        Checkbox(value: false, onChanged: (_) {}),
+        Expanded(
+          child: Text(
+            "All personal information I entered is correct",
+            style: text.bodyText2,
+          ),
+        ),
+      ]),
+    ]);
   }
 }
