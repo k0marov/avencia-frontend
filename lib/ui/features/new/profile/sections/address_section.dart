@@ -9,8 +9,9 @@ class AddressSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
     return DashboardSection(
-      title: "Your Address",
+      title: Text("Your Address"),
       action: EditButton(),
       content: Column(children: [
         CustomTextField(

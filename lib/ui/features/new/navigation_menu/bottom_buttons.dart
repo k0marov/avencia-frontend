@@ -1,5 +1,5 @@
 import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
-import 'package:avencia/ui/features/new/icon_text_button.dart';
+import 'package:avencia/ui/features/new/simple_button.dart';
 import 'package:flutter/material.dart';
 
 class BottomButtons extends StatelessWidget {
@@ -8,9 +8,9 @@ class BottomButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
-    return IconTextButton(
+    return SimpleButton(
       onPressed: () {},
-      iconWithText: IconWithText(
+      contents: IconWithText(
         icon: Icons.question_mark_outlined,
         text: Text(
           "Support",

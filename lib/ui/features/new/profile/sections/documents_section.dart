@@ -3,7 +3,7 @@ import 'package:avencia/ui/features/new/dashboard/dashboard_card.dart';
 import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
 import 'package:avencia/ui/features/new/dashboard/gradient_button.dart';
 import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
-import 'package:avencia/ui/features/new/icon_text_button.dart';
+import 'package:avencia/ui/features/new/simple_button.dart';
 import 'package:flutter/material.dart';
 
 class DocumentsSection extends StatelessWidget {
@@ -13,7 +13,7 @@ class DocumentsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     const spacing = SizedBox(height: 16);
     return DashboardSection(
-      title: "Documents",
+      title: Text("Documents"),
       action: Container(),
       content: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         spacing,
@@ -34,6 +34,7 @@ class DocumentsSection extends StatelessWidget {
           ),
           onPressed: () {},
         ),
+        SizedBox(height: 5),
       ]),
     );
   }
@@ -73,39 +74,40 @@ class _RulesReminder extends StatelessWidget {
     final text = theme.textTheme;
     const spacing = SizedBox(height: 15);
     return DashboardCard(
-        content: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text("Please make sure to:", style: text.headline4),
-        spacing,
-        IconWithText(
-          textOverflows: true,
-          text: Text(
-            "Chosen credential must not be expired",
-            style: text.bodyText1,
+      content: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("Please make sure to:", style: text.headline4),
+          spacing,
+          IconWithText(
+            textOverflows: true,
+            text: Text(
+              "Chosen credential must not be expired",
+              style: text.bodyText1,
+            ),
+            icon: Icons.done,
           ),
-          icon: Icons.done,
-        ),
-        spacing,
-        IconWithText(
-          textOverflows: true,
-          icon: Icons.done,
-          text: Text(
-            "Document should be in good condition and be clearly visible",
-            style: text.bodyText1,
+          spacing,
+          IconWithText(
+            textOverflows: true,
+            icon: Icons.done,
+            text: Text(
+              "Document should be in good condition and be clearly visible",
+              style: text.bodyText1,
+            ),
           ),
-        ),
-        spacing,
-        IconWithText(
-          textOverflows: true,
-          icon: Icons.done,
-          text: Text(
-            "There is no light glare on the card",
-            style: text.bodyText1,
+          spacing,
+          IconWithText(
+            textOverflows: true,
+            icon: Icons.done,
+            text: Text(
+              "There is no light glare on the card",
+              style: text.bodyText1,
+            ),
           ),
-        ),
-      ],
-    ));
+        ],
+      ),
+    );
   }
 }
 
@@ -128,9 +130,9 @@ class _FileUploadWidget extends StatelessWidget {
         SizedBox(height: 10),
         SizedBox(
           width: 150,
-          child: IconTextButton(
-            iconWithText: IconWithText(
-              text: Text("Upload", style: text.headline4),
+          child: SimpleButton(
+            contents: IconWithText(
+              text: Text("Upload"),
               icon: Icons.upload,
             ),
             onPressed: () {},
@@ -189,6 +191,7 @@ class _Agreements extends StatelessWidget {
         Checkbox(value: false, onChanged: (_) {}),
         Expanded(
           child: Text(
+            // TODO: add a link to terms of condition and privacy policy
             "I have read Terms Of Condition and Privacy Policy",
             style: text.bodyText2,
           ),

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class SimpleButton extends StatelessWidget {
+class CustomIconButton extends StatelessWidget {
   final void Function() onPressed;
   final double? iconSize;
   final IconData icon;
-  const SimpleButton({
+  const CustomIconButton({
     Key? key,
     required this.onPressed,
     required this.icon,

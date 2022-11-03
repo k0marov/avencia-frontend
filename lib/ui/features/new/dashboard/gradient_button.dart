@@ -19,12 +19,17 @@ class GradientButton extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: Gradients.avenciaDiagonal,
         borderRadius: BorderRadius.circular(40),
-        boxShadow: const <BoxShadow>[
-          BoxShadow(color: Color.fromRGBO(0, 0, 0, 0.57), blurRadius: 3)
+        boxShadow: [
+          BoxShadow(
+            offset: Offset(5, 5),
+            color: theme.colorScheme.primary.withAlpha(125),
+            blurRadius: 10,
+          )
         ],
       ),
       child: ElevatedButton(
         style: ButtonStyle(
+          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
           backgroundColor: MaterialStateProperty.all(Colors.transparent),
           shadowColor: MaterialStateProperty.all(Colors.transparent),
           overlayColor: MaterialStateProperty.all(Colors.white24),

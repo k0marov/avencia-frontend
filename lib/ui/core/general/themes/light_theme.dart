@@ -56,7 +56,7 @@ ThemeData createLightTheme() {
       actionsIconTheme: iconTheme,
       backgroundColor: AppColors.whiteBG,
       elevation: 1,
-      toolbarHeight: 70,
+      toolbarHeight: 75,
       surfaceTintColor: AppColors.whiteBG,
     ),
   );

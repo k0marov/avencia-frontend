@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app/logo_widget.dart';
 import '../../../core/general/themes/theme.dart';
+import '../dashboard/custom_icon_button.dart';
 import '../dashboard/icon_with_text.dart';
-import '../dashboard/simple_button.dart';
 
 class NavigationHeader extends StatelessWidget {
   const NavigationHeader({Key? key}) : super(key: key);
@@ -77,7 +77,7 @@ class _BalanceSection extends StatelessWidget {
         SizedBox(
           height: 55,
           width: 55,
-          child: SimpleButton(iconSize: 25, onPressed: () {}, icon: Icons.monitor_heart),
+          child: CustomIconButton(iconSize: 25, onPressed: () {}, icon: Icons.monitor_heart),
         ),
       ])
     ]);

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+final dashboardSectionBRadius = BorderRadius.circular(25);
+
 class DashboardSection extends StatelessWidget {
-  final String title;
+  final Widget title;
   final Widget action;
   final Widget content;
 
@@ -19,7 +21,7 @@ class DashboardSection extends StatelessWidget {
     return Material(
       elevation: 2,
       color: theme.backgroundColor,
-      borderRadius: BorderRadius.circular(25),
+      borderRadius: dashboardSectionBRadius,
       shadowColor: Colors.black,
       child: Padding(
         padding: EdgeInsets.all(14),
@@ -27,7 +29,10 @@ class DashboardSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(children: [
-              Text(title, style: text.headline4),
+              DefaultTextStyle(
+                style: text.headline4 ?? TextStyle(),
+                child: title,
+              ),
               Spacer(),
               action,
             ]),

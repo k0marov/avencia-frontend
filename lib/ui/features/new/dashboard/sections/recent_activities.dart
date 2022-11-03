@@ -11,7 +11,7 @@ class RecentAcitvitiesSection extends StatelessWidget {
   Widget build(BuildContext context) {
     const actionsSpacing = SizedBox(height: 15);
     return DashboardSection(
-      title: "Recent Activities",
+      title: Text("Recent Activities"),
       action: IconButton(
         onPressed: () {},
         icon: Icon(Icons.more_horiz),

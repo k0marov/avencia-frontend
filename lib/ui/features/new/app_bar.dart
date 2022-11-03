@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/new/dashboard/simple_button.dart';
+import 'package:avencia/ui/features/new/dashboard/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget createAvenciaAppBar(BuildContext context) {
@@ -24,7 +24,7 @@ class AvenciaAppBar extends StatelessWidget {
       leadingWidth: theme.appBarTheme.toolbarHeight,
       leading: Padding(
         padding: const EdgeInsets.all(14),
-        child: SimpleButton(
+        child: CustomIconButton(
           onPressed: () => Scaffold.of(context).openDrawer(),
           iconSize: 18,
           icon: Icons.list,
@@ -48,7 +48,7 @@ class AvenciaAppBar extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.all(12),
-          child: SimpleButton(
+          child: CustomIconButton(
             iconSize: 28,
             onPressed: () {},
             icon: Icons.keyboard_arrow_down,

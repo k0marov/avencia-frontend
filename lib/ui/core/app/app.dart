@@ -2,13 +2,13 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/app/splash_screen.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
+import 'package:avencia/ui/features/new/wallets/wallets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/app/auth_gate.dart';
 import 'package:helpers/ui/app/home_screen.dart';
 
 import '../../features/auth/auth_screen.dart';
-import '../../features/funds/funds_screen.dart';
 import '../../features/new/dashboard/dashboard_screen.dart';
 import '../../features/new/profile/profile_screen.dart';
 
@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               Tuple2(
-                FundsScreen(),
+                WalletsScreen(),
                 BottomNavigationBarItem(
                   icon: Icon(Icons.notes),
                   label: 'Funds',

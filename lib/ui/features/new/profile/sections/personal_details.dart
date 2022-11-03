@@ -24,7 +24,7 @@ class PersonalDetailsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DashboardSection(
-      title: "Personal Details",
+      title: Text("Personal Details"),
       action: EditButton(),
       content: Column(children: [
         CustomTextField(

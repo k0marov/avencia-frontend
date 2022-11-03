@@ -10,7 +10,7 @@ class DigitalWalletsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DashboardSection(
-      title: "Digital Wallets",
+      title: Text("Digital Wallets"),
       action: TextButton(
         onPressed: () {},
         child: Text("View All"),
@@ -24,6 +24,12 @@ class DigitalWalletsSection extends StatelessWidget {
   }
 }
 
+String getCurrencyName(String currencyCode) {
+  if (currencyCode == "BTC") return "Bitcoin";
+  if (currencyCode == "ETH") return "Etherium";
+  return currencyCode;
+}
+
 class _WalletCard extends StatelessWidget {
   final String currency;
   final String balance;
@@ -32,16 +38,6 @@ class _WalletCard extends StatelessWidget {
     required this.currency,
     required this.balance,
   }) : super(key: key);
-
-  // String _getCurrencyImageAsset(String currency) {
-  //   return "assets/currencies/$currency.png";
-  // }
-
-  String _getCurrencyName(String currencyCode) {
-    if (currencyCode == "BTC") return "Bitcoin";
-    if (currencyCode == "ETH") return "Ethereum";
-    return "Unknown";
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +55,7 @@ class _WalletCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(_getCurrencyName(currency), style: text.headline5),
+                  Text(getCurrencyName(currency), style: text.headline5),
                   Text(balance, style: text.bodyText1),
                 ],
               ),

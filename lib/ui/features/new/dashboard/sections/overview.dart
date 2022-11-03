@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
+import '../custom_icon_button.dart';
 import '../dashboard_card.dart';
 import '../dashboard_screen.dart';
 import '../dashboard_section.dart';
 import '../gradient_button.dart';
 import '../icon_with_text.dart';
-import '../simple_button.dart';
 
 class OverviewSection extends StatelessWidget {
   const OverviewSection({Key? key}) : super(key: key);
@@ -13,7 +13,7 @@ class OverviewSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DashboardSection(
-      title: "Overview",
+      title: Text("Overview"),
       action: IconButton(
         onPressed: () {},
         icon: Icon(Icons.more_horiz),
@@ -50,12 +50,12 @@ class _BalanceCard extends StatelessWidget {
         SizedBox(
           height: buttonSize,
           child: Row(children: [
-            SimpleButton(
+            CustomIconButton(
               onPressed: () {},
               icon: Icons.settings,
             ),
             SizedBox(width: itemsSpacing),
-            SimpleButton(
+            CustomIconButton(
               onPressed: () {},
               icon: Icons.compare_arrows,
             ),
@@ -95,7 +95,7 @@ class _TransactionsCard extends StatelessWidget {
           SizedBox(
             width: buttonSize,
             height: buttonSize,
-            child: SimpleButton(
+            child: CustomIconButton(
               onPressed: () {},
               icon: Icons.send,
             ),
@@ -119,7 +119,7 @@ class _WalletsCard extends StatelessWidget {
         SizedBox(
           width: buttonSize,
           height: buttonSize,
-          child: SimpleButton(
+          child: CustomIconButton(
             onPressed: () {},
             icon: Icons.wallet,
           ),
