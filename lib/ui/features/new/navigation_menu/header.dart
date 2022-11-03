@@ -101,9 +101,11 @@ class _BalanceActions extends StatelessWidget {
         Row(children: [
           _BalanceActionButton(
             contents: IconWithText(
-              text: "Deposit",
               icon: Icons.arrow_downward,
-              style: text.button,
+              text: Text(
+                "Deposit",
+                style: text.button,
+              ),
             ),
             borders: BorderRadius.only(bottomLeft: _actionsBorderRadius),
             bgColor: theme.colorScheme.primary,
@@ -111,9 +113,11 @@ class _BalanceActions extends StatelessWidget {
           SizedBox(width: spacing),
           _BalanceActionButton(
             contents: IconWithText(
-              text: "Withdraw",
               icon: Icons.arrow_upward,
-              style: text.headline4,
+              text: Text(
+                "Withdraw",
+                style: text.button?.copyWith(color: TextColors.bodyText),
+              ),
             ),
             borders: BorderRadius.only(bottomRight: _actionsBorderRadius),
             bgColor: theme.colorScheme.secondaryContainer,
@@ -125,7 +129,7 @@ class _BalanceActions extends StatelessWidget {
 }
 
 class _BalanceActionButton extends StatelessWidget {
-  final IconWithText contents;
+  final Widget contents;
   final BorderRadius borders;
   final Color bgColor;
   const _BalanceActionButton({

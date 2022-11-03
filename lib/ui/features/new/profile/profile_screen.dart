@@ -1,6 +1,9 @@
 import 'package:avencia/ui/features/new/app_bar.dart';
+import 'package:avencia/ui/features/new/dashboard/dashboard_screen.dart';
 import 'package:avencia/ui/features/new/navigation_menu/navigation_menu.dart';
-import 'package:avencia/ui/features/user/user_details/user_details_form.dart';
+import 'package:avencia/ui/features/new/profile/sections/address_section.dart';
+import 'package:avencia/ui/features/new/profile/sections/documents_section.dart';
+import 'package:avencia/ui/features/new/profile/sections/personal_details.dart';
 import 'package:flutter/material.dart';
 
 class NewProfileScreen extends StatelessWidget {
@@ -13,13 +16,18 @@ class NewProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: createAvenciaAppBar(context),
       drawer: NavigationMenuDrawer(),
-      body: ListView(children: [
-        Text("My Profile", style: text.headline2),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: UserDetailsForm(),
-        ),
-      ]),
+      body: Padding(
+        padding: screenPadding,
+        child: ListView(children: [
+          Text("My Profile", style: text.headline2),
+          SizedBox(height: sectionSpacing),
+          PersonalDetailsSection(),
+          SizedBox(height: sectionSpacing),
+          AddressSection(),
+          SizedBox(height: sectionSpacing),
+          DocumentsSection(),
+        ]),
+      ),
     );
   }
 }

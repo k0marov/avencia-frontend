@@ -66,8 +66,10 @@ class _BalanceCard extends StatelessWidget {
                 padding: EdgeInsets.symmetric(horizontal: 4),
                 child: IconWithText(
                   icon: Icons.arrow_downward,
-                  text: "Deposit",
-                  style: text.button,
+                  text: Text(
+                    "Deposit",
+                    style: text.button,
+                  ),
                 ),
               ),
             ),
