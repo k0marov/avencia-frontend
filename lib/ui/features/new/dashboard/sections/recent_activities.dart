@@ -1,4 +1,5 @@
 import 'package:avencia/ui/core/general/themes/theme.dart';
+import 'package:avencia/ui/features/new/currency_icon.dart';
 import 'package:flutter/material.dart';
 
 import '../dashboard_section.dart';
@@ -33,6 +34,7 @@ class RecentAcitvitiesSection extends StatelessWidget {
         ),
         SizedBox(height: 18),
         _ActionWidget(
+          currency: "BTC",
           action: "Buy Bitcoin",
           date: "26m ago",
           usdAmount: "3,980.93 USD",
@@ -40,6 +42,7 @@ class RecentAcitvitiesSection extends StatelessWidget {
         ),
         actionsSpacing,
         _ActionWidget(
+          currency: "ETH",
           action: "Withdraw",
           date: "3d 2h ago",
           usdAmount: "3,980.93 USD",
@@ -47,6 +50,7 @@ class RecentAcitvitiesSection extends StatelessWidget {
         ),
         actionsSpacing,
         _ActionWidget(
+          currency: "BTC",
           action: "Buy Bitcoin",
           date: "26m ago",
           usdAmount: "3,980.93 USD",
@@ -54,6 +58,7 @@ class RecentAcitvitiesSection extends StatelessWidget {
         ),
         actionsSpacing,
         _ActionWidget(
+          currency: "LTC",
           action: "Withdraw",
           date: "3d 2h ago",
           usdAmount: "3,980.93 USD",
@@ -67,12 +72,14 @@ class RecentAcitvitiesSection extends StatelessWidget {
 
 class _ActionWidget extends StatelessWidget {
   final String action;
+  final String currency;
   final String date;
   final String usdAmount;
   final String amount;
   const _ActionWidget({
     Key? key,
     required this.action,
+    required this.currency,
     required this.date,
     required this.usdAmount,
     required this.amount,
@@ -84,7 +91,17 @@ class _ActionWidget extends StatelessWidget {
     final text = theme.textTheme;
     return Column(
       children: [
-        Text(action, style: text.headline3),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              height: 30,
+              child: CurrencyIcon(currency: currency),
+            ),
+            SizedBox(width: 5),
+            Text(action, style: text.headline3),
+          ],
+        ),
         SizedBox(height: 2),
         Text(date, style: text.bodyText2),
         SizedBox(height: 2),

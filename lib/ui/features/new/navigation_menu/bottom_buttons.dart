@@ -1,8 +1,6 @@
 import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/general/themes/theme.dart';
-
 class BottomButtons extends StatelessWidget {
   const BottomButtons({Key? key}) : super(key: key);
 
@@ -13,7 +11,7 @@ class BottomButtons extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0),
       child: Material(
-        color: AppColors.whiteButton,
+        color: Theme.of(context).colorScheme.onSecondaryContainer,
         borderRadius: borderRadius,
         child: InkWell(
           borderRadius: borderRadius,

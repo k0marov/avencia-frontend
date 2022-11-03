@@ -1,3 +1,4 @@
+import 'package:avencia/ui/features/new/currency_icon.dart';
 import 'package:flutter/material.dart';
 
 import '../dashboard_card.dart';
@@ -15,7 +16,7 @@ class DigitalWalletsSection extends StatelessWidget {
         child: Text("View All"),
       ),
       content: Column(children: [
-        _WalletCard(currency: "BTC", balance: "0.836725275 BTC"),
+        _WalletCard(currency: "RUU", balance: "0.836725275 BTC"),
         _WalletCard(currency: "ETH", balance: "0.836725275 BTC"),
         _WalletCard(currency: "BTC", balance: "0.836725275 BTC"),
       ]),
@@ -51,7 +52,7 @@ class _WalletCard extends StatelessWidget {
       child: DashboardCard(
         content: Row(
           children: [
-            Text(currency),
+            CurrencyIcon(currency: currency),
             SizedBox(width: 10),
             Center(
               child: Column(
