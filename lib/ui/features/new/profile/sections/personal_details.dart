@@ -1,4 +1,6 @@
+import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
+import 'package:avencia/ui/features/new/profile/sections/address_section.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
@@ -26,7 +28,8 @@ class PersonalDetailsSection extends StatelessWidget {
     return DashboardSection(
       title: Text("Personal Details"),
       action: EditButton(),
-      content: Column(children: [
+      content: Column(
+          children: [
         CustomTextField(
           enabled: false,
           hint: "full name",
@@ -57,7 +60,7 @@ class PersonalDetailsSection extends StatelessWidget {
           updValue: (_) {},
           initial: Right(""),
         ),
-      ]),
+      ].withSpaceBetween(height: textFieldSpacing)),
     );
   }
 }

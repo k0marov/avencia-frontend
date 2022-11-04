@@ -31,11 +31,14 @@ class _RecipientSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return DashboardSection(
       title: Text("Recipient"),
-      content: CustomTextField(
-        updValue: (_) {},
-        label: "recipient username",
-        hint: "type in the recipient username",
-        initial: Right(""),
+      content: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8.0),
+        child: CustomTextField(
+          updValue: (_) {},
+          label: "recipient username",
+          hint: "type in the recipient username",
+          initial: Right(""),
+        ),
       ),
     );
   }
