@@ -1,3 +1,5 @@
+import 'package:avencia/ui/features/new/card_with_buttons.dart';
+import 'package:avencia/ui/features/new/currency_icon.dart';
 import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
 import 'package:avencia/ui/features/new/dashboard/gradient_button.dart';
 import 'package:avencia/ui/features/new/dashboard/sections/digital_wallets.dart';
@@ -76,23 +78,33 @@ class _SendSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return DashboardSection(
       title: Text("Send"),
-      content: Row(
-        children: [
-          Expanded(
-            child: CustomTextField(
-              updValue: (_) {},
-              hint: "amount in $currency",
-              initial: Right(""),
-            ),
+      content: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10),
+        child: SizedBox(
+          height: 50,
+          child: Row(
+            children: [
+              Expanded(
+                child: CustomTextField(
+                  prefixIcon: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: CurrencyIcon(currency: currency),
+                  ),
+                  updValue: (_) {},
+                  hint: "amount to send",
+                  initial: Right(""),
+                ),
+              ),
+              SizedBox(
+                width: 100,
+                child: GradientButton(
+                  onPressed: () {},
+                  content: Text("Send"),
+                ),
+              ),
+            ].withSpaceBetween(width: 10),
           ),
-          SizedBox(
-            width: 100,
-            child: GradientButton(
-              onPressed: () {},
-              content: Text("Send"),
-            ),
-          ),
-        ],
+        ),
       ),
     );
   }
