@@ -11,6 +11,9 @@ class IconWithText extends StatelessWidget {
     this.textOverflows = false,
   }) : super(key: key);
 
+  static double? getIconSize(TextStyle? style, ThemeData theme) =>
+      style != null && style.fontSize != null ? style.fontSize! * 1.2 : theme.iconTheme.size;
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -21,9 +24,7 @@ class IconWithText extends StatelessWidget {
         Icon(
           icon,
           color: text.style?.color ?? theme.iconTheme.color,
-          size: text.style != null && text.style?.fontSize != null
-              ? text.style!.fontSize! * 1.2
-              : null,
+          size: getIconSize(text.style, theme),
         ),
         SizedBox(width: 8),
         textOverflows ? Expanded(child: text) : text,

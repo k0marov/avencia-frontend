@@ -1,3 +1,4 @@
+import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../core/general/themes/theme.dart';
@@ -35,7 +36,12 @@ class GradientButton extends StatelessWidget {
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Theme(
-            data: theme.copyWith(iconTheme: theme.iconTheme.copyWith(color: text.button?.color)),
+            data: theme.copyWith(
+              iconTheme: theme.iconTheme.copyWith(
+                color: text.button?.color,
+                size: IconWithText.getIconSize(text.button, theme),
+              ),
+            ),
             child: DefaultTextStyle(
               style: text.button ?? TextStyle(),
               child: content,
