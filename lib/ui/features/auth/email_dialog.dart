@@ -29,7 +29,6 @@ class EmailDialog extends StatelessWidget {
           content: SizedBox(
             width: 250,
             child: CustomTextField(
-              enabled: true,
               hint: "email",
               updValue: context.read<EmailFieldCubit>().edited,
               initial: Right(loaded.edited),

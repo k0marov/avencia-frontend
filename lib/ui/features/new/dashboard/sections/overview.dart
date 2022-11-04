@@ -65,13 +65,10 @@ class _BalanceCard extends StatelessWidget {
               child: GradientButton(
                 onPressed: () {},
                 content: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: IconWithText(
                     icon: Icons.arrow_downward,
-                    text: Text(
-                      "Deposit",
-                      style: text.button,
-                    ),
+                    text: Text("Deposit"),
                   ),
                 ),
               ),

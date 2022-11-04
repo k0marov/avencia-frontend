@@ -13,13 +13,14 @@ class IconWithText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           icon,
-          color: text.style?.color,
+          color: text.style?.color ?? theme.iconTheme.color,
           size: text.style != null && text.style?.fontSize != null
               ? text.style!.fontSize! * 1.2
               : null,

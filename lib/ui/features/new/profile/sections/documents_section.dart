@@ -14,7 +14,6 @@ class DocumentsSection extends StatelessWidget {
     const spacing = SizedBox(height: 16);
     return DashboardSection(
       title: Text("Documents"),
-      action: Container(),
       content: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         spacing,
         _DocumentChoices(),
@@ -28,10 +27,7 @@ class DocumentsSection extends StatelessWidget {
         _Agreements(),
         spacing,
         GradientButton(
-          content: Text(
-            "Process for Verify",
-            style: Theme.of(context).textTheme.button,
-          ),
+          content: Text("Process for Verify"),
           onPressed: () {},
         ),
         SizedBox(height: 5),

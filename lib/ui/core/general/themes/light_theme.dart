@@ -1,5 +1,9 @@
 part of 'theme.dart';
 
+abstract class ThemeConstants {
+  static const cardBRadius = BorderRadius.all(Radius.circular(15));
+}
+
 ThemeData createLightTheme() {
   const iconTheme = IconThemeData(
     color: TextColors.greyText,
@@ -31,8 +35,8 @@ ThemeData createLightTheme() {
     ),
     chipTheme: ChipThemeData(
       labelPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-      selectedColor: AppColors.whiteCard,
-      disabledColor: AppColors.whiteCard,
+      selectedColor: Colors.transparent,
+      disabledColor: Colors.transparent,
       labelStyle: textTheme.button?.copyWith(color: TextColors.greyText),
     ),
     radioTheme: RadioThemeData(
@@ -47,6 +51,7 @@ ThemeData createLightTheme() {
     backgroundColor: AppColors.whiteBG,
     cardTheme: CardTheme(
       color: AppColors.whiteCard,
+      shape: RoundedRectangleBorder(borderRadius: ThemeConstants.cardBRadius),
       surfaceTintColor: null,
     ),
     iconTheme: iconTheme,

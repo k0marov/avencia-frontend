@@ -1,3 +1,4 @@
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/features/new/currency_icon.dart';
 import 'package:flutter/material.dart';
 
@@ -16,9 +17,9 @@ class DigitalWalletsSection extends StatelessWidget {
         child: Text("View All"),
       ),
       content: Column(children: [
-        _WalletCard(currency: "RUU", balance: "0.836725275 BTC"),
-        _WalletCard(currency: "ETH", balance: "0.836725275 BTC"),
-        _WalletCard(currency: "BTC", balance: "0.836725275 BTC"),
+        WalletCard(currency: "RUU", balance: "0.836725275 BTC"),
+        WalletCard(currency: "ETH", balance: "0.836725275 BTC"),
+        WalletCard(currency: "BTC", balance: "0.836725275 BTC"),
       ]),
     );
   }
@@ -30,20 +31,22 @@ String getCurrencyName(String currencyCode) {
   return currencyCode;
 }
 
-class _WalletCard extends StatelessWidget {
+class WalletCard extends StatelessWidget {
   final String currency;
   final String balance;
-  const _WalletCard({
+  final bool isSelected;
+  const WalletCard({
     Key? key,
     required this.currency,
     required this.balance,
+    this.isSelected = false,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
-    return SizedBox(
+    final card = SizedBox(
       height: 80,
       child: DashboardCard(
         content: Row(
@@ -64,5 +67,19 @@ class _WalletCard extends StatelessWidget {
         ),
       ),
     );
+    return isSelected
+        ? Theme(
+            data: theme.copyWith(
+              cardTheme: theme.cardTheme.copyWith(
+                // color: theme.colorScheme.primary.withAlpha(5),
+                shape: RoundedRectangleBorder(
+                  borderRadius: ThemeConstants.cardBRadius,
+                  side: BorderSide(color: theme.colorScheme.primary, width: 4),
+                ),
+              ),
+            ),
+            child: card,
+          )
+        : card;
   }
 }

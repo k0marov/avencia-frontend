@@ -1,3 +1,4 @@
+import 'package:avencia/ui/features/new/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../dashboard/gradient_button.dart';
@@ -18,7 +19,11 @@ class ActionButtons extends StatelessWidget {
       SizedBox(
         width: 75,
         child: SimpleButton(
-          onPressed: () {},
+          onPressed: () => Navigator.of(context).pushReplacement(
+            MaterialPageRoute(
+              builder: (context) => TransferScreen(),
+            ),
+          ),
           contents: Text("Send"),
         ),
       ),
@@ -41,7 +46,7 @@ class ActionButtons extends StatelessWidget {
           onPressed: () {},
           content: IconWithText(
             icon: Icons.arrow_downward,
-            text: Text("Deposit", style: text.button),
+            text: Text("Deposit"),
           ),
         ),
       ),

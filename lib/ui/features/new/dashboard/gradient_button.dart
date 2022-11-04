@@ -27,15 +27,21 @@ class GradientButton extends StatelessWidget {
           )
         ],
       ),
-      child: ElevatedButton(
-        style: ButtonStyle(
-          padding: MaterialStatePropertyAll(EdgeInsets.symmetric(vertical: 10)),
-          backgroundColor: MaterialStateProperty.all(Colors.transparent),
-          shadowColor: MaterialStateProperty.all(Colors.transparent),
-          overlayColor: MaterialStateProperty.all(Colors.white24),
-        ),
+      child: MaterialButton(
+        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+        padding: EdgeInsets.zero,
+        shape: StadiumBorder(),
         onPressed: () {},
-        child: content,
+        child: Padding(
+          padding: EdgeInsets.symmetric(vertical: 10),
+          child: Theme(
+            data: theme.copyWith(iconTheme: theme.iconTheme.copyWith(color: text.button?.color)),
+            child: DefaultTextStyle(
+              style: text.button ?? TextStyle(),
+              child: content,
+            ),
+          ),
+        ),
       ),
     );
   }

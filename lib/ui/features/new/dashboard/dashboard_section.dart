@@ -4,14 +4,14 @@ final dashboardSectionBRadius = BorderRadius.circular(25);
 
 class DashboardSection extends StatelessWidget {
   final Widget title;
-  final Widget action;
+  final Widget? action;
   final Widget content;
   final EdgeInsets? padding;
 
   const DashboardSection({
     Key? key,
     required this.title,
-    required this.action,
+    this.action,
     required this.content,
     this.padding,
   }) : super(key: key);
@@ -31,12 +31,15 @@ class DashboardSection extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Row(children: [
-              DefaultTextStyle(
-                style: text.headline3 ?? TextStyle(),
-                child: title,
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: DefaultTextStyle(
+                  style: text.headline3 ?? TextStyle(),
+                  child: title,
+                ),
               ),
               Spacer(),
-              action,
+              if (action != null) action!,
             ]),
             content,
           ],

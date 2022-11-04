@@ -18,7 +18,6 @@ class OrdersScreen extends StatelessWidget {
       title: 'Orders',
       contents: [
         CustomTextField(
-          enabled: true,
           hint: "Search",
           prefixIcon: Icon(Icons.search),
           updValue: (_) {},
@@ -30,7 +29,6 @@ class OrdersScreen extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: Text("All orders", style: text.headline3),
           ),
-          action: Container(),
           content: Column(
             children: [
               _DayOrders(
