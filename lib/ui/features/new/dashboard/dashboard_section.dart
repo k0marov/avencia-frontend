@@ -22,7 +22,7 @@ class DashboardSection extends StatelessWidget {
     final text = theme.textTheme;
     return Material(
       elevation: 2,
-      color: theme.backgroundColor,
+      color: theme.colorScheme.primaryContainer,
       borderRadius: dashboardSectionBRadius,
       shadowColor: Colors.black,
       child: Padding(

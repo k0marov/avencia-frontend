@@ -3,6 +3,7 @@ part of 'theme.dart';
 // TODO: split this into AppColors, DarkColors, LightColors
 
 abstract class AppColors {
+  static const white = Color(0xFFFFFFFF);
   static const green = Color(0xFF51E289);
   static const red = Color(0xFFF65973);
   static const purple = Color(0xFF9C42F5);
@@ -11,19 +12,50 @@ abstract class AppColors {
   static const gradientPurple = Color(0xFF7035E7);
 }
 
-abstract class LightColors {
-  static const background = Color(0xFFFFFFFF);
-  static const card = Color(0xFFF6F6F6);
-  static const secondaryCard = Color(0xFFE9E7EE);
-  static const icon = Color(0xffEEEFF0);
-  static const button = Color(0x11000000);
+class LightColors implements ThemeColors {
+  @override
+  Color background() => AppColors.white;
+  @override
+  Color section() => const Color(0xFFFEFEFE);
+  @override
+  Color card() => const Color(0xFFF6F6F6);
+  @override
+  Color secondaryCard() => const Color(0xFFE9E7EE);
+  @override
+  Color button() => const Color(0xFFEFEFF1);
 }
 
-abstract class LightTextColors {
-  static const body = Color(0xFF4F4E63);
-  static const label = Color(0xFF515151);
-  static const halfInverse = Color(0xFFAAAAB2);
-  static const title = Color(0xFF403D51);
-  static const emphasis = Color(0xFF4C495F);
-  static const inverse = Color(0xFFF5EBFE);
+class DarkColors implements ThemeColors {
+  @override
+  Color background() => const Color(0xFF282A2E);
+  @override
+  Color section() => const Color(0xFF3C3E41);
+  @override
+  Color card() => const Color(0xFF43464B);
+  @override
+  Color secondaryCard() => const Color(0xFF4C4E55);
+  @override
+  Color button() => const Color(0xFF4B4D54);
+}
+
+class LightTextColors implements TextColors {
+  @override
+  Color body() => const Color(0xFF4F4E63);
+  @override
+  Color title() => const Color(0xFF555267);
+  @override
+  Color label() => const Color(0xFF515151);
+  @override
+  Color halfInverse() => const Color(0xFFAAAAB2);
+}
+
+class DarkTextColors implements TextColors {
+  @override
+  Color body() => const Color(0xFFFFFFFF);
+  @override
+  Color title() => const Color(0xFFFFFFFF);
+  @override
+  Color label() => const Color(0xFFE0E0FF);
+  @override
+  Color halfInverse() => const Color(0xFFE0E0FF);
 }

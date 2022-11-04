@@ -19,8 +19,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AdaptiveTheme(
-      light: createLightTheme(),
-      dark: createLightTheme(),
+      light: createTheme(Brightness.light),
+      dark: createTheme(Brightness.dark),
       initial: AdaptiveThemeMode.system,
       builder: (theme, darkTheme) => MaterialApp(
         debugShowCheckedModeBanner: false,
