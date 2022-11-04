@@ -21,8 +21,8 @@ class RouteButtons extends StatelessWidget {
         text: "Wallets",
       ),
       _RouteButton(
-        icon: Icons.compare_arrows,
-        text: "Wallets",
+        icon: Icons.list,
+        text: "Orders",
       ),
       _RouteButton(
         icon: Icons.settings_outlined,

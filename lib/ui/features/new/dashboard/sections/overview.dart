@@ -60,15 +60,18 @@ class _BalanceCard extends StatelessWidget {
               icon: Icons.compare_arrows,
             ),
             SizedBox(width: itemsSpacing),
-            GradientButton(
-              onPressed: () {},
-              content: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 4),
-                child: IconWithText(
-                  icon: Icons.arrow_downward,
-                  text: Text(
-                    "Deposit",
-                    style: text.button,
+            SizedBox(
+              width: 120,
+              child: GradientButton(
+                onPressed: () {},
+                content: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 4),
+                  child: IconWithText(
+                    icon: Icons.arrow_downward,
+                    text: Text(
+                      "Deposit",
+                      style: text.button,
+                    ),
                   ),
                 ),
               ),

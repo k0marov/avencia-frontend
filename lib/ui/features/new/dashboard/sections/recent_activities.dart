@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 
 import '../dashboard_section.dart';
 
-class RecentAcitvitiesSection extends StatelessWidget {
-  const RecentAcitvitiesSection({Key? key}) : super(key: key);
+class RecentActivitiesSection extends StatelessWidget {
+  const RecentActivitiesSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

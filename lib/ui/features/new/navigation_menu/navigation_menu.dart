@@ -12,13 +12,13 @@ class NavigationMenuDrawer extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
+        child: Column(
           children: [
             NavigationHeader(),
             SizedBox(height: 20),
             RouteButtons(),
             SizedBox(height: 20),
+            Spacer(),
             BottomButtons(),
           ],
         ),
