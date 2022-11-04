@@ -16,19 +16,19 @@ class AddressSection extends StatelessWidget {
       content: Column(children: [
         CustomTextField(
           enabled: false,
-          label: "address",
+          hint: "address",
           updValue: (_) {},
           initial: Right(""),
         ),
         CustomTextField(
           enabled: false,
-          label: "city",
+          hint: "city",
           updValue: (_) {},
           initial: Right(""),
         ),
         CustomTextField(
           enabled: false,
-          label: "state",
+          hint: "state",
           updValue: (_) {},
           initial: Right(""),
         ),

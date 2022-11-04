@@ -29,31 +29,31 @@ class PersonalDetailsSection extends StatelessWidget {
       content: Column(children: [
         CustomTextField(
           enabled: false,
-          label: "full name",
+          hint: "full name",
           updValue: (_) {},
           initial: Right(""),
         ),
         CustomTextField(
           enabled: false,
-          label: "last name",
+          hint: "last name",
           updValue: (_) {},
           initial: Right(""),
         ),
         CustomTextField(
           enabled: false,
-          label: "email",
+          hint: "email",
           updValue: (_) {},
           initial: Right(""),
         ),
         CustomTextField(
           enabled: false,
-          label: "phone number",
+          hint: "phone number",
           updValue: (_) {},
           initial: Right(""),
         ),
         CustomTextField(
           enabled: false,
-          label: "birth date",
+          hint: "birth date",
           updValue: (_) {},
           initial: Right(""),
         ),

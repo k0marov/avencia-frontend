@@ -30,7 +30,7 @@ class EmailDialog extends StatelessWidget {
             width: 250,
             child: CustomTextField(
               enabled: true,
-              label: "email",
+              hint: "email",
               updValue: context.read<EmailFieldCubit>().edited,
               initial: Right(loaded.edited),
             ),

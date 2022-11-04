@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/app/splash_screen.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
+import 'package:avencia/ui/features/new/orders/orders_screen.dart';
 import 'package:avencia/ui/features/new/wallets/wallets.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -41,6 +42,13 @@ class MyApp extends StatelessWidget {
                 BottomNavigationBarItem(
                   icon: Icon(Icons.notes),
                   label: 'Funds',
+                ),
+              ),
+              Tuple2(
+                OrdersScreen(),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.list),
+                  label: 'Orders',
                 ),
               ),
               Tuple2(
