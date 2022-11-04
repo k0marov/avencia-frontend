@@ -10,17 +10,17 @@ TextTheme createTextTheme() {
   return Typography.blackCupertino.copyWith(
     bodyText1: GoogleFonts.roboto(
       fontWeight: FontWeight.w600,
-      color: TextColors.bodyText,
+      color: LightTextColors.body,
       fontSize: 14,
     ),
     bodyText2: GoogleFonts.roboto(
       fontWeight: FontWeight.w600,
-      color: TextColors.bodyText,
+      color: LightTextColors.body,
       fontSize: 16,
     ),
     headline5: GoogleFonts.montserrat(
       fontWeight: FontWeight.w500,
-      color: TextColors.darkLabelText,
+      color: LightTextColors.label,
       fontSize: 13,
     ),
     headline4: headline4,
@@ -30,12 +30,12 @@ TextTheme createTextTheme() {
       fontSize: 18,
     ),
     headline2: GoogleFonts.roboto(
-      color: TextColors.darkEmphasisText,
+      color: LightTextColors.emphasis,
       fontWeight: FontWeight.w700,
       fontSize: 30,
     ),
     headline1: GoogleFonts.poppins(
-      color: TextColors.darkEmphasisText,
+      color: LightTextColors.emphasis,
       fontWeight: FontWeight.w600,
       fontSize: 28,
     ),

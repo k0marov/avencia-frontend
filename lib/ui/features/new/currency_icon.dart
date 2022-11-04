@@ -19,7 +19,7 @@ class CurrencyIcon extends StatelessWidget {
             color: AppColors.purple,
             shape: BoxShape.circle,
           ),
-          child: Center(child: Text(currency[0], style: TextStyle(color: AppColors.whiteIcon))),
+          child: Center(child: Text(currency[0], style: Theme.of(context).textTheme.button)),
         ),
       ),
     );

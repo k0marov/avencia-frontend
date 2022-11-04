@@ -114,7 +114,7 @@ class _BalanceActions extends StatelessWidget {
             icon: Icons.arrow_upward,
             text: Text(
               "Withdraw",
-              style: text.button?.copyWith(color: TextColors.bodyText),
+              style: text.button?.copyWith(color: text.headline3?.color),
             ),
           ),
         ),

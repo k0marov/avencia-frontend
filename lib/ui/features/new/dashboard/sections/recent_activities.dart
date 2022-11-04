@@ -1,4 +1,3 @@
-import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:avencia/ui/features/new/currency_icon.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +21,7 @@ class RecentActivitiesSection extends StatelessWidget {
           onPressed: () {},
           child: Text("Buy"),
           style: TextButton.styleFrom(
-            backgroundColor: AppColors.purpleHighlight,
+            backgroundColor: Theme.of(context).highlightColor,
           ),
         ),
         TextButton(

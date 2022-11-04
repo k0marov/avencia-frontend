@@ -12,9 +12,11 @@ class EditButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: () {},
-      child: const Text(
+      child: Text(
         "Edit",
-        style: TextStyle(decoration: TextDecoration.underline),
+        style: Theme.of(context).textTheme.headline4?.copyWith(
+              decoration: TextDecoration.underline,
+            ),
       ),
     );
   }
