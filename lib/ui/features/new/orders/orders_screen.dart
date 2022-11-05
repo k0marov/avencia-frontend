@@ -1,11 +1,11 @@
-import 'package:avencia/ui/features/new/card_with_buttons.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
-import 'package:avencia/ui/features/new/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../history_entry.dart';
+import '../../../core/widgets/history_entry_widget.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -34,28 +34,28 @@ class OrdersScreen extends StatelessWidget {
               _DayOrders(
                 dayName: "Today",
                 orders: [
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",
@@ -67,28 +67,28 @@ class OrdersScreen extends StatelessWidget {
               _DayOrders(
                 dayName: "Yesterday",
                 orders: [
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  HistoryEntry(
+                  HistoryEntryWidget(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",

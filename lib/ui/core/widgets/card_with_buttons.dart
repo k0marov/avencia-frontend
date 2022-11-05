@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/new/simple_button.dart';
+import 'package:avencia/ui/core/widgets/simple_button.dart';
 import 'package:flutter/material.dart';
 
 class ButtonData {
@@ -10,15 +10,6 @@ class ButtonData {
     required this.contents,
     this.highlighted = false,
   });
-}
-
-extension ListSpaceBetweenExtension on List<Widget> {
-  List<Widget> withSpaceBetween({double? width, double? height}) => [
-        for (int i = 0; i < length; i++) ...[
-          if (i > 0) SizedBox(width: width, height: height),
-          this[i],
-        ],
-      ];
 }
 
 class CardWithButtons extends StatelessWidget {

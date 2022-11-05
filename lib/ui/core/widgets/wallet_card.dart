@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../core/general/themes/theme.dart';
+import '../general/themes/theme.dart';
 import 'currency_icon.dart';
 import 'dashboard_card.dart';
 

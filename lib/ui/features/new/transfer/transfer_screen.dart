@@ -1,13 +1,13 @@
-import 'package:avencia/ui/features/new/card_with_buttons.dart';
-import 'package:avencia/ui/features/new/currency_icon.dart';
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
-import 'package:avencia/ui/features/new/gradient_button.dart';
-import 'package:avencia/ui/features/new/simple_screen.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../wallet_card.dart';
+import '../../../core/widgets/currency_icon.dart';
+import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/wallet_card.dart';
+import '../dashboard/section_widget.dart';
 
 class TransferScreen extends StatelessWidget {
   const TransferScreen({Key? key}) : super(key: key);

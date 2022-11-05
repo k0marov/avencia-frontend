@@ -1,11 +1,11 @@
-import 'package:avencia/ui/features/new/card_with_buttons.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../core/general/themes/theme.dart';
-import '../../custom_icon_button.dart';
-import '../../dashboard_card.dart';
-import '../../gradient_button.dart';
-import '../../icon_with_text.dart';
+import '../../../../core/widgets/custom_icon_button.dart';
+import '../../../../core/widgets/dashboard_card.dart';
+import '../../../../core/widgets/gradient_button.dart';
+import '../../../../core/widgets/icon_with_text.dart';
 import '../section_widget.dart';
 
 class OverviewSection extends StatelessWidget {

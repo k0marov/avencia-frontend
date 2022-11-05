@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/new/card_with_buttons.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';

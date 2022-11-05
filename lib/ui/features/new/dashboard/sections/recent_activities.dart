@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../history_entry.dart';
+import '../../../../core/widgets/history_entry_widget.dart';
 import '../section_widget.dart';
 
 class RecentActivitiesSection extends StatelessWidget {
@@ -32,7 +32,7 @@ class RecentActivitiesSection extends StatelessWidget {
           child: Text("All"),
         ),
         SizedBox(height: 18),
-        HistoryEntry(
+        HistoryEntryWidget(
           currency: "BTC",
           action: "Buy Bitcoin",
           date: "26m ago",
@@ -40,7 +40,7 @@ class RecentActivitiesSection extends StatelessWidget {
           amount: "0.5384 BTC",
         ),
         actionsSpacing,
-        HistoryEntry(
+        HistoryEntryWidget(
           currency: "ETH",
           action: "Withdraw",
           date: "3d 2h ago",
@@ -48,7 +48,7 @@ class RecentActivitiesSection extends StatelessWidget {
           amount: "0.5384 BTC",
         ),
         actionsSpacing,
-        HistoryEntry(
+        HistoryEntryWidget(
           currency: "BTC",
           action: "Buy Bitcoin",
           date: "26m ago",
@@ -56,7 +56,7 @@ class RecentActivitiesSection extends StatelessWidget {
           amount: "0.5384 BTC",
         ),
         actionsSpacing,
-        HistoryEntry(
+        HistoryEntryWidget(
           currency: "LTC",
           action: "Withdraw",
           date: "3d 2h ago",

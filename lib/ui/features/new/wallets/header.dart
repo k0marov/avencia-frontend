@@ -2,9 +2,9 @@ import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-import '../gradient_button.dart';
-import '../icon_with_text.dart';
-import '../simple_button.dart';
+import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/icon_with_text.dart';
+import '../../../core/widgets/simple_button.dart';
 
 // TODO: add usage of the dependency-getter files like theme.dart everywhere
 

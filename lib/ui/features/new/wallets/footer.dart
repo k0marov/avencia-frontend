@@ -1,6 +1,6 @@
-import 'package:avencia/ui/features/new/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
+import '../../../core/widgets/custom_icon_button.dart';
 import '../dashboard/section_widget.dart';
 
 class AddNewWallet extends StatelessWidget {

@@ -1,9 +1,9 @@
-import 'package:avencia/ui/features/new/card_with_buttons.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/general/themes/theme.dart';
+import '../../features/new/navigation_menu/navigation_menu.dart';
+import '../general/themes/theme.dart';
 import 'app_bar.dart';
-import 'navigation_menu/navigation_menu.dart';
 
 class SimpleScreen extends StatelessWidget {
   final String title;

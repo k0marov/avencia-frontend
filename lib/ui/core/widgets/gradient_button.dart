@@ -1,7 +1,7 @@
-import 'package:avencia/ui/features/new/icon_with_text.dart';
 import 'package:flutter/material.dart';
 
-import '../../core/general/themes/theme.dart';
+import '../general/themes/theme.dart';
+import 'icon_with_text.dart';
 
 class GradientButton extends StatelessWidget {
   final Widget content;

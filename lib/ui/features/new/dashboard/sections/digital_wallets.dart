@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../wallet_card.dart';
+import '../../../../core/widgets/wallet_card.dart';
 import '../section_widget.dart';
 
 class DigitalWalletsSection extends StatelessWidget {

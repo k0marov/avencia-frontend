@@ -1,5 +1,5 @@
 import 'package:avencia/ui/core/general/themes/theme.dart';
-import 'package:avencia/ui/features/new/simple_screen.dart';
+import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'header.dart';

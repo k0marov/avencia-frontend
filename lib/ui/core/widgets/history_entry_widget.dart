@@ -1,15 +1,15 @@
-import 'package:avencia/ui/features/new/card_with_buttons.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 
 import 'currency_icon.dart';
 
-class HistoryEntry extends StatelessWidget {
+class HistoryEntryWidget extends StatelessWidget {
   final String action;
   final String currency;
   final String date;
   final String usdAmount;
   final String amount;
-  const HistoryEntry({
+  const HistoryEntryWidget({
     Key? key,
     required this.action,
     required this.currency,
