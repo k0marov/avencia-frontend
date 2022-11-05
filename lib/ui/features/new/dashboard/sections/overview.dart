@@ -1,18 +1,19 @@
+import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:flutter/material.dart';
 
-import '../custom_icon_button.dart';
-import '../dashboard_card.dart';
-import '../dashboard_screen.dart';
-import '../dashboard_section.dart';
-import '../gradient_button.dart';
-import '../icon_with_text.dart';
+import '../../../../core/general/themes/theme.dart';
+import '../../custom_icon_button.dart';
+import '../../dashboard_card.dart';
+import '../../gradient_button.dart';
+import '../../icon_with_text.dart';
+import '../section_widget.dart';
 
 class OverviewSection extends StatelessWidget {
   const OverviewSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Overview"),
       action: IconButton(
         onPressed: () {},
@@ -21,14 +22,11 @@ class OverviewSection extends StatelessWidget {
       content: Column(
         children: const [
           _BalanceCard(),
-          SizedBox(height: cardSpacing),
           _TransactionsCard(),
-          SizedBox(height: cardSpacing),
           _WalletsCard(),
-          SizedBox(height: cardSpacing),
           _LastActivityCard(),
-          SizedBox(height: cardSpacing),
-        ],
+          SizedBox(height: 5),
+        ].withSpaceBetween(height: ThemeConstants.cardSpacing),
       ),
     );
   }
@@ -48,7 +46,7 @@ class _BalanceCard extends StatelessWidget {
         Text("\$156,153,517,892", style: text.headline2),
         SizedBox(height: itemsSpacing),
         SizedBox(
-          height: buttonSize,
+          height: ThemeConstants.buttonSize,
           child: Row(children: [
             CustomIconButton(
               onPressed: () {},
@@ -93,8 +91,8 @@ class _TransactionsCard extends StatelessWidget {
           Text("34,405", style: text.headline2),
           Spacer(),
           SizedBox(
-            width: buttonSize,
-            height: buttonSize,
+            width: ThemeConstants.buttonSize,
+            height: ThemeConstants.buttonSize,
             child: CustomIconButton(
               onPressed: () {},
               icon: Icons.send,
@@ -117,8 +115,8 @@ class _WalletsCard extends StatelessWidget {
         Text("5", style: text.headline2),
         Spacer(),
         SizedBox(
-          width: buttonSize,
-          height: buttonSize,
+          width: ThemeConstants.buttonSize,
+          height: ThemeConstants.buttonSize,
           child: CustomIconButton(
             onPressed: () {},
             icon: Icons.wallet,

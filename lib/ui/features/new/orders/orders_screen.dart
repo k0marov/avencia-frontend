@@ -1,11 +1,11 @@
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
+import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:avencia/ui/features/new/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../dashboard/sections/recent_activities.dart';
+import '../history_entry.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);
@@ -23,7 +23,7 @@ class OrdersScreen extends StatelessWidget {
           updValue: (_) {},
           initial: Right(""),
         ),
-        DashboardSection(
+        SectionWidget(
           padding: EdgeInsets.zero,
           title: Padding(
             padding: const EdgeInsets.all(24),
@@ -34,28 +34,28 @@ class OrdersScreen extends StatelessWidget {
               _DayOrders(
                 dayName: "Today",
                 orders: [
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",
@@ -67,28 +67,28 @@ class OrdersScreen extends StatelessWidget {
               _DayOrders(
                 dayName: "Yesterday",
                 orders: [
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "BTC",
                     action: "Buy Bitcoin",
                     date: "26m ago",
                     usdAmount: "3,980.93 USD",
                     amount: "0.5384 BTC",
                   ),
-                  ActionWidget(
+                  HistoryEntry(
                     currency: "ETH",
                     action: "Withdraw",
                     date: "3d 2h ago",

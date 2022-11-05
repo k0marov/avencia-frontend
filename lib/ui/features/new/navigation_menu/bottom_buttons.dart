@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
+import 'package:avencia/ui/features/new/icon_with_text.dart';
 import 'package:avencia/ui/features/new/simple_button.dart';
 import 'package:flutter/material.dart';
 

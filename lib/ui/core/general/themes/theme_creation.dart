@@ -2,6 +2,11 @@ part of 'theme.dart';
 
 abstract class ThemeConstants {
   static const cardBRadius = BorderRadius.all(Radius.circular(15));
+  static const screenPadding = EdgeInsets.symmetric(vertical: 5, horizontal: 12);
+  static const sectionSpacing = 15.0;
+  static const cardSpacing = 12.0;
+  static const buttonSize = 40.0;
+  static const textFieldSpacing = 15.0;
 }
 
 abstract class ThemeColors {

@@ -1,9 +1,10 @@
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:avencia/ui/features/new/currency_icon.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
-import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
-import 'package:avencia/ui/features/new/dashboard/sections/digital_wallets.dart';
+import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
+import 'package:avencia/ui/features/new/icon_with_text.dart';
 import 'package:flutter/material.dart';
+
+import '../wallet_card.dart';
 
 class WalletSection extends StatelessWidget {
   final String type;
@@ -22,7 +23,7 @@ class WalletSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
-    return DashboardSection(
+    return SectionWidget(
       title: Row(children: [
         SizedBox(
           height: 45,
@@ -40,7 +41,7 @@ class WalletSection extends StatelessWidget {
         icon: Icon(Icons.more_horiz),
       ),
       content: Padding(
-        padding: const EdgeInsets.only(top: 20),
+        padding: const EdgeInsets.only(top: 10),
         child: CardWithButtons(
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),

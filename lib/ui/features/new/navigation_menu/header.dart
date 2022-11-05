@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 
 import '../../../core/app/logo_widget.dart';
 import '../../../core/general/themes/theme.dart';
-import '../dashboard/custom_icon_button.dart';
-import '../dashboard/icon_with_text.dart';
+import '../custom_icon_button.dart';
+import '../icon_with_text.dart';
 
 class NavigationHeader extends StatelessWidget {
   const NavigationHeader({Key? key}) : super(key: key);

@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/new/dashboard/custom_icon_button.dart';
+import 'package:avencia/ui/features/new/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
 PreferredSizeWidget createAvenciaAppBar(BuildContext context) {

@@ -1,8 +1,8 @@
 import 'package:avencia/ui/core/general/themes/theme.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_card.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
-import 'package:avencia/ui/features/new/dashboard/gradient_button.dart';
-import 'package:avencia/ui/features/new/dashboard/icon_with_text.dart';
+import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
+import 'package:avencia/ui/features/new/dashboard_card.dart';
+import 'package:avencia/ui/features/new/gradient_button.dart';
+import 'package:avencia/ui/features/new/icon_with_text.dart';
 import 'package:avencia/ui/features/new/simple_button.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +12,7 @@ class DocumentsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const spacing = SizedBox(height: 16);
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Documents"),
       content: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         spacing,

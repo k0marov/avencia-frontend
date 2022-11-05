@@ -1,8 +1,8 @@
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/general/themes/theme.dart';
 import 'app_bar.dart';
-import 'dashboard/dashboard_screen.dart';
 import 'navigation_menu/navigation_menu.dart';
 
 class SimpleScreen extends StatelessWidget {
@@ -23,7 +23,7 @@ class SimpleScreen extends StatelessWidget {
       drawer: NavigationMenuDrawer(),
       body: Padding(
         // TODO: move some general stuff like this padding from features to core
-        padding: screenPadding,
+        padding: ThemeConstants.screenPadding,
         child: ListView(
           children: [
             Padding(
@@ -31,8 +31,8 @@ class SimpleScreen extends StatelessWidget {
               child: Text(title, style: text.headline2),
             ),
             ...contents,
-            SizedBox(height: sectionSpacing),
-          ].withSpaceBetween(height: sectionSpacing),
+            SizedBox(height: ThemeConstants.sectionSpacing),
+          ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
         ),
       ),
     );

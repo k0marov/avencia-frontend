@@ -1,7 +1,7 @@
-import 'package:avencia/ui/features/new/dashboard/custom_icon_button.dart';
+import 'package:avencia/ui/features/new/custom_icon_button.dart';
 import 'package:flutter/material.dart';
 
-import '../dashboard/dashboard_section.dart';
+import '../dashboard/section_widget.dart';
 
 class AddNewWallet extends StatelessWidget {
   const AddNewWallet({Key? key}) : super(key: key);
@@ -10,7 +10,7 @@ class AddNewWallet extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     return Card(
-      shape: RoundedRectangleBorder(borderRadius: dashboardSectionBRadius),
+      shape: RoundedRectangleBorder(borderRadius: sectionBRadius),
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 40),
         child: Column(children: [

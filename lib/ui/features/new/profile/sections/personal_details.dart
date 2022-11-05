@@ -1,9 +1,10 @@
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
-import 'package:avencia/ui/features/new/profile/sections/address_section.dart';
+import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
+
+import '../../../../core/general/themes/theme.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton({Key? key}) : super(key: key);
@@ -27,7 +28,7 @@ class PersonalDetailsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Personal Details"),
       action: EditButton(),
       content: Column(
@@ -62,7 +63,7 @@ class PersonalDetailsSection extends StatelessWidget {
           updValue: (_) {},
           initial: Right(""),
         ),
-      ].withSpaceBetween(height: textFieldSpacing)),
+      ].withSpaceBetween(height: ThemeConstants.textFieldSpacing)),
     );
   }
 }

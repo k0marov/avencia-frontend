@@ -1,4 +1,4 @@
-import 'package:avencia/ui/features/new/dashboard/dashboard_screen.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/features/new/simple_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -40,14 +40,14 @@ class _CryptoWallets extends StatelessWidget {
           amount: "0.452058 ETH",
           usdAmount: "1,583.25 USD",
         ),
-        SizedBox(height: sectionSpacing),
+        SizedBox(height: ThemeConstants.sectionSpacing),
         WalletSection(
           type: "Wallet",
           currency: "ETH",
           amount: "0.452058 ETH",
           usdAmount: "1,583.25 USD",
         ),
-        SizedBox(height: sectionSpacing),
+        SizedBox(height: ThemeConstants.sectionSpacing),
         WalletSection(
           type: "Wallet",
           currency: "BTC",
@@ -76,7 +76,7 @@ class _FiatAccounts extends StatelessWidget {
         amount: "\$18,340.20",
         usdAmount: "12,495.90 USD",
       ),
-      SizedBox(height: sectionSpacing),
+      SizedBox(height: ThemeConstants.sectionSpacing),
       WalletSection(
         type: "Account",
         currency: "EUR",

@@ -1,12 +1,13 @@
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
 import 'package:avencia/ui/features/new/currency_icon.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
-import 'package:avencia/ui/features/new/dashboard/gradient_button.dart';
-import 'package:avencia/ui/features/new/dashboard/sections/digital_wallets.dart';
+import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
+import 'package:avencia/ui/features/new/gradient_button.dart';
 import 'package:avencia/ui/features/new/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
+
+import '../wallet_card.dart';
 
 class TransferScreen extends StatelessWidget {
   const TransferScreen({Key? key}) : super(key: key);
@@ -29,7 +30,7 @@ class _RecipientSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Recipient"),
       content: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -50,7 +51,7 @@ class _WalletsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Wallet"),
       action: IconButton(
         onPressed: () {},
@@ -79,7 +80,7 @@ class _SendSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Send"),
       content: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),

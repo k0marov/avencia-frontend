@@ -1,19 +1,17 @@
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/features/new/card_with_buttons.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_section.dart';
+import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:avencia/ui/features/new/profile/sections/personal_details.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
-
-const textFieldSpacing = 15.0;
 
 class AddressSection extends StatelessWidget {
   const AddressSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
-    return DashboardSection(
+    return SectionWidget(
       title: Text("Your Address"),
       action: EditButton(),
       content: Column(
@@ -36,7 +34,7 @@ class AddressSection extends StatelessWidget {
           updValue: (_) {},
           initial: Right(""),
         ),
-      ].withSpaceBetween(height: textFieldSpacing)),
+      ].withSpaceBetween(height: ThemeConstants.textFieldSpacing)),
     );
   }
 }
