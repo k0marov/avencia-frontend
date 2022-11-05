@@ -1,9 +1,7 @@
-import 'package:avencia/ui/features/new/dashboard/dashboard_screen.dart';
-import 'package:avencia/ui/features/new/orders/orders_screen.dart';
-import 'package:avencia/ui/features/new/profile/profile_screen.dart';
-import 'package:avencia/ui/features/new/wallets/wallets.dart';
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 // TODO: refactor the navigation using go_route
 
@@ -14,56 +12,54 @@ class RouteButtons extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(children: [
       _RouteButton(
-        isSelected: true,
         icon: Icons.space_dashboard_outlined,
         text: "Dashboard",
-        screen: DashboardScreen(),
+        route: Routes.dashboard,
       ),
       _RouteButton(
         icon: Icons.person_outline,
         text: "My Account",
-        screen: NewProfileScreen(),
+        route: Routes.account,
       ),
       _RouteButton(
         icon: Icons.wallet_outlined,
         text: "Wallets",
-        screen: WalletsScreen(),
+        route: Routes.wallets,
       ),
       _RouteButton(
         icon: Icons.list,
         text: "Orders",
-        screen: OrdersScreen(),
+        route: Routes.orders,
       ),
       _RouteButton(
         icon: Icons.settings_outlined,
         text: "Settings",
-        screen: Container(),
+        route: Routes.settings,
       ),
     ]);
   }
 }
 
 class _RouteButton extends StatelessWidget {
-  final bool isSelected;
   final IconData icon;
   final String text;
-  final Widget screen;
+  final Routes route;
   const _RouteButton({
     Key? key,
-    this.isSelected = false,
     required this.icon,
     required this.text,
-    required this.screen,
+    required this.route,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final currentRoute = GoRouter.of(context).location;
+    final isSelected = currentRoute == route.path;
     final theme = Theme.of(context);
     return Container(
       color: isSelected ? theme.colorScheme.primary.withAlpha(10) : Colors.transparent,
       child: InkWell(
-        onTap: () =>
-            Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => screen)),
+        onTap: () => context.go(route.path),
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Row(children: [

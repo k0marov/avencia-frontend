@@ -1,5 +1,6 @@
 import 'package:avencia/firebase_options.dart';
 import 'package:avencia/ui/core/app/app.dart';
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
@@ -11,5 +12,5 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await di.initialize();
-  runApp(const MyApp());
+  runApp(StreamAuthScope(child: MyApp()));
 }

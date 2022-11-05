@@ -53,7 +53,7 @@ class _NavigationAppBar extends StatelessWidget {
         Spacer(),
         IconButton(
           iconSize: 25,
-          onPressed: () => Navigator.of(context).pop(),
+          onPressed: () => Scaffold.of(context).closeDrawer(),
           icon: Icon(Icons.close, color: Theme.of(context).iconTheme.color),
         )
       ]),
