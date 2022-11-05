@@ -1,5 +1,6 @@
-import 'package:avencia/ui/features/new/transfer/transfer_screen.dart';
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../gradient_button.dart';
 import '../icon_with_text.dart';
@@ -19,11 +20,7 @@ class ActionButtons extends StatelessWidget {
       SizedBox(
         width: 75,
         child: SimpleButton(
-          onPressed: () => Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => TransferScreen(),
-            ),
-          ),
+          onPressed: () => context.go(Routes.transfer.path),
           contents: Text("Send"),
         ),
       ),

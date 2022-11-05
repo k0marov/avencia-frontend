@@ -1,9 +1,11 @@
+import 'dart:async';
+
 import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-// TODO: refactor the navigation using go_route
+const navigationDelay = Duration(milliseconds: 100);
 
 class RouteButtons extends StatelessWidget {
   const RouteButtons({Key? key}) : super(key: key);
@@ -59,7 +61,11 @@ class _RouteButton extends StatelessWidget {
     return Container(
       color: isSelected ? theme.colorScheme.primary.withAlpha(10) : Colors.transparent,
       child: InkWell(
-        onTap: () => context.go(route.path),
+        onTap: () async {
+          await Future.delayed(navigationDelay);
+          Scaffold.of(context).closeDrawer();
+          context.go(route.path);
+        },
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: Row(children: [

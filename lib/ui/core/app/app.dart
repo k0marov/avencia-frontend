@@ -1,22 +1,24 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
+import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/app/routing.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:helpers/ui//app/brightness_builder.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AdaptiveTheme(
-      light: createTheme(Brightness.light),
-      dark: createTheme(Brightness.dark),
-      initial: AdaptiveThemeMode.system,
-      builder: (theme, darkTheme) => MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        routerConfig: routerFactory(),
-        darkTheme: darkTheme,
-        theme: theme,
+    return BrightnessBuilder(
+      getBrightnessStream: uiDeps.getBrightness,
+      builder: (context, brightness) => StreamAuthScope(
+        child: MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          routerConfig: router,
+          darkTheme: createTheme(Brightness.dark),
+          theme: createTheme(Brightness.light),
+          themeMode: brightness,
+        ),
       ),
     );
   }

@@ -8,10 +8,13 @@ import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/entity/unique_network_crud.dart';
 import 'package:helpers/logic/forms/form_cubit.dart';
 import 'package:helpers/logic/http/auth_http_client.dart';
+import 'package:helpers/logic/theme_brightness/get_theme_brightness_stream_usecase.dart';
+import 'package:helpers/logic/theme_brightness/toggle_theme_brightness_usecase.dart';
 import 'package:helpers/logic/uploader/uploader.dart';
 import 'package:helpers/ui/errors/bloc_exception_listener.dart';
 import 'package:helpers/ui/forms/form_widget.dart';
 import 'package:helpers/ui/general/simple_cubit_builder.dart';
+import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import 'logic/features/auth/auth_facade.dart';
 import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
@@ -45,6 +48,9 @@ class UIDeps {
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
 
+  final GetThemeBrightnessStreamUseCase getBrightness;
+  final ToggleThemeBrightnessUseCase toggleBrightness;
+
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
   final BlocExceptionListenerFactory exceptionListener;
@@ -58,6 +64,8 @@ class UIDeps {
     this.transCodeCubitFactory,
     this.passportCubitFactory,
     this.userDetailsFormFactory,
+    this.getBrightness,
+    this.toggleBrightness,
     this.simpleBuilder,
     this.formWidget,
     this.exceptionListener,
@@ -92,6 +100,8 @@ Future<void> initialize() async {
   final formWidget = newFormWidgetFactory(exceptionListener);
   final simpleBuilder = newSimpleBuilderFactory(exceptionListener);
 
+  final sp = RxSharedPreferences.getInstance();
+
   uiDeps = UIDeps._(
     authFacade,
     getUserInfo,
@@ -108,6 +118,8 @@ Future<void> initialize() async {
       AgreementsDeps(2),
     ),
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
+    newGetThemeBrightnessUseCase(sp),
+    newToggleThemeBrightnessUseCase(sp),
     simpleBuilder,
     formWidget,
     exceptionListener,
