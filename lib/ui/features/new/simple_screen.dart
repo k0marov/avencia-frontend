@@ -22,7 +22,6 @@ class SimpleScreen extends StatelessWidget {
       appBar: createAvenciaAppBar(context),
       drawer: NavigationMenuDrawer(),
       body: Padding(
-        // TODO: move some general stuff like this padding from features to core
         padding: ThemeConstants.screenPadding,
         child: ListView(
           children: [

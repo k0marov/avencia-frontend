@@ -24,8 +24,6 @@ abstract class TextColors {
   Color halfInverse();
 }
 
-// TODO: fix the passport chip
-
 ThemeData createTheme(Brightness brightness) {
   final colors = brightness == Brightness.light ? LightColors() : DarkColors();
   final textColors = brightness == Brightness.light ? LightTextColors() : DarkTextColors();
@@ -59,21 +57,6 @@ ThemeData createTheme(Brightness brightness) {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: textColors.body(),
-      ),
-    ),
-    chipTheme: ChipThemeData(
-      labelPadding: EdgeInsets.symmetric(vertical: 6, horizontal: 4),
-      selectedColor: Colors.transparent,
-      disabledColor: Colors.transparent,
-      labelStyle: textTheme.button?.copyWith(color: textColors.halfInverse()),
-    ),
-    radioTheme: RadioThemeData(
-      fillColor: MaterialStateProperty.resolveWith(
-        (states) => states.contains(
-          MaterialState.selected,
-        )
-            ? AppColors.purple
-            : colors.secondaryCard(),
       ),
     ),
     drawerTheme: DrawerThemeData(

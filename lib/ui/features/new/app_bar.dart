@@ -26,6 +26,7 @@ class AvenciaAppBar extends StatelessWidget {
         padding: const EdgeInsets.all(14),
         child: CustomIconButton(
           onPressed: () => Scaffold.of(context).openDrawer(),
+          color: theme.colorScheme.surface,
           iconSize: 18,
           icon: Icons.list,
         ),
@@ -51,6 +52,7 @@ class AvenciaAppBar extends StatelessWidget {
           child: CustomIconButton(
             iconSize: 28,
             onPressed: () {},
+            color: theme.colorScheme.surface,
             icon: Icons.keyboard_arrow_down,
           ),
         )

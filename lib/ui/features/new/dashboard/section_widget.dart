@@ -26,7 +26,7 @@ class SectionWidget extends StatelessWidget {
       borderRadius: sectionBRadius,
       shadowColor: Colors.black,
       child: Padding(
-        padding: padding ?? EdgeInsets.all(14),
+        padding: padding ?? EdgeInsets.only(top: 8, bottom: 14, right: 14, left: 14),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

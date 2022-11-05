@@ -1,10 +1,10 @@
-import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:avencia/ui/features/new/dashboard_card.dart';
 import 'package:avencia/ui/features/new/gradient_button.dart';
 import 'package:avencia/ui/features/new/icon_with_text.dart';
 import 'package:avencia/ui/features/new/simple_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 
 class DocumentsSection extends StatelessWidget {
   const DocumentsSection({Key? key}) : super(key: key);
@@ -152,24 +152,58 @@ class _DocumentChoiceChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const radioValue = 1;
-    return ChoiceChip(
-      label: Text(label),
-      avatar: Radio(
-        value: radioValue,
-        groupValue: selected ? radioValue : 0,
-        onChanged: (_) {},
-      ),
-      selected: selected,
-      labelStyle: selected
-          ? Theme.of(context).textTheme.button?.copyWith(
-                color: Theme.of(context).colorScheme.primary,
-                fontWeight: FontWeight.w800,
+    final theme = Theme.of(context);
+    final text = theme.textTheme;
+    return Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.all(Radius.circular(25)),
+          color: theme.colorScheme.onSecondaryContainer,
+          border: selected
+              ? Border.all(
+                  color: theme.colorScheme.primary,
+                  width: 2,
+                )
+              : null,
+        ),
+        child: MaterialButton(
+          onPressed: () {},
+          materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+          padding: EdgeInsets.zero,
+          shape: StadiumBorder(),
+          child: Padding(
+            padding: const EdgeInsets.all(10),
+            child: Row(mainAxisSize: MainAxisSize.min, children: [
+              _SimpleRadio(selected: selected),
+              SizedBox(width: 6),
+              Text(
+                label,
+                style: text.headline4?.copyWith(color: selected ? theme.colorScheme.primary : null),
+              ),
+            ]),
+          ),
+        ));
+  }
+}
+
+class _SimpleRadio extends StatelessWidget {
+  final bool selected;
+  const _SimpleRadio({Key? key, required this.selected}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Container(
+      width: 16,
+      height: 16,
+      decoration: BoxDecoration(
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        shape: BoxShape.circle,
+        border: selected
+            ? Border.all(
+                color: theme.colorScheme.primary,
+                width: 5,
               )
-          : null,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(25)),
-        side: selected ? BorderSide(color: AppColors.purple, width: 2) : BorderSide.none,
+            : Border(),
       ),
     );
   }

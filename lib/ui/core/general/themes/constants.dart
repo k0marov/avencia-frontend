@@ -33,7 +33,7 @@ class DarkColors implements ThemeColors {
   @override
   Color secondaryCard() => const Color(0xFF4C4E55);
   @override
-  Color button() => const Color(0xFF4B4D54);
+  Color button() => const Color(0xFF636670);
 }
 
 class LightTextColors implements TextColors {
