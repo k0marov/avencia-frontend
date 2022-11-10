@@ -1,5 +1,10 @@
+import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:helpers/logic/auth/auth_facade.dart';
+import 'package:helpers/logic/core.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
 
+import '../app/routing.dart';
 import 'custom_icon_button.dart';
 
 PreferredSizeWidget createAvenciaAppBar(BuildContext context) {
@@ -34,6 +39,7 @@ class AvenciaAppBar extends StatelessWidget {
       ),
       title: Row(
         mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisSize: MainAxisSize.min,
         children: [
           SizedBox(
             height: 50,
@@ -41,10 +47,25 @@ class AvenciaAppBar extends StatelessWidget {
             child: Avatar(),
           ),
           SizedBox(width: 15),
-          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text("vino_costa", style: theme.textTheme.headline3),
-            Text("Unverified", style: theme.textTheme.headline5),
-          ]),
+          Expanded(
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              FutureBuilder<UseCaseRes<EmailState>>(
+                future: StreamAuthScope.of(context).getEmail(),
+                builder: (_, AsyncSnapshot<UseCaseRes<EmailState>> snapshot) =>
+                    stateSwitch<EmailState>(
+                  state: snapshot.hasData
+                      ? Some(snapshot.data!)
+                      : None<Either<Exception, EmailState>>(),
+                  loadedBuilder: (loaded) => Text(
+                    loaded.email, // TODO: change this
+                    style: theme.textTheme.headline3,
+                    overflow: TextOverflow.clip,
+                  ),
+                ),
+              ),
+              Text("Unverified", style: theme.textTheme.headline5),
+            ]),
+          ),
         ],
       ),
       actions: [
