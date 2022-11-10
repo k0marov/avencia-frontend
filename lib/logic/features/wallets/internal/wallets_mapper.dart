@@ -1,3 +1,4 @@
+import 'package:avencia/logic/core/money.dart';
 import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
@@ -6,7 +7,7 @@ class WalletMapper extends OutMapper<Wallet> {
   Wallet fromJson(Map<String, dynamic> json) => Wallet(
         id: json["id"],
         currency: json["currency"],
-        money: json["money"],
+        money: parseMoneyAmount(json["amount"].toString()),
       );
 }
 

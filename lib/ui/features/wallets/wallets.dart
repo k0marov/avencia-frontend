@@ -1,6 +1,13 @@
+import 'package:avencia/di.dart';
+import 'package:avencia/logic/features/wallets/internal/values.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
+import 'package:avencia/ui/features/wallets/footer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/core.dart';
+import 'package:helpers/logic/simple_cubit.dart';
 
 import 'header.dart';
 import 'wallet_section.dart';
@@ -10,22 +17,29 @@ class WalletsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SimpleScreen(
-      title: "Wallets",
-      contents: [
-        ActionButtons(),
-        _Wallets(),
-        // _FiatAccounts(),
-      ],
+    return uiDeps.simpleBuilder<Wallets>(
+      load: uiDeps.getWallets,
+      loadedBuilder: (_, __) => SimpleScreen(
+        title: "Wallets",
+        contents: [
+          ActionButtons(),
+          _Wallets(),
+          AddNewWallet(),
+        ],
+      ),
     );
   }
 }
+
+// TODO: add a placeholder if there is no wallets
 
 class _Wallets extends StatelessWidget {
   const _Wallets({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<SimpleCubit<Wallets>>().state;
+    final wallets = state.assertLoaded();
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -34,27 +48,13 @@ class _Wallets extends StatelessWidget {
           child: Text("Crypto Accounts", style: Theme.of(context).textTheme.headline4),
         ),
         SizedBox(height: 5),
-        WalletSection(
-          type: "Wallet",
-          currency: "ETH",
-          amount: "0.452058 ETH",
-          usdAmount: "1,583.25 USD",
-        ),
-        SizedBox(height: ThemeConstants.sectionSpacing),
-        WalletSection(
-          type: "Wallet",
-          currency: "ETH",
-          amount: "0.452058 ETH",
-          usdAmount: "1,583.25 USD",
-        ),
-        SizedBox(height: ThemeConstants.sectionSpacing),
-        WalletSection(
-          type: "Wallet",
-          currency: "BTC",
-          amount: "4.434953 BTC",
-          usdAmount: "28,247.63 USD",
-        ),
-      ],
+        ...wallets.wallets.map((w) => WalletSection(
+              type: "Wallet",
+              currency: w.currency,
+              amount: w.money.toString(),
+              usdAmount: "42",
+            )),
+      ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
     );
   }
 }

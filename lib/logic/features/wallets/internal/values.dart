@@ -4,7 +4,7 @@ import 'package:equatable/equatable.dart';
 class Wallet extends Equatable {
   final String id;
   final Currency currency;
-  final Money money;
+  final MoneyAmount money;
   @override
   List get props => [id, currency, money];
   const Wallet({
