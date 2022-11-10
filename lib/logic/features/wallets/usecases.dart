@@ -9,7 +9,7 @@ import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/http/http.dart';
 
 typedef CreateWalletUseCase = Future<UseCaseRes<CreatedId>> Function(WalletCreationVal);
-typedef GetWalletsUseCase = Future<UseCaseRes<List<Wallet>>> Function(void);
+typedef GetWalletsUseCase = Future<UseCaseRes<Wallets>> Function();
 
 CreateWalletUseCase newCreateWalletUseCase(
   NetworkUseCaseFactory nuc,
@@ -27,9 +27,9 @@ GetWalletsUseCase newGetWalletsUseCase(
   NetworkUseCaseFactory nuc,
   WalletsMapper walletsMapper,
 ) =>
-    nuc.newBaseNetworkUseCase(
-      inpMapper: NoInpMapper(),
-      getUri: (_, host) => Uri.https(host, getWalletsEndpoint),
-      method: HTTPMethods.get,
-      outMapper: walletsMapper,
-    );
+    () => nuc.newBaseNetworkUseCase(
+          inpMapper: NoInpMapper(),
+          getUri: (_, host) => Uri.https(host, getWalletsEndpoint),
+          method: HTTPMethods.get,
+          outMapper: walletsMapper,
+        )(null);

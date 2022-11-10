@@ -1,3 +1,6 @@
+import 'package:avencia/di.dart';
+import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 
@@ -19,21 +22,27 @@ class OverviewSection extends StatelessWidget {
         onPressed: () {},
         icon: Icon(Icons.more_horiz),
       ),
-      content: Column(
-        children: const [
-          _BalanceCard(),
-          _TransactionsCard(),
-          _WalletsCard(),
-          _LastActivityCard(),
-          SizedBox(height: 5),
-        ].withSpaceBetween(height: ThemeConstants.cardSpacing),
+      content: uiDeps.simpleBuilder<Wallets>(
+        load: uiDeps.getWallets,
+        loadedBuilder: (wallets, _) => Column(
+          children: [
+            _BalanceCard(usdBalance: wallets.totalUSD),
+            _TransactionsCard(),
+            _WalletsCard(
+              walletsCount: wallets.wallets.length,
+            ),
+            _LastActivityCard(),
+            SizedBox(height: 5),
+          ].withSpaceBetween(height: ThemeConstants.cardSpacing),
+        ),
       ),
     );
   }
 }
 
 class _BalanceCard extends StatelessWidget {
-  const _BalanceCard({Key? key}) : super(key: key);
+  final MoneyAmount usdBalance;
+  const _BalanceCard({Key? key, required this.usdBalance}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +52,7 @@ class _BalanceCard extends StatelessWidget {
     return DashboardCard(
       title: "Balance",
       content: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text("\$156,153,517,892", style: text.headline2),
+        Text("\$$usdBalance", style: text.headline2),
         SizedBox(height: itemsSpacing),
         SizedBox(
           height: ThemeConstants.buttonSize,
@@ -103,7 +112,8 @@ class _TransactionsCard extends StatelessWidget {
 }
 
 class _WalletsCard extends StatelessWidget {
-  const _WalletsCard({Key? key}) : super(key: key);
+  final int walletsCount;
+  const _WalletsCard({Key? key, required this.walletsCount}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -112,7 +122,7 @@ class _WalletsCard extends StatelessWidget {
     return DashboardCard(
       title: "Wallets",
       content: Row(children: [
-        Text("5", style: text.headline2),
+        Text("$walletsCount", style: text.headline2),
         Spacer(),
         SizedBox(
           width: ThemeConstants.buttonSize,

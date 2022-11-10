@@ -1,8 +1,12 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
+import 'package:avencia/logic/features/wallets/internal/wallet_creation_mapper.dart';
+import 'package:avencia/logic/features/wallets/internal/wallets_mapper.dart';
+import 'package:avencia/logic/features/wallets/usecases.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
+import 'package:helpers/logic/entity/created_id_mapper.dart';
 import 'package:helpers/logic/entity/network_crud.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/entity/unique_network_crud.dart';
@@ -46,6 +50,9 @@ class UIDeps {
   final GetThemeBrightnessStreamUseCase getBrightness;
   final ToggleThemeBrightnessUseCase toggleBrightness;
 
+  final CreateWalletUseCase createWallet;
+  final GetWalletsUseCase getWallets;
+
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
   final BlocExceptionListenerFactory exceptionListener;
@@ -60,6 +67,8 @@ class UIDeps {
     this.userDetailsFormFactory,
     this.getBrightness,
     this.toggleBrightness,
+    this.createWallet,
+    this.getWallets,
     this.simpleBuilder,
     this.formWidget,
     this.exceptionListener,
@@ -93,6 +102,10 @@ Future<void> initialize() async {
 
   final sp = RxSharedPreferences.getInstance();
 
+  final createWallet =
+      newCreateWalletUseCase(nucFactory, WalletCreationMapper(), CreatedIdMapper());
+  final getWallets = newGetWalletsUseCase(nucFactory, WalletsMapper());
+
   uiDeps = UIDeps._(
     authFacade,
     transfer,
@@ -110,6 +123,8 @@ Future<void> initialize() async {
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     newGetThemeBrightnessUseCase(sp),
     newToggleThemeBrightnessUseCase(sp),
+    createWallet,
+    getWallets,
     simpleBuilder,
     formWidget,
     exceptionListener,

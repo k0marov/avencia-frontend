@@ -10,13 +10,17 @@ class WalletMapper extends OutMapper<Wallet> {
       );
 }
 
-class WalletsMapper extends OutMapper<List<Wallet>> {
+class WalletsMapper extends OutMapper<Wallets> {
   final WalletMapper _wMapper = WalletMapper();
   @override
-  List<Wallet> fromJson(Map<String, dynamic> json) =>
-      (json["wallets"] as List<Map<String, dynamic>>)
+  Wallets fromJson(Map<String, dynamic> json) {
+    print(json);
+    return Wallets(
+      wallets: (json["wallets"] as List)
           .map(
             (w) => _wMapper.fromJson(w),
           )
-          .toList();
+          .toList(),
+    );
+  }
 }
