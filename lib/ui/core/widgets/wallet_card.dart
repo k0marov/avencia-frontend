@@ -1,14 +1,9 @@
+import 'package:avencia/logic/features/currencies/currencies.dart';
 import 'package:flutter/material.dart';
 
 import '../general/themes/theme.dart';
 import 'currency_icon.dart';
 import 'dashboard_card.dart';
-
-String getCurrencyName(String currencyCode) {
-  if (currencyCode == "BTC") return "Bitcoin";
-  if (currencyCode == "ETH") return "Etherium";
-  return currencyCode;
-}
 
 class WalletCard extends StatelessWidget {
   final String currency;
@@ -37,7 +32,8 @@ class WalletCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(getCurrencyName(currency), style: text.headline5),
+                  Text(SupportedCurrencies.getData(currency)?.name ?? currency,
+                      style: text.headline5),
                   Text(balance, style: text.bodyText1),
                 ],
               ),

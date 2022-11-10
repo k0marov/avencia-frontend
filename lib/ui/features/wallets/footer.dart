@@ -1,8 +1,5 @@
-import 'package:avencia/di.dart';
-import 'package:avencia/logic/features/wallets/internal/values.dart';
+import 'package:avencia/ui/features/wallets/wallet_adding_dialog.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:helpers/logic/simple_cubit.dart';
 
 import '../../core/widgets/custom_icon_button.dart';
 import '../dashboard/section_widget.dart';
@@ -22,13 +19,7 @@ class AddNewWallet extends StatelessWidget {
             height: 70,
             child: CustomIconButton(
               iconSize: 25,
-              onPressed: () async {
-                // TODO: implement selecting a currency and showing an error message
-                await uiDeps.createWallet(
-                  WalletCreationVal(currency: "ETH"),
-                );
-                context.read<SimpleCubit<Wallets>>().refresh();
-              },
+              onPressed: () => showWalletAddingDialog(context),
               icon: Icons.add,
             ),
           ),
