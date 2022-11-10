@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/app/logo_widget.dart';
-import '../../../core/general/themes/theme.dart';
-import '../../../core/widgets/card_with_buttons.dart';
-import '../../../core/widgets/custom_icon_button.dart';
-import '../../../core/widgets/icon_with_text.dart';
+import '../../core/app/logo_widget.dart';
+import '../../core/general/themes/theme.dart';
+import '../../core/widgets/card_with_buttons.dart';
+import '../../core/widgets/custom_icon_button.dart';
+import '../../core/widgets/icon_with_text.dart';
 
 class NavigationHeader extends StatelessWidget {
   const NavigationHeader({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/widgets/history_entry_widget.dart';
+import '../../../core/widgets/history_entry_widget.dart';
 import '../section_widget.dart';
 
 class RecentActivitiesSection extends StatelessWidget {

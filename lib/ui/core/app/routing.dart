@@ -1,15 +1,15 @@
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/features/auth/auth_screen.dart';
-import 'package:avencia/ui/features/new/dashboard/dashboard_screen.dart';
-import 'package:avencia/ui/features/new/orders/orders_screen.dart';
-import 'package:avencia/ui/features/new/profile/profile_screen.dart';
-import 'package:avencia/ui/features/new/settings/settings_screen.dart';
-import 'package:avencia/ui/features/new/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
 
-import '../../features/new/wallets/wallets.dart';
+import '../../features/dashboard/dashboard_screen.dart';
+import '../../features/orders/orders_screen.dart';
+import '../../features/profile/profile_screen.dart';
+import '../../features/settings/settings_screen.dart';
+import '../../features/transfer/transfer_screen.dart';
+import '../../features/wallets/wallets.dart';
 
 enum Routes {
   login,

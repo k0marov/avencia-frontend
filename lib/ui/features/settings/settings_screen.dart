@@ -1,9 +1,9 @@
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/simple_button.dart';
+import '../../core/widgets/simple_button.dart';
+import '../dashboard/section_widget.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({Key? key}) : super(key: key);

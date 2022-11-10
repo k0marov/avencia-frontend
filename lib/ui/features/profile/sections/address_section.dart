@@ -1,10 +1,11 @@
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
-import 'package:avencia/ui/features/new/profile/sections/personal_details.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
+
+import '../../dashboard/section_widget.dart';
+import 'personal_details.dart';
 
 class AddressSection extends StatelessWidget {
   const AddressSection({Key? key}) : super(key: key);

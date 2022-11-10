@@ -1,7 +1,7 @@
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/new/navigation_menu/navigation_menu.dart';
+import '../../features/navigation_menu/navigation_menu.dart';
 import '../general/themes/theme.dart';
 import 'app_bar.dart';
 

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/icon_with_text.dart';
-import '../../../core/widgets/simple_button.dart';
+import '../../core/widgets/icon_with_text.dart';
+import '../../core/widgets/simple_button.dart';
 
 class BottomButtons extends StatelessWidget {
   const BottomButtons({Key? key}) : super(key: key);

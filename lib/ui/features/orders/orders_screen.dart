@@ -1,11 +1,11 @@
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../../../core/widgets/history_entry_widget.dart';
+import '../../core/widgets/history_entry_widget.dart';
+import '../dashboard/section_widget.dart';
 
 class OrdersScreen extends StatelessWidget {
   const OrdersScreen({Key? key}) : super(key: key);

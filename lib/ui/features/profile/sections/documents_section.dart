@@ -1,11 +1,11 @@
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-import '../../../../core/widgets/dashboard_card.dart';
-import '../../../../core/widgets/gradient_button.dart';
-import '../../../../core/widgets/icon_with_text.dart';
-import '../../../../core/widgets/simple_button.dart';
+import '../../../core/widgets/dashboard_card.dart';
+import '../../../core/widgets/gradient_button.dart';
+import '../../../core/widgets/icon_with_text.dart';
+import '../../../core/widgets/simple_button.dart';
+import '../../dashboard/section_widget.dart';
 
 class DocumentsSection extends StatelessWidget {
   const DocumentsSection({Key? key}) : super(key: key);

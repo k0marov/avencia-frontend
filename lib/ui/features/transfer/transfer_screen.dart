@@ -4,9 +4,9 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../../../core/widgets/currency_icon.dart';
-import '../../../core/widgets/gradient_button.dart';
-import '../../../core/widgets/wallet_card.dart';
+import '../../core/widgets/currency_icon.dart';
+import '../../core/widgets/gradient_button.dart';
+import '../../core/widgets/wallet_card.dart';
 import '../dashboard/section_widget.dart';
 
 class TransferScreen extends StatelessWidget {

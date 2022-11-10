@@ -1,10 +1,10 @@
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:flutter/material.dart';
 
-import '../../../core/widgets/card_with_buttons.dart';
-import '../../../core/widgets/currency_icon.dart';
-import '../../../core/widgets/icon_with_text.dart';
-import '../../../core/widgets/wallet_card.dart';
+import '../../core/widgets/card_with_buttons.dart';
+import '../../core/widgets/currency_icon.dart';
+import '../../core/widgets/icon_with_text.dart';
+import '../../core/widgets/wallet_card.dart';
+import '../dashboard/section_widget.dart';
 
 class WalletSection extends StatelessWidget {
   final String type;

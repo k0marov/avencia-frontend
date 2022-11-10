@@ -1,10 +1,10 @@
 import 'package:avencia/ui/core/general/helpers.dart';
-import 'package:avencia/ui/features/new/dashboard/section_widget.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../../../../core/general/themes/theme.dart';
+import '../../../core/general/themes/theme.dart';
+import '../../dashboard/section_widget.dart';
 
 class EditButton extends StatelessWidget {
   const EditButton({Key? key}) : super(key: key);

@@ -1,8 +1,9 @@
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
-import 'package:avencia/ui/features/new/profile/sections/address_section.dart';
-import 'package:avencia/ui/features/new/profile/sections/documents_section.dart';
-import 'package:avencia/ui/features/new/profile/sections/personal_details.dart';
+import 'package:avencia/ui/features/profile/sections/address_section.dart';
 import 'package:flutter/material.dart';
+
+import 'sections/documents_section.dart';
+import 'sections/personal_details.dart';
 
 class NewProfileScreen extends StatelessWidget {
   const NewProfileScreen({Key? key}) : super(key: key);
