@@ -1,9 +1,11 @@
 import 'package:equatable/equatable.dart';
 
 class MetaTransaction extends Equatable {
-  final TransactionType type; 
-  @override List get props => [type]; 
-  const MetaTransaction(this.type); 
+  final TransactionType type;
+  final String walletId;
+  @override
+  List get props => [type, walletId];
+  const MetaTransaction(this.type, this.walletId);
 }
 
 class TransactionCode extends Equatable {

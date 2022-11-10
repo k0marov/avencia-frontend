@@ -5,5 +5,6 @@ class MetaTransactionMapper implements InpMapper<MetaTransaction> {
   @override
   Map<String, dynamic> toJson(MetaTransaction inp) => {
         "type": transactionTypeValue(inp.type),
+        "id": inp.walletId,
       };
 }

@@ -3,9 +3,15 @@ import 'dart:async';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import '../../internal/values.dart';
+import '../internal/values.dart';
 
-part 'transaction_code_state.dart';
+class TransactionCodeState extends Equatable {
+  final TransactionCode code;
+  final Duration leftToExpire;
+  @override
+  List get props => [code, leftToExpire];
+  const TransactionCodeState(this.code, this.leftToExpire);
+}
 
 class TransactionCodeCubit extends Cubit<TransactionCodeState> {
   Timer? _timer;

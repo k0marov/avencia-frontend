@@ -24,7 +24,7 @@ import 'logic/features/auth/auth_facade.dart';
 import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
 import 'logic/features/transactions/internal/transaction_code_mapper.dart';
 import 'logic/features/transactions/internal/values.dart';
-import 'logic/features/transactions/state_management/transaction_code_cubit/transaction_code_cubit.dart';
+import 'logic/features/transactions/state_management/transaction_code_cubit.dart';
 import 'logic/features/transactions/usecases.dart';
 import 'logic/features/transfer/internal /transfer_mapper.dart';
 import 'logic/features/transfer/state_management/transfer_cubit.dart';

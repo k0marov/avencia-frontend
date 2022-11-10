@@ -36,6 +36,8 @@ void showWalletAddingDialog(BuildContext context) {
   );
 }
 
+// TODO: deal with screen refreshing
+
 class _SelectCurrencyWidget extends StatelessWidget {
   final CurrencyData currency;
   const _SelectCurrencyWidget({Key? key, required this.currency}) : super(key: key);
