@@ -1,8 +1,10 @@
-import 'package:avencia/di.dart';
 import 'package:avencia/logic/core/money.dart';
 import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/core.dart';
+import 'package:helpers/logic/simple_cubit.dart';
 
 import '../../../core/general/themes/theme.dart';
 import '../../../core/widgets/custom_icon_button.dart';
@@ -12,29 +14,29 @@ import '../../../core/widgets/icon_with_text.dart';
 import '../section_widget.dart';
 
 class OverviewSection extends StatelessWidget {
+  // final Wallets wallets;
   const OverviewSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<SimpleCubit<Wallets>>().state;
+    final wallets = state.assertLoaded();
     return SectionWidget(
       title: Text("Overview"),
       action: IconButton(
         onPressed: () {},
         icon: Icon(Icons.more_horiz),
       ),
-      content: uiDeps.simpleBuilder<Wallets>(
-        load: uiDeps.getWallets,
-        loadedBuilder: (wallets, _) => Column(
-          children: [
-            _BalanceCard(usdBalance: wallets.totalUSD),
-            _TransactionsCard(),
-            _WalletsCard(
-              walletsCount: wallets.wallets.length,
-            ),
-            _LastActivityCard(),
-            SizedBox(height: 5),
-          ].withSpaceBetween(height: ThemeConstants.cardSpacing),
-        ),
+      content: Column(
+        children: [
+          _BalanceCard(usdBalance: wallets.totalUSD),
+          _TransactionsCard(),
+          _WalletsCard(
+            walletsCount: wallets.wallets.length,
+          ),
+          _LastActivityCard(),
+          SizedBox(height: 5),
+        ].withSpaceBetween(height: ThemeConstants.cardSpacing),
       ),
     );
   }

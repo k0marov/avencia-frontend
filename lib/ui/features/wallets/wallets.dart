@@ -14,15 +14,15 @@ class WalletsScreen extends StatelessWidget {
       title: "Wallets",
       contents: [
         ActionButtons(),
-        _CryptoWallets(),
-        _FiatAccounts(),
+        _Wallets(),
+        // _FiatAccounts(),
       ],
     );
   }
 }
 
-class _CryptoWallets extends StatelessWidget {
-  const _CryptoWallets({Key? key}) : super(key: key);
+class _Wallets extends StatelessWidget {
+  const _Wallets({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -56,33 +56,5 @@ class _CryptoWallets extends StatelessWidget {
         ),
       ],
     );
-  }
-}
-
-class _FiatAccounts extends StatelessWidget {
-  const _FiatAccounts({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-      Padding(
-        padding: const EdgeInsets.only(left: 12),
-        child: Text("Fiat Accounts", style: Theme.of(context).textTheme.headline4),
-      ),
-      SizedBox(height: 5),
-      WalletSection(
-        type: "Account",
-        currency: "USD",
-        amount: "\$18,340.20",
-        usdAmount: "12,495.90 USD",
-      ),
-      SizedBox(height: ThemeConstants.sectionSpacing),
-      WalletSection(
-        type: "Account",
-        currency: "EUR",
-        amount: "12,495.90",
-        usdAmount: "12,495.90 USD",
-      ),
-    ]);
   }
 }

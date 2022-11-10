@@ -5,6 +5,9 @@ import '../../features/navigation_menu/navigation_menu.dart';
 import '../general/themes/theme.dart';
 import 'app_bar.dart';
 
+// TODO: implement checking if the wallet_id really belongs to the caller initiating a transaction or a transfer
+// TODO: implement pull to refresh
+
 class SimpleScreen extends StatelessWidget {
   final String title;
   final List<Widget> contents;
