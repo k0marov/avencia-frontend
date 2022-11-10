@@ -29,14 +29,9 @@ import 'logic/features/user/kyc/internal/state_management/kyc_cubit.dart';
 import 'logic/features/user/user_details/internal/mappers.dart';
 import 'logic/features/user/user_details/internal/user_details.dart';
 import 'logic/features/user/user_details/user_details_crud.dart';
-import 'logic/features/user/user_info/internal/limits_mapper.dart';
-import 'logic/features/user/user_info/internal/user_info_mapper.dart';
-import 'logic/features/user/user_info/internal/wallet_mapper.dart';
-import 'logic/features/user/user_info/usecases.dart';
 
 class UIDeps {
   final AuthFacade authFacade;
-  final GetUserInfoUseCase getUserInfo;
 
   final TransferUseCase transfer;
   final TransferCubitFactory transferCubitFactory;
@@ -57,7 +52,6 @@ class UIDeps {
 
   UIDeps._(
     this.authFacade,
-    this.getUserInfo,
     this.transfer,
     this.transferCubitFactory,
     this.startTransaction,
@@ -82,9 +76,6 @@ Future<void> initialize() async {
   final startTransaction =
       newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
 
-  final getUserInfo =
-      newGetUserInfoUseCase(nucFactory, UserInfoMapper(LimitsMapper(), WalletMapper()));
-
   final transfer = newTransferUseCase(nucFactory, TransferMapper());
   final transferCubitFactory = newTransferCubitFactory();
 
@@ -104,7 +95,6 @@ Future<void> initialize() async {
 
   uiDeps = UIDeps._(
     authFacade,
-    getUserInfo,
     transfer,
     transferCubitFactory,
     startTransaction,
