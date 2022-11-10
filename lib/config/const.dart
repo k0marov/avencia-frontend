@@ -10,3 +10,6 @@ const passportBackEndpoint = "$passportEndpoint/back";
 const passportFrontEndpoint = "$passportEndpoint/front";
 
 const genTransactionCodeEndpoint = "/v1/app/gen-transaction-code";
+
+const createWalletEndpoint = "/v1/app/wallets";
+const getWalletsEndpoint = "/v1/app/wallets";
