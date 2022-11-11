@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/simple_cubit.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
 
 import 'header.dart';
 import 'wallet_section.dart';
@@ -19,6 +20,10 @@ class WalletsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return uiDeps.simpleBuilder<Wallets>(
       load: uiDeps.getWallets,
+      loadingBuilder: () => SimpleScreen(
+        title: "Wallets",
+        contentBuilder: (_) => loadingWidget,
+      ),
       loadedBuilder: (_, __) => SimpleScreen(
         title: "Wallets",
         contentBuilder: (_) => Column(
@@ -26,7 +31,7 @@ class WalletsScreen extends StatelessWidget {
             ActionButtons(),
             _Wallets(),
             AddNewWallet(),
-          ],
+          ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
         ),
       ),
     );
@@ -49,7 +54,6 @@ class _Wallets extends StatelessWidget {
           padding: const EdgeInsets.only(left: 12),
           child: Text("Crypto Accounts", style: Theme.of(context).textTheme.headline4),
         ),
-        SizedBox(height: 5),
         ...wallets.wallets.map((w) => WalletSection(
               walletId: w.id,
               type: "Wallet",

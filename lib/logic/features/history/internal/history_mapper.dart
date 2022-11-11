@@ -15,7 +15,7 @@ class HistoryMapper implements OutMapper<History> {
     final entriesJson = json["entries"] as List;
     final entries = entriesJson
         .map((entry) => HistoryEntry(
-              fromUnixSec(entry["transacted_at"]),
+              fromUnixSec(entry["time"]),
               sourceMapper.fromJson(entry["source"]),
               moneyMapper.fromJson(entry["money"]),
             ))

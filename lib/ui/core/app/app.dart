@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
       getBrightnessStream: uiDeps.getBrightness,
       builder: (context, brightness) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        routerConfig: getRouter(),
+        routerConfig: router,
         darkTheme: createTheme(Brightness.dark),
         theme: createTheme(Brightness.light),
         themeMode: brightness,

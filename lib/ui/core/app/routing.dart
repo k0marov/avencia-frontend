@@ -43,41 +43,41 @@ extension RoutePaths on Routes {
   String get fullPath => "/$path";
 }
 
-GoRouter getRouter() => GoRouter(
-      routes: <GoRoute>[
+final router = GoRouter(
+  routes: <GoRoute>[
+    GoRoute(
+      path: "/",
+      builder: (context, GoRouterState state) => AuthGate(),
+      routes: [
         GoRoute(
-          path: "/",
-          builder: (context, GoRouterState state) => AuthGate(),
-          routes: [
-            GoRoute(
-              path: Routes.login.path,
-              builder: (BuildContext context, GoRouterState state) => const AuthScreen(),
-            ),
-            GoRoute(
-              path: Routes.dashboard.path,
-              builder: (BuildContext context, GoRouterState state) => const DashboardScreen(),
-            ),
-            GoRoute(
-              path: Routes.account.path,
-              builder: (BuildContext context, GoRouterState state) => const NewProfileScreen(),
-            ),
-            GoRoute(
-              path: Routes.wallets.path,
-              builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
-            ),
-            GoRoute(
-              path: Routes.transfer.path,
-              builder: (BuildContext context, GoRouterState state) => const TransferScreen(),
-            ),
-            GoRoute(
-              path: Routes.orders.path,
-              builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
-            ),
-            GoRoute(
-              path: Routes.settings.path,
-              builder: (BuildContext context, GoRouterState state) => SettingsScreen(),
-            ),
-          ],
+          path: Routes.login.path,
+          builder: (BuildContext context, GoRouterState state) => const AuthScreen(),
+        ),
+        GoRoute(
+          path: Routes.dashboard.path,
+          builder: (BuildContext context, GoRouterState state) => const DashboardScreen(),
+        ),
+        GoRoute(
+          path: Routes.account.path,
+          builder: (BuildContext context, GoRouterState state) => const NewProfileScreen(),
+        ),
+        GoRoute(
+          path: Routes.wallets.path,
+          builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
+        ),
+        GoRoute(
+          path: Routes.transfer.path,
+          builder: (BuildContext context, GoRouterState state) => const TransferScreen(),
+        ),
+        GoRoute(
+          path: Routes.orders.path,
+          builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
+        ),
+        GoRoute(
+          path: Routes.settings.path,
+          builder: (BuildContext context, GoRouterState state) => SettingsScreen(),
         ),
       ],
-    );
+    ),
+  ],
+);

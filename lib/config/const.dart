@@ -1,4 +1,4 @@
-const apiHost = "avencia.skomarov.com";
+const apiHost = "141.8.195.6";
 
 const transferEndpoint = "/v1/app/transfer";
 const getUserInfoEndpoint = "/v1/app/user";

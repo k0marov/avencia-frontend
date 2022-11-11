@@ -1,3 +1,5 @@
+import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:avencia/ui/features/profile/sections/address_section.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +19,7 @@ class NewProfileScreen extends StatelessWidget {
           PersonalDetailsSection(),
           AddressSection(),
           DocumentsSection(),
-        ],
+        ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
       ),
     );
   }

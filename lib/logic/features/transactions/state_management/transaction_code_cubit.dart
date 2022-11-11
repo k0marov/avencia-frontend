@@ -16,6 +16,7 @@ class TransactionCodeState extends Equatable {
 class TransactionCodeCubit extends Cubit<TransactionCodeState> {
   Timer? _timer;
   TransactionCodeCubit(TransactionCode code) : super(_computeState(code)) {
+    print(code);
     _timer = Timer.periodic(
       const Duration(seconds: 1),
       (_) => emit(_computeState(state.code)),

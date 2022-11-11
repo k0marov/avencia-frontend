@@ -15,6 +15,7 @@ class RecentActivitiesSection extends StatelessWidget {
     const actionsSpacing = SizedBox(height: 15);
     final state = context.read<SimpleCubit<FullUserInfo>>().state;
     final history = state.assertLoaded().history;
+    print(history);
     return SectionWidget(
       title: Text("Recent Activities"),
       action: IconButton(
