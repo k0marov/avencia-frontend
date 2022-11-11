@@ -3,13 +3,11 @@ import 'package:equatable/equatable.dart';
 
 class Wallet extends Equatable {
   final String id;
-  final Currency currency;
-  final MoneyAmount money;
+  final Money money;
   @override
-  List get props => [id, currency, money];
+  List get props => [id, money];
   const Wallet({
     required this.id,
-    required this.currency,
     required this.money,
   });
 }

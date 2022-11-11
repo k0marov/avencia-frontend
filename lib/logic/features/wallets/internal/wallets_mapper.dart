@@ -1,27 +1,26 @@
-import 'package:avencia/logic/core/money.dart';
+import 'package:avencia/logic/core/money_mapper.dart';
 import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
-class WalletMapper extends OutMapper<Wallet> {
+class WalletMapper implements OutMapper<Wallet> {
+  final MoneyMapper _money;
+  const WalletMapper(this._money);
   @override
   Wallet fromJson(Map<String, dynamic> json) => Wallet(
         id: json["id"],
-        currency: json["currency"],
-        money: parseMoneyAmount(json["amount"].toString()),
+        money: _money.fromJson(json),
       );
 }
 
-class WalletsMapper extends OutMapper<Wallets> {
-  final WalletMapper _wMapper = WalletMapper();
+class WalletsMapper implements OutMapper<Wallets> {
+  final WalletMapper _wallet;
+  const WalletsMapper(this._wallet);
   @override
-  Wallets fromJson(Map<String, dynamic> json) {
-    print(json);
-    return Wallets(
-      wallets: (json["wallets"] as List)
-          .map(
-            (w) => _wMapper.fromJson(w),
-          )
-          .toList(),
-    );
-  }
+  Wallets fromJson(Map<String, dynamic> json) => Wallets(
+        wallets: (json["wallets"] as List)
+            .map(
+              (w) => _wallet.fromJson(w),
+            )
+            .toList(),
+      );
 }

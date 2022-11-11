@@ -1,4 +1,8 @@
 import 'package:avencia/config/const.dart';
+import 'package:avencia/logic/core/money_mapper.dart';
+import 'package:avencia/logic/features/dashboard/internal/user_info_mapper.dart';
+import 'package:avencia/logic/features/dashboard/usecases.dart';
+import 'package:avencia/logic/features/history/internal/history_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
 import 'package:avencia/logic/features/wallets/internal/wallet_creation_mapper.dart';
@@ -21,6 +25,7 @@ import 'package:helpers/ui/general/simple_cubit_builder.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import 'logic/features/auth/auth_facade.dart';
+import 'logic/features/history/internal/transaction_source_mapper.dart';
 import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
 import 'logic/features/transactions/internal/transaction_code_mapper.dart';
 import 'logic/features/transactions/internal/values.dart';
@@ -53,6 +58,8 @@ class UIDeps {
   final CreateWalletUseCase createWallet;
   final GetWalletsUseCase getWallets;
 
+  final GetUserInfoUseCase getUserInfo;
+
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
   final BlocExceptionListenerFactory exceptionListener;
@@ -69,6 +76,7 @@ class UIDeps {
     this.toggleBrightness,
     this.createWallet,
     this.getWallets,
+    this.getUserInfo,
     this.simpleBuilder,
     this.formWidget,
     this.exceptionListener,
@@ -102,9 +110,20 @@ Future<void> initialize() async {
 
   final sp = RxSharedPreferences.getInstance();
 
+  final moneyMapper = MoneyMapper();
+
   final createWallet =
       newCreateWalletUseCase(nucFactory, WalletCreationMapper(), CreatedIdMapper());
-  final getWallets = newGetWalletsUseCase(nucFactory, WalletsMapper());
+  final walletMapper = WalletMapper(moneyMapper);
+  final walletsMapper = WalletsMapper(walletMapper);
+  final getWallets = newGetWalletsUseCase(nucFactory, walletsMapper);
+
+  final historyMapper = HistoryMapper(TransactionSourceMapper(), moneyMapper);
+
+  final getUserInfo = newGetUserInfoUseCase(
+    nucFactory,
+    UserInfoMapper(walletsMapper, historyMapper),
+  );
 
   uiDeps = UIDeps._(
     authFacade,
@@ -125,6 +144,7 @@ Future<void> initialize() async {
     newToggleThemeBrightnessUseCase(sp),
     createWallet,
     getWallets,
+    getUserInfo,
     simpleBuilder,
     formWidget,
     exceptionListener,

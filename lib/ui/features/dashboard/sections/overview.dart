@@ -1,5 +1,5 @@
 import 'package:avencia/logic/core/money.dart';
-import 'package:avencia/logic/features/wallets/internal/values.dart';
+import 'package:avencia/logic/features/dashboard/internal/values.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -19,8 +19,8 @@ class OverviewSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<SimpleCubit<Wallets>>().state;
-    final wallets = state.assertLoaded();
+    final state = context.read<SimpleCubit<UserInfo>>().state;
+    final wallets = state.assertLoaded().wallets;
     return SectionWidget(
       title: Text("Overview"),
       action: IconButton(
