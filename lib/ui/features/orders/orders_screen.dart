@@ -4,7 +4,6 @@ import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
-import '../../core/widgets/history_entry_widget.dart';
 import '../dashboard/section_widget.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -35,67 +34,67 @@ class OrdersScreen extends StatelessWidget {
                 _DayOrders(
                   dayName: "Today",
                   orders: [
-                    HistoryEntryWidget(
-                      currency: "BTC",
-                      action: "Buy Bitcoin",
-                      date: "26m ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
-                    HistoryEntryWidget(
-                      currency: "ETH",
-                      action: "Withdraw",
-                      date: "3d 2h ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
-                    HistoryEntryWidget(
-                      currency: "BTC",
-                      action: "Buy Bitcoin",
-                      date: "26m ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
-                    HistoryEntryWidget(
-                      currency: "ETH",
-                      action: "Withdraw",
-                      date: "3d 2h ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
+                    //   HistoryEntryWidget(
+                    //     currency: "BTC",
+                    //     action: "Buy Bitcoin",
+                    //     date: "26m ago",
+                    //     usdAmount: "3,980.93 USD",
+                    //     amount: "0.5384 BTC",
+                    //   ),
+                    //   HistoryEntryWidget(
+                    //     currency: "ETH",
+                    //     action: "Withdraw",
+                    //     date: "3d 2h ago",
+                    //     usdAmount: "3,980.93 USD",
+                    //     amount: "0.5384 BTC",
+                    //   ),
+                    //   HistoryEntryWidget(
+                    //     currency: "BTC",
+                    //     action: "Buy Bitcoin",
+                    //     date: "26m ago",
+                    //     usdAmount: "3,980.93 USD",
+                    //     amount: "0.5384 BTC",
+                    //   ),
+                    //   HistoryEntryWidget(
+                    //     currency: "ETH",
+                    //     action: "Withdraw",
+                    //     date: "3d 2h ago",
+                    //     usdAmount: "3,980.93 USD",
+                    //     amount: "0.5384 BTC",
+                    //   ),
                   ],
                 ),
                 _DayOrders(
                   dayName: "Yesterday",
                   orders: [
-                    HistoryEntryWidget(
-                      currency: "BTC",
-                      action: "Buy Bitcoin",
-                      date: "26m ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
-                    HistoryEntryWidget(
-                      currency: "ETH",
-                      action: "Withdraw",
-                      date: "3d 2h ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
-                    HistoryEntryWidget(
-                      currency: "BTC",
-                      action: "Buy Bitcoin",
-                      date: "26m ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
-                    HistoryEntryWidget(
-                      currency: "ETH",
-                      action: "Withdraw",
-                      date: "3d 2h ago",
-                      usdAmount: "3,980.93 USD",
-                      amount: "0.5384 BTC",
-                    ),
+                    // HistoryEntryWidget(
+                    //   currency: "BTC",
+                    //   action: "Buy Bitcoin",
+                    //   date: "26m ago",
+                    //   usdAmount: "3,980.93 USD",
+                    //   amount: "0.5384 BTC",
+                    // ),
+                    // HistoryEntryWidget(
+                    //   currency: "ETH",
+                    //   action: "Withdraw",
+                    //   date: "3d 2h ago",
+                    //   usdAmount: "3,980.93 USD",
+                    //   amount: "0.5384 BTC",
+                    // ),
+                    // HistoryEntryWidget(
+                    //   currency: "BTC",
+                    //   action: "Buy Bitcoin",
+                    //   date: "26m ago",
+                    //   usdAmount: "3,980.93 USD",
+                    //   amount: "0.5384 BTC",
+                    // ),
+                    // HistoryEntryWidget(
+                    //   currency: "ETH",
+                    //   action: "Withdraw",
+                    //   date: "3d 2h ago",
+                    //   usdAmount: "3,980.93 USD",
+                    //   amount: "0.5384 BTC",
+                    // ),
                   ],
                 ),
                 SizedBox(height: 20),

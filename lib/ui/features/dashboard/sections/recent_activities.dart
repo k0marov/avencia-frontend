@@ -1,4 +1,8 @@
+import 'package:avencia/logic/features/dashboard/internal/values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/core.dart';
+import 'package:helpers/logic/simple_cubit.dart';
 
 import '../../../core/widgets/history_entry_widget.dart';
 import '../section_widget.dart';
@@ -9,6 +13,8 @@ class RecentActivitiesSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const actionsSpacing = SizedBox(height: 15);
+    final state = context.read<SimpleCubit<FullUserInfo>>().state;
+    final history = state.assertLoaded().history;
     return SectionWidget(
       title: Text("Recent Activities"),
       action: IconButton(
@@ -32,37 +38,7 @@ class RecentActivitiesSection extends StatelessWidget {
           child: Text("All"),
         ),
         SizedBox(height: 18),
-        HistoryEntryWidget(
-          currency: "BTC",
-          action: "Buy Bitcoin",
-          date: "26m ago",
-          usdAmount: "3,980.93 USD",
-          amount: "0.5384 BTC",
-        ),
-        actionsSpacing,
-        HistoryEntryWidget(
-          currency: "ETH",
-          action: "Withdraw",
-          date: "3d 2h ago",
-          usdAmount: "3,980.93 USD",
-          amount: "0.5384 BTC",
-        ),
-        actionsSpacing,
-        HistoryEntryWidget(
-          currency: "BTC",
-          action: "Buy Bitcoin",
-          date: "26m ago",
-          usdAmount: "3,980.93 USD",
-          amount: "0.5384 BTC",
-        ),
-        actionsSpacing,
-        HistoryEntryWidget(
-          currency: "LTC",
-          action: "Withdraw",
-          date: "3d 2h ago",
-          usdAmount: "3,980.93 USD",
-          amount: "0.5384 BTC",
-        ),
+        ...history.entries.map((entry) => HistoryEntryWidget(entry: entry)).toList(),
         actionsSpacing,
       ]),
     );

@@ -142,15 +142,53 @@ class _WalletsCard extends StatelessWidget {
 class _LastActivityCard extends StatelessWidget {
   const _LastActivityCard({Key? key}) : super(key: key);
 
+  String getMonth(int month) {
+    switch (month) {
+      case 1:
+        return "January";
+      case 2:
+        return "February";
+      case 3:
+        return "March";
+      case 4:
+        return "April";
+      case 5:
+        return "May";
+      case 6:
+        return "June";
+      case 7:
+        return "July";
+      case 8:
+        return "August";
+      case 9:
+        return "September";
+      case 10:
+        return "October";
+      case 11:
+        return "November";
+      case 12:
+        return "December";
+      default:
+        return "Unknown";
+    }
+  }
+
+  String formatDate(DateTime dt) => "${dt.day} ${getMonth(dt.month).substring(0, 3)}, ${dt.year}";
+
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
+    final state = context.read<SimpleCubit<FullUserInfo>>().state;
+    final history = state.assertLoaded().history;
+    final lastActionDate =
+        history.entries.length > 0 ? history.entries.first.transactedAt : DateTime.now();
+
     return DashboardCard(
       title: "Last Activity",
       content: SizedBox(
         width: double.infinity,
-        child: Text("19 Nov, 2019", style: text.headline2),
+        child: Text(formatDate(lastActionDate), style: text.headline2),
       ),
     );
   }

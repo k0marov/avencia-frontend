@@ -1,4 +1,6 @@
 import 'package:avencia/logic/features/dashboard/internal/values.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
@@ -27,7 +29,7 @@ class DashboardScreen extends StatelessWidget {
             OverviewSection(),
             DigitalWalletsSection(),
             RecentActivitiesSection(),
-          ],
+          ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
         ),
       ),
     );

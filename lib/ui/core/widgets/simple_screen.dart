@@ -30,7 +30,6 @@ class SimpleScreen extends StatelessWidget {
         SizedBox(height: ThemeConstants.sectionSpacing),
       ],
     );
-    print("rebuild");
     return Scaffold(
       appBar: createAvenciaAppBar(context),
       drawer: NavigationMenuDrawer(),

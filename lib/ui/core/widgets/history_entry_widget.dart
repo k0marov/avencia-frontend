@@ -1,22 +1,33 @@
+import 'package:avencia/logic/features/history/internal/entities.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 
+import '../../../logic/features/history/internal/values.dart';
 import 'currency_icon.dart';
 
 class HistoryEntryWidget extends StatelessWidget {
-  final String action;
-  final String currency;
-  final String date;
-  final String usdAmount;
-  final String amount;
+  final HistoryEntry entry;
   const HistoryEntryWidget({
     Key? key,
-    required this.action,
-    required this.currency,
-    required this.date,
-    required this.usdAmount,
-    required this.amount,
+    required this.entry,
   }) : super(key: key);
+
+  String entryAction(HistoryEntry entry) {
+    if (entry.source.type == TransactionSourceType.transfer) {
+      return "Transfer";
+    } else {
+      return entry.money.amount > 0 ? "Deposit" : "Withdrawal";
+    }
+  }
+
+  String formatDate(DateTime dt) {
+    final diff = DateTime.now().difference(dt);
+    if (diff.inHours > 0) {
+      return (diff.inDays > 0 ? "${diff.inDays}d " : "") + "${diff.inHours % 24}h ago";
+    } else {
+      return "${diff.inMinutes + 1}m ago";
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +40,16 @@ class HistoryEntryWidget extends StatelessWidget {
           children: [
             SizedBox(
               height: 30,
-              child: CurrencyIcon(currency: currency),
+              child: CurrencyIcon(currency: entry.money.currency),
             ),
             SizedBox(width: 5),
-            Text(action, style: text.headline3),
+            Text(entryAction(entry), style: text.headline3),
           ],
         ),
-        Text(date, style: text.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
-        Text(usdAmount, style: text.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
-        Text(amount, style: text.bodyText2),
+        Text(formatDate(entry.transactedAt),
+            style: text.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
+        Text("0 USD", style: text.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
+        Text("${entry.money.amount} ${entry.money.currency}", style: text.bodyText2),
       ].withSpaceBetween(height: 5),
     );
   }
