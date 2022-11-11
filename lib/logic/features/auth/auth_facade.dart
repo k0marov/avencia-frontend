@@ -34,11 +34,8 @@ class FirebaseAuthFacade implements AuthFacade {
   @override
   Future<Either<Exception, void>> logout() => withExceptionHandling(() async => _fbAuth.signOut());
 
-  Future<Option<AuthToken>> _userToToken(User? user) async => user != null
-      ? Some(
-          await user.getIdToken(),
-        )
-      : None();
+  Future<Option<AuthToken>> _userToToken(User? user) async =>
+      user != null ? Some(await user.getIdToken()) : None();
 
   @override
   Future<Either<Exception, void>> refresh() => withExceptionHandling(() async {

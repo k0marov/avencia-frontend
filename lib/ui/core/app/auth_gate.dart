@@ -16,6 +16,7 @@ class AuthGate extends StatelessWidget {
       create: (_) => AuthStateCubit(uiDeps.authFacade),
       child: BlocListener<AuthStateCubit, AuthState>(
         listener: (context, state) {
+          print(state);
           switch (state) {
             case AuthState.loading:
               return;
