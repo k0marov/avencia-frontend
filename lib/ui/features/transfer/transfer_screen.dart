@@ -16,11 +16,13 @@ class TransferScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleScreen(
       title: "Transfer",
-      contents: [
-        _RecipientSection(),
-        _WalletsSection(),
-        _SendSection(currency: "ETH"),
-      ],
+      contentBuilder: (_) => Column(
+        children: [
+          _RecipientSection(),
+          _WalletsSection(),
+          _SendSection(currency: "ETH"),
+        ],
+      ),
     );
   }
 }

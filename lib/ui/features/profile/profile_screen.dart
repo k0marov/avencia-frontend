@@ -12,11 +12,13 @@ class NewProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleScreen(
       title: "My Profile",
-      contents: [
-        PersonalDetailsSection(),
-        AddressSection(),
-        DocumentsSection(),
-      ],
+      contentBuilder: (_) => Column(
+        children: [
+          PersonalDetailsSection(),
+          AddressSection(),
+          DocumentsSection(),
+        ],
+      ),
     );
   }
 }

@@ -21,11 +21,13 @@ class WalletsScreen extends StatelessWidget {
       load: uiDeps.getWallets,
       loadedBuilder: (_, __) => SimpleScreen(
         title: "Wallets",
-        contents: [
-          ActionButtons(),
-          _Wallets(),
-          AddNewWallet(),
-        ],
+        contentBuilder: (_) => Column(
+          children: [
+            ActionButtons(),
+            _Wallets(),
+            AddNewWallet(),
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,6 @@
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
 
 import '../../../di.dart';
 import '../../../logic/features/wallets/internal/values.dart';
@@ -14,13 +15,20 @@ class DashboardScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return uiDeps.simpleBuilder<Wallets>(
       load: uiDeps.getWallets,
-      loadedBuilder: (wallets, _) => SimpleScreen(
+      loadingBuilder: () => SimpleScreen(
         title: "Dashboard",
-        contents: [
-          OverviewSection(),
-          DigitalWalletsSection(),
-          RecentActivitiesSection(),
-        ],
+        contentBuilder: (_) => AspectRatio(aspectRatio: 1, child: loadingWidget),
+      ),
+      loadedBuilder: (wallets, cubit) => SimpleScreen(
+        title: "Dashboard",
+        onRefresh: () async => cubit.refresh(),
+        contentBuilder: (_) => Column(
+          children: [
+            OverviewSection(),
+            DigitalWalletsSection(),
+            RecentActivitiesSection(),
+          ],
+        ),
       ),
     );
   }

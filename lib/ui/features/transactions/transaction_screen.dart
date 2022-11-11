@@ -11,7 +11,9 @@ class TransactionScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleScreen(
       title: "Transaction",
-      contents: [TransactionCodeWidget(metaTrans: trans)],
+      contentBuilder: (_) => Column(
+        children: [TransactionCodeWidget(metaTrans: trans)],
+      ),
     );
   }
 }

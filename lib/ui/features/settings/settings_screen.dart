@@ -12,9 +12,11 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SimpleScreen(
       title: "Settings",
-      contents: [
-        _AppearanceSection(),
-      ],
+      contentBuilder: (_) => Column(
+        children: [
+          _AppearanceSection(),
+        ],
+      ),
     );
   }
 }
