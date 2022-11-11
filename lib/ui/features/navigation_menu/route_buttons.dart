@@ -56,7 +56,7 @@ class _RouteButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final currentRoute = GoRouter.of(context).location;
-    final isSelected = currentRoute == route.path;
+    final isSelected = currentRoute == route.fullPath;
     final theme = Theme.of(context);
     return Container(
       color: isSelected ? theme.colorScheme.primary.withAlpha(10) : Colors.transparent,
@@ -64,7 +64,7 @@ class _RouteButton extends StatelessWidget {
         onTap: () async {
           await Future.delayed(navigationDelay);
           Scaffold.of(context).closeDrawer();
-          context.go(route.path);
+          context.go(route.fullPath);
         },
         child: Padding(
           padding: const EdgeInsets.all(12),

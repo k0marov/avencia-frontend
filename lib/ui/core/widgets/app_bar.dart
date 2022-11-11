@@ -1,10 +1,10 @@
+import 'package:avencia/di.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
-import '../app/routing.dart';
 import 'custom_icon_button.dart';
 
 PreferredSizeWidget createAvenciaAppBar(BuildContext context) {
@@ -50,7 +50,7 @@ class AvenciaAppBar extends StatelessWidget {
           Expanded(
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               FutureBuilder<UseCaseRes<EmailState>>(
-                future: StreamAuthScope.of(context).getEmail(),
+                future: uiDeps.authFacade.getEmail(),
                 builder: (_, AsyncSnapshot<UseCaseRes<EmailState>> snapshot) =>
                     stateSwitch<EmailState>(
                   state: snapshot.hasData

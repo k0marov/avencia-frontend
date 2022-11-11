@@ -11,14 +11,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return BrightnessBuilder(
       getBrightnessStream: uiDeps.getBrightness,
-      builder: (context, brightness) => StreamAuthScope(
-        child: MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          routerConfig: getRouter(),
-          darkTheme: createTheme(Brightness.dark),
-          theme: createTheme(Brightness.light),
-          themeMode: brightness,
-        ),
+      builder: (context, brightness) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        routerConfig: getRouter(),
+        darkTheme: createTheme(Brightness.dark),
+        theme: createTheme(Brightness.light),
+        themeMode: brightness,
       ),
     );
   }
