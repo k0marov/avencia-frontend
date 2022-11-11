@@ -1,8 +1,13 @@
+import 'package:avencia/di.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/core.dart';
+import 'package:helpers/logic/simple_cubit.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
 import '../../../logic/features/wallets/internal/values.dart';
@@ -12,22 +17,26 @@ import '../../core/widgets/wallet_card.dart';
 import '../dashboard/section_widget.dart';
 
 class TransferScreen extends StatelessWidget {
-  final Wallets wallets;
-  const TransferScreen({
-    Key? key,
-    required this.wallets,
-  }) : super(key: key);
+  const TransferScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SimpleScreen(
-      title: "Transfer",
-      contentBuilder: (_) => Column(
-        children: [
-          _RecipientSection(),
-          _WalletsSection(wallets: wallets),
-          _SendSection(currency: "ETH"),
-        ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+    return uiDeps.simpleBuilder<Wallets>(
+      load: uiDeps.getWallets,
+      loadingBuilder: () => SimpleScreen(
+        title: "Transfer",
+        contentBuilder: (_) => AspectRatio(aspectRatio: 1, child: loadingWidget),
+      ),
+      loadedBuilder: (_, cubit) => SimpleScreen(
+        title: "Transfer",
+        onRefresh: cubit.refresh,
+        contentBuilder: (_) => Column(
+          children: [
+            _RecipientSection(),
+            _WalletsSection(),
+            _SendSection(currency: "ETH"),
+          ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+        ),
       ),
     );
   }
@@ -55,14 +64,12 @@ class _RecipientSection extends StatelessWidget {
 
 // TODO: make it a drop down via the action button
 class _WalletsSection extends StatelessWidget {
-  final Wallets wallets;
-  const _WalletsSection({
-    Key? key,
-    required this.wallets,
-  }) : super(key: key);
+  const _WalletsSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<SimpleCubit<Wallets>>().state;
+    final wallets = state.assertLoaded();
     return SectionWidget(
       title: Text("Wallet"),
       action: IconButton(

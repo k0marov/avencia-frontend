@@ -24,8 +24,9 @@ class WalletsScreen extends StatelessWidget {
         title: "Wallets",
         contentBuilder: (_) => loadingWidget,
       ),
-      loadedBuilder: (_, __) => SimpleScreen(
+      loadedBuilder: (_, cubit) => SimpleScreen(
         title: "Wallets",
+        onRefresh: cubit.refresh,
         contentBuilder: (_) => Column(
           children: [
             ActionButtons(),

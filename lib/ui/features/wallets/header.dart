@@ -27,9 +27,7 @@ class ActionButtons extends StatelessWidget {
         child: SimpleButton(
           onPressed: () => Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (context) => TransferScreen(
-                wallets: wallets,
-              ),
+              builder: (context) => TransferScreen(),
             ),
           ),
           contents: Text("Send"),

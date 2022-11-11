@@ -1,8 +1,10 @@
 import 'package:avencia/logic/core/money.dart';
 import 'package:avencia/logic/features/dashboard/internal/values.dart';
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/simple_cubit.dart';
 
@@ -60,7 +62,7 @@ class _BalanceCard extends StatelessWidget {
           height: ThemeConstants.buttonSize,
           child: Row(children: [
             CustomIconButton(
-              onPressed: () {},
+              onPressed: () => context.go(Routes.settings.fullPath),
               icon: Icons.settings,
             ),
             SizedBox(width: itemsSpacing),
