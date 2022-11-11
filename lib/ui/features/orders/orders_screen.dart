@@ -1,8 +1,11 @@
+import 'package:avencia/di.dart';
+import 'package:avencia/logic/features/history/internal/entities.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
+import 'package:helpers/ui/errors/state_switch.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
 import '../dashboard/section_widget.dart';
@@ -14,37 +17,54 @@ class OrdersScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
-    return SimpleScreen(
-      title: 'Orders',
-      contentBuilder: (_) => Column(
+    return uiDeps.simpleBuilder<History>(
+      load: uiDeps.getHistory,
+      loadingBuilder: () => SimpleScreen(
+        title: "Orders",
+        contentBuilder: (_) => AspectRatio(aspectRatio: 1, child: loadingWidget),
+      ),
+      loadedBuilder: (_, cubit) => SimpleScreen(
+        title: 'Orders',
+        onRefresh: cubit.refresh,
+        contentBuilder: (_) => Column(
+          children: [
+            CustomTextField(
+              hint: "Search",
+              prefixIcon: Icon(Icons.search),
+              updValue: (_) {},
+              initial: Right(""),
+            ),
+            _AllOrders(),
+          ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+        ),
+      ),
+    );
+  }
+}
+
+class _AllOrders extends StatelessWidget {
+  const _AllOrders({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return SectionWidget(
+      padding: EdgeInsets.zero,
+      title: Padding(
+        padding: const EdgeInsets.all(24),
+        child: Text("All orders", style: Theme.of(context).textTheme.headline3),
+      ),
+      content: Column(
         children: [
-          CustomTextField(
-            hint: "Search",
-            prefixIcon: Icon(Icons.search),
-            updValue: (_) {},
-            initial: Right(""),
+          _DayOrders(
+            dayName: "Today",
+            orders: [],
           ),
-          SectionWidget(
-            padding: EdgeInsets.zero,
-            title: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Text("All orders", style: text.headline3),
-            ),
-            content: Column(
-              children: [
-                _DayOrders(
-                  dayName: "Today",
-                  orders: [],
-                ),
-                _DayOrders(
-                  dayName: "Yesterday",
-                  orders: [],
-                ),
-                SizedBox(height: 20),
-              ].withSpaceBetween(height: 25),
-            ),
+          _DayOrders(
+            dayName: "Yesterday",
+            orders: [],
           ),
-        ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+          SizedBox(height: 20),
+        ].withSpaceBetween(height: 25),
       ),
     );
   }

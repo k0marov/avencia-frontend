@@ -2,6 +2,7 @@ import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/core/money_mapper.dart';
 import 'package:avencia/logic/features/dashboard/usecases.dart';
 import 'package:avencia/logic/features/history/internal/history_mapper.dart';
+import 'package:avencia/logic/features/history/usecases.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
 import 'package:avencia/logic/features/wallets/internal/wallet_creation_mapper.dart';
@@ -55,6 +56,8 @@ class UIDeps {
   final GetThemeBrightnessStreamUseCase getBrightness;
   final ToggleThemeBrightnessUseCase toggleBrightness;
 
+  final GetHistoryUseCase getHistory;
+
   final CreateWalletUseCase createWallet;
   final GetWalletsUseCase getWallets;
 
@@ -74,6 +77,7 @@ class UIDeps {
     this.userDetailsFormFactory,
     this.getBrightness,
     this.toggleBrightness,
+    this.getHistory,
     this.createWallet,
     this.getWallets,
     this.getUserInfo,
@@ -119,6 +123,7 @@ Future<void> initialize() async {
   final getWallets = newGetWalletsUseCase(nucFactory, walletsMapper);
 
   final historyMapper = HistoryMapper(TransactionSourceMapper(), moneyMapper);
+  final getHistory = newGetHistoryUseCase(nucFactory, historyMapper);
 
   final getUserInfo = newGetUserInfoUseCase(
     nucFactory,
@@ -142,6 +147,7 @@ Future<void> initialize() async {
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     newGetThemeBrightnessUseCase(sp),
     newToggleThemeBrightnessUseCase(sp),
+    getHistory,
     createWallet,
     getWallets,
     getUserInfo,

@@ -21,41 +21,44 @@ class ActionButtons extends StatelessWidget {
     const spacing = SizedBox(width: 5);
     final state = context.read<SimpleCubit<Wallets>>().state;
     final wallets = state.assertLoaded();
-    return Row(children: [
-      SizedBox(
-        width: 75,
-        child: SimpleButton(
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (context) => TransferScreen(),
-            ),
-          ),
-          contents: Text("Send"),
-        ),
-      ),
-      spacing,
-      Expanded(
-        child: SizedBox(
-          width: 150,
+    return SizedBox(
+      height: 45,
+      child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        SizedBox(
+          width: 75,
           child: SimpleButton(
-            onPressed: () {},
-            contents: IconWithText(
-              icon: Icons.arrow_upward,
-              text: Text("Withdraw"),
+            onPressed: () => Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => TransferScreen(),
+              ),
+            ),
+            contents: Text("Send"),
+          ),
+        ),
+        spacing,
+        Expanded(
+          child: SizedBox(
+            width: 150,
+            child: SimpleButton(
+              onPressed: () {},
+              contents: IconWithText(
+                icon: Icons.arrow_upward,
+                text: Text("Withdraw"),
+              ),
             ),
           ),
         ),
-      ),
-      spacing,
-      Expanded(
-        child: GradientButton(
-          onPressed: () {},
-          content: IconWithText(
-            icon: Icons.arrow_downward,
-            text: Text("Deposit"),
+        spacing,
+        Expanded(
+          child: GradientButton(
+            onPressed: () {},
+            content: IconWithText(
+              icon: Icons.arrow_downward,
+              text: Text("Deposit"),
+            ),
           ),
         ),
-      ),
-    ]);
+      ]),
+    );
   }
 }
