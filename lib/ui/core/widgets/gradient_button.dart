@@ -32,7 +32,7 @@ class GradientButton extends StatelessWidget {
         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
         padding: EdgeInsets.zero,
         shape: StadiumBorder(),
-        onPressed: () {},
+        onPressed: onPressed,
         child: Padding(
           padding: EdgeInsets.symmetric(vertical: 10),
           child: Theme(

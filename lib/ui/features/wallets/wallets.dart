@@ -49,6 +49,7 @@ class _Wallets extends StatelessWidget {
         ),
         SizedBox(height: 5),
         ...wallets.wallets.map((w) => WalletSection(
+              walletId: w.id,
               type: "Wallet",
               currency: w.currency,
               amount: w.money.toString(),

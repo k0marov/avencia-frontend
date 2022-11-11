@@ -1,4 +1,6 @@
 import 'package:avencia/logic/features/currencies/currencies.dart';
+import 'package:avencia/logic/features/transactions/internal/values.dart';
+import 'package:avencia/ui/features/transactions/transaction_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/widgets/card_with_buttons.dart';
@@ -7,12 +9,14 @@ import '../../core/widgets/icon_with_text.dart';
 import '../dashboard/section_widget.dart';
 
 class WalletSection extends StatelessWidget {
+  final String walletId;
   final String type;
   final String currency;
   final String amount;
   final String usdAmount;
   const WalletSection({
     Key? key,
+    required this.walletId,
     required this.type,
     required this.currency,
     required this.amount,
@@ -56,14 +60,26 @@ class WalletSection extends StatelessWidget {
               contents: Text("Send", style: text.bodyText2),
             ),
             ButtonData(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => TransactionScreen(
+                    trans: MetaTransaction(TransactionType.withdrawal, walletId),
+                  ),
+                ),
+              ),
               contents: IconWithText(
                 icon: Icons.arrow_upward,
                 text: Text("Withdraw", style: text.bodyText2),
               ),
             ),
             ButtonData(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => TransactionScreen(
+                    trans: MetaTransaction(TransactionType.deposit, walletId),
+                  ),
+                ),
+              ),
               contents: IconWithText(
                 icon: Icons.arrow_downward,
                 text: Text("Deposit", style: text.bodyText2),

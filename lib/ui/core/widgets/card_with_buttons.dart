@@ -36,7 +36,7 @@ class CardWithButtons extends StatelessWidget {
       if (i > 0) widgets.add(SizedBox(width: _spacing));
       final buttonWidget = widgets.add(Expanded(
         child: SimpleButton(
-          onPressed: () {},
+          onPressed: buttons[i].onPressed,
           contents: buttons[i].contents,
           borderRadius: _getButtonBRadius(i),
           background: buttons[i].highlighted ? Theme.of(context).colorScheme.primary : null,

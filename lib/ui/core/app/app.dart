@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       builder: (context, brightness) => StreamAuthScope(
         child: MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          routerConfig: router,
+          routerConfig: getRouter(),
           darkTheme: createTheme(Brightness.dark),
           theme: createTheme(Brightness.light),
           themeMode: brightness,

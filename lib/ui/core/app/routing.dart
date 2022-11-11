@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:avencia/di.dart';
 import 'package:avencia/ui/features/auth/auth_screen.dart';
 import 'package:flutter/material.dart';
@@ -42,59 +44,59 @@ extension RoutePaths on Routes {
   }
 }
 
-final router = GoRouter(
-  routes: <GoRoute>[
-    GoRoute(
-      path: Routes.login.path,
-      builder: (BuildContext context, GoRouterState state) => const AuthScreen(),
-    ),
-    GoRoute(
-      path: Routes.dashboard.path,
-      builder: (BuildContext context, GoRouterState state) => const DashboardScreen(),
-    ),
-    GoRoute(
-      path: Routes.account.path,
-      builder: (BuildContext context, GoRouterState state) => const NewProfileScreen(),
-    ),
-    GoRoute(
-      path: Routes.wallets.path,
-      builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
-    ),
-    GoRoute(
-      path: Routes.transfer.path,
-      builder: (BuildContext context, GoRouterState state) => const TransferScreen(),
-    ),
-    GoRoute(
-      path: Routes.orders.path,
-      builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
-    ),
-    GoRoute(
-      path: Routes.settings.path,
-      builder: (BuildContext context, GoRouterState state) => SettingsScreen(),
-    ),
-  ],
+GoRouter getRouter() => GoRouter(
+      routes: <GoRoute>[
+        GoRoute(
+          path: Routes.login.path,
+          builder: (BuildContext context, GoRouterState state) => const AuthScreen(),
+        ),
+        GoRoute(
+          path: Routes.dashboard.path,
+          builder: (BuildContext context, GoRouterState state) => const DashboardScreen(),
+        ),
+        GoRoute(
+          path: Routes.account.path,
+          builder: (BuildContext context, GoRouterState state) => const NewProfileScreen(),
+        ),
+        GoRoute(
+          path: Routes.wallets.path,
+          builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
+        ),
+        GoRoute(
+          path: Routes.transfer.path,
+          builder: (BuildContext context, GoRouterState state) => const TransferScreen(),
+        ),
+        GoRoute(
+          path: Routes.orders.path,
+          builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
+        ),
+        GoRoute(
+          path: Routes.settings.path,
+          builder: (BuildContext context, GoRouterState state) => SettingsScreen(),
+        ),
+      ],
 
-  // redirect to the login page if the user is not logged in
-  redirect: (BuildContext context, GoRouterState state) async {
-    // Using `of` method creates a dependency of StreamAuthScope. It will
-    // cause go_router to reparse current route if StreamAuth has new sign-in
-    // information.
-    final loggedIn = (await StreamAuthScope.of(context).getToken()).isSome();
-    final bool loggingIn = state.subloc == Routes.login.path;
-    if (!loggedIn) {
-      return Routes.login.path;
-    }
+      // redirect to the login page if the user is not logged in
+      redirect: (BuildContext context, GoRouterState state) async {
+        // Using `of` method creates a dependency of StreamAuthScope. It will
+        // cause go_router to reparse current route if StreamAuth has new sign-in
+        // information.
+        final loggedIn = (await StreamAuthScope.of(context).getToken()).isSome();
+        final bool loggingIn = state.subloc == Routes.login.path;
+        if (!loggedIn) {
+          return Routes.login.path;
+        }
 
-    // if the user is logged in but still on the login page, send them to
-    // the home page
-    if (loggingIn) {
-      return Routes.dashboard.path;
-    }
+        // if the user is logged in but still on the login page, send them to
+        // the home page
+        if (loggingIn) {
+          return Routes.dashboard.path;
+        }
 
-    // no need to redirect at all
-    return null;
-  },
-);
+        // no need to redirect at all
+        return null;
+      },
+    );
 
 /// A scope that provides [StreamAuth] for the subtree.
 class StreamAuthScope extends InheritedNotifier<StreamAuthNotifier> {
@@ -116,11 +118,19 @@ class StreamAuthScope extends InheritedNotifier<StreamAuthNotifier> {
 
 /// A class that converts [StreamAuth] into a [ChangeNotifier].
 class StreamAuthNotifier extends ChangeNotifier {
+  late final StreamSubscription _subscription;
+
   /// Creates a [StreamAuthNotifier].
   StreamAuthNotifier() : streamAuth = uiDeps.authFacade {
-    streamAuth.getTokenStream().listen((_) {
+    _subscription = uiDeps.authFacade.getTokenStream().listen((_) {
       notifyListeners();
     });
+  }
+
+  @override
+  void dispose() {
+    _subscription.cancel();
+    super.dispose();
   }
 
   /// The stream auth client.
