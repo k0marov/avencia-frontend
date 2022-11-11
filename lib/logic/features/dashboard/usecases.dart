@@ -5,15 +5,15 @@ import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/http/http.dart';
 
-typedef GetUserInfoUseCase = Future<UseCaseRes<UserInfo>> Function();
+typedef GetFullUserInfoUseCase = Future<UseCaseRes<FullUserInfo>> Function();
 
-GetUserInfoUseCase newGetUserInfoUseCase(
+GetFullUserInfoUseCase newGetUserInfoUseCase(
   NetworkUseCaseFactory nuc,
-  UserInfoMapper mapper,
+  FullUserInfoMapper mapper,
 ) =>
     () => nuc.newBaseNetworkUseCase(
           inpMapper: NoInpMapper(),
-          getUri: (_, host) => Uri.http(host, getUserInfoEndpoint),
+          getUri: (_, host) => Uri.https(host, getUserInfoEndpoint),
           method: HTTPMethods.get,
           outMapper: mapper,
         )(null);

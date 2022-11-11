@@ -19,7 +19,7 @@ class OverviewSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<SimpleCubit<UserInfo>>().state;
+    final state = context.read<SimpleCubit<FullUserInfo>>().state;
     final wallets = state.assertLoaded().wallets;
     return SectionWidget(
       title: Text("Overview"),

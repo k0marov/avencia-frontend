@@ -13,7 +13,7 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return uiDeps.simpleBuilder<UserInfo>(
+    return uiDeps.simpleBuilder<FullUserInfo>(
       load: uiDeps.getUserInfo,
       loadingBuilder: () => SimpleScreen(
         title: "Dashboard",

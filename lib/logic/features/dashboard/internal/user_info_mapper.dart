@@ -4,13 +4,13 @@ import 'package:helpers/logic/entity/network_use_case_factory.dart';
 
 import '../../history/internal/history_mapper.dart';
 
-class UserInfoMapper implements OutMapper<UserInfo> {
+class FullUserInfoMapper implements OutMapper<FullUserInfo> {
   final WalletsMapper _wallets;
   final HistoryMapper _history;
-  const UserInfoMapper(this._wallets, this._history);
+  const FullUserInfoMapper(this._wallets, this._history);
 
   @override
-  UserInfo fromJson(Map<String, dynamic> json) => UserInfo(
+  FullUserInfo fromJson(Map<String, dynamic> json) => FullUserInfo(
         wallets: _wallets.fromJson(json["wallets"]),
         history: _history.fromJson(json["history"]),
       );

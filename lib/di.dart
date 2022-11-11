@@ -1,6 +1,5 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/core/money_mapper.dart';
-import 'package:avencia/logic/features/dashboard/internal/user_info_mapper.dart';
 import 'package:avencia/logic/features/dashboard/usecases.dart';
 import 'package:avencia/logic/features/history/internal/history_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
@@ -25,6 +24,7 @@ import 'package:helpers/ui/general/simple_cubit_builder.dart';
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import 'logic/features/auth/auth_facade.dart';
+import 'logic/features/dashboard/internal/user_info_mapper.dart';
 import 'logic/features/history/internal/transaction_source_mapper.dart';
 import 'logic/features/transactions/internal/meta_transaction_mapper.dart';
 import 'logic/features/transactions/internal/transaction_code_mapper.dart';
@@ -58,7 +58,7 @@ class UIDeps {
   final CreateWalletUseCase createWallet;
   final GetWalletsUseCase getWallets;
 
-  final GetUserInfoUseCase getUserInfo;
+  final GetFullUserInfoUseCase getUserInfo;
 
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
@@ -122,7 +122,7 @@ Future<void> initialize() async {
 
   final getUserInfo = newGetUserInfoUseCase(
     nucFactory,
-    UserInfoMapper(walletsMapper, historyMapper),
+    FullUserInfoMapper(walletsMapper, historyMapper),
   );
 
   uiDeps = UIDeps._(
