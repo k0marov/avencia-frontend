@@ -1,4 +1,6 @@
 import 'package:avencia/di.dart';
+import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -15,7 +17,7 @@ class SettingsScreen extends StatelessWidget {
       contentBuilder: (_) => Column(
         children: [
           _AppearanceSection(),
-        ],
+        ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
       ),
     );
   }

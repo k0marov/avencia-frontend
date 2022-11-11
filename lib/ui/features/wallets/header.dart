@@ -1,7 +1,10 @@
-import 'package:avencia/ui/core/app/routing.dart';
+import 'package:avencia/ui/features/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/core.dart';
+import 'package:helpers/logic/simple_cubit.dart';
 
+import '../../../logic/features/wallets/internal/values.dart';
 import '../../core/widgets/gradient_button.dart';
 import '../../core/widgets/icon_with_text.dart';
 import '../../core/widgets/simple_button.dart';
@@ -16,11 +19,19 @@ class ActionButtons extends StatelessWidget {
     final theme = Theme.of(context);
     final text = theme.textTheme;
     const spacing = SizedBox(width: 5);
+    final state = context.read<SimpleCubit<Wallets>>().state;
+    final wallets = state.assertLoaded();
     return Row(children: [
       SizedBox(
         width: 75,
         child: SimpleButton(
-          onPressed: () => context.go(Routes.transfer.path),
+          onPressed: () => Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (context) => TransferScreen(
+                wallets: wallets,
+              ),
+            ),
+          ),
           contents: Text("Send"),
         ),
       ),

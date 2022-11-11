@@ -1,4 +1,5 @@
 import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
@@ -101,7 +102,7 @@ class OrdersScreen extends StatelessWidget {
               ].withSpaceBetween(height: 25),
             ),
           ),
-        ],
+        ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
       ),
     );
   }

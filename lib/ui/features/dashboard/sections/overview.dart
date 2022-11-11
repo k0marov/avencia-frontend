@@ -96,10 +96,12 @@ class _TransactionsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final text = theme.textTheme;
+    final state = context.read<SimpleCubit<FullUserInfo>>().state;
+    final history = state.assertLoaded().history;
     return DashboardCard(
         title: "Transactions",
         content: Row(children: [
-          Text("34,405", style: text.headline2),
+          Text("${history.entries.length}", style: text.headline2),
           Spacer(),
           SizedBox(
             width: ThemeConstants.buttonSize,

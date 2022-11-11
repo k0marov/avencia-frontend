@@ -61,7 +61,7 @@ class _Wallets extends StatelessWidget {
               amount: w.money.amount.toString(),
               usdAmount: "42",
             )),
-      ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+      ].withSpaceBetween(height: ThemeConstants.cardSpacing),
     );
   }
 }

@@ -1,16 +1,22 @@
 import 'package:avencia/ui/core/general/helpers.dart';
+import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
+import '../../../logic/features/wallets/internal/values.dart';
 import '../../core/widgets/currency_icon.dart';
 import '../../core/widgets/gradient_button.dart';
 import '../../core/widgets/wallet_card.dart';
 import '../dashboard/section_widget.dart';
 
 class TransferScreen extends StatelessWidget {
-  const TransferScreen({Key? key}) : super(key: key);
+  final Wallets wallets;
+  const TransferScreen({
+    Key? key,
+    required this.wallets,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +25,9 @@ class TransferScreen extends StatelessWidget {
       contentBuilder: (_) => Column(
         children: [
           _RecipientSection(),
-          _WalletsSection(),
+          _WalletsSection(wallets: wallets),
           _SendSection(currency: "ETH"),
-        ],
+        ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
       ),
     );
   }
@@ -49,7 +55,11 @@ class _RecipientSection extends StatelessWidget {
 
 // TODO: make it a drop down via the action button
 class _WalletsSection extends StatelessWidget {
-  const _WalletsSection({Key? key}) : super(key: key);
+  final Wallets wallets;
+  const _WalletsSection({
+    Key? key,
+    required this.wallets,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,16 +72,7 @@ class _WalletsSection extends StatelessWidget {
           Icons.keyboard_arrow_down,
         ),
       ),
-      content: Column(children: [
-        WalletCard(currency: 'ETH', balance: "38.987421 ETH"),
-        WalletCard(
-          currency: 'BTC',
-          balance: "38.987421 BTC",
-          isSelected: true,
-        ),
-        WalletCard(currency: "ETH", balance: "0.836725275 BTC"),
-        WalletCard(currency: "BTC", balance: "0.836725275 BTC"),
-      ]),
+      content: Column(children: wallets.wallets.map((w) => WalletCard(w: w)).toList()),
     );
   }
 }

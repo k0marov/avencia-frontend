@@ -1,4 +1,5 @@
 import 'package:avencia/logic/features/currencies/currencies.dart';
+import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:flutter/material.dart';
 
 import '../general/themes/theme.dart';
@@ -6,13 +7,11 @@ import 'currency_icon.dart';
 import 'dashboard_card.dart';
 
 class WalletCard extends StatelessWidget {
-  final String currency;
-  final String balance;
+  final Wallet w;
   final bool isSelected;
   const WalletCard({
     Key? key,
-    required this.currency,
-    required this.balance,
+    required this.w,
     this.isSelected = false,
   }) : super(key: key);
 
@@ -25,16 +24,16 @@ class WalletCard extends StatelessWidget {
       child: DashboardCard(
         content: Row(
           children: [
-            CurrencyIcon(currency: currency),
+            CurrencyIcon(currency: w.money.currency),
             SizedBox(width: 10),
             Center(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(SupportedCurrencies.getData(currency)?.name ?? currency,
+                  Text(SupportedCurrencies.getData(w.money.currency)?.name ?? w.money.currency,
                       style: text.headline5),
-                  Text(balance, style: text.bodyText1),
+                  Text("${w.money.amount} ${w.money.currency}", style: text.bodyText1),
                 ],
               ),
             )

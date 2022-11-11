@@ -26,9 +26,6 @@ class RecentActivitiesSection extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: Text("Buy"),
-          style: TextButton.styleFrom(
-            backgroundColor: Theme.of(context).highlightColor,
-          ),
         ),
         TextButton(
           onPressed: () {},
@@ -37,6 +34,9 @@ class RecentActivitiesSection extends StatelessWidget {
         TextButton(
           onPressed: () {},
           child: Text("All"),
+          style: TextButton.styleFrom(
+            backgroundColor: Theme.of(context).highlightColor,
+          ),
         ),
         SizedBox(height: 18),
         ...history.entries.map((entry) => HistoryEntryWidget(entry: entry)).toList(),

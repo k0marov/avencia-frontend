@@ -6,7 +6,6 @@ import '../../features/dashboard/dashboard_screen.dart';
 import '../../features/orders/orders_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
-import '../../features/transfer/transfer_screen.dart';
 import '../../features/wallets/wallets.dart';
 import 'auth_gate.dart';
 
@@ -15,7 +14,6 @@ enum Routes {
   dashboard,
   account,
   wallets,
-  transfer,
   orders,
   settings,
 }
@@ -31,8 +29,6 @@ extension RoutePaths on Routes {
         return "account";
       case Routes.wallets:
         return "wallets";
-      case Routes.transfer:
-        return "transfer";
       case Routes.orders:
         return "orders";
       case Routes.settings:
@@ -64,10 +60,6 @@ final router = GoRouter(
         GoRoute(
           path: Routes.wallets.path,
           builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
-        ),
-        GoRoute(
-          path: Routes.transfer.path,
-          builder: (BuildContext context, GoRouterState state) => const TransferScreen(),
         ),
         GoRoute(
           path: Routes.orders.path,
