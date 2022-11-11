@@ -74,7 +74,7 @@ class _BalanceCard extends StatelessWidget {
             SizedBox(
               width: 120,
               child: GradientButton(
-                onPressed: () {},
+                onPressed: () => context.go(Routes.wallets.fullPath),
                 content: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 4),
                   child: IconWithText(
@@ -109,7 +109,7 @@ class _TransactionsCard extends StatelessWidget {
             width: ThemeConstants.buttonSize,
             height: ThemeConstants.buttonSize,
             child: CustomIconButton(
-              onPressed: () {},
+              onPressed: () => context.go(Routes.orders.fullPath),
               icon: Icons.send,
             ),
           ),
@@ -134,7 +134,7 @@ class _WalletsCard extends StatelessWidget {
           width: ThemeConstants.buttonSize,
           height: ThemeConstants.buttonSize,
           child: CustomIconButton(
-            onPressed: () {},
+            onPressed: () => context.go(Routes.wallets.fullPath),
             icon: Icons.wallet,
           ),
         )

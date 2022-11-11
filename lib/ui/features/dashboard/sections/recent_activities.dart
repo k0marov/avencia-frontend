@@ -1,6 +1,8 @@
 import 'package:avencia/logic/features/dashboard/internal/values.dart';
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 import 'package:helpers/logic/core.dart';
 import 'package:helpers/logic/simple_cubit.dart';
 
@@ -15,12 +17,11 @@ class RecentActivitiesSection extends StatelessWidget {
     const actionsSpacing = SizedBox(height: 15);
     final state = context.read<SimpleCubit<FullUserInfo>>().state;
     final history = state.assertLoaded().history;
-    print(history);
     return SectionWidget(
       title: Text("Recent Activities"),
-      action: IconButton(
-        onPressed: () {},
-        icon: Icon(Icons.more_horiz),
+      action: TextButton(
+        onPressed: () => context.go(Routes.orders.fullPath),
+        child: Text("View All"),
       ),
       content: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         TextButton(
