@@ -1,3 +1,4 @@
+import 'package:avencia/di.dart';
 import 'package:avencia/logic/core/money.dart';
 import 'package:avencia/logic/features/dashboard/internal/values.dart';
 import 'package:avencia/ui/core/app/routing.dart';
@@ -31,7 +32,7 @@ class OverviewSection extends StatelessWidget {
       ),
       content: Column(
         children: [
-          _BalanceCard(usdBalance: wallets.totalUSD),
+          _BalanceCard(usdBalance: uiDeps.getUsdTotal(wallets)),
           _TransactionsCard(),
           _WalletsCard(
             walletsCount: wallets.wallets.length,
@@ -56,7 +57,7 @@ class _BalanceCard extends StatelessWidget {
     return DashboardCard(
       title: "Balance",
       content: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text("\$$usdBalance", style: text.headline2),
+        Text("\$${usdBalance.toStringAsFixed(2)}", style: text.headline2),
         SizedBox(height: itemsSpacing),
         SizedBox(
           height: ThemeConstants.buttonSize,

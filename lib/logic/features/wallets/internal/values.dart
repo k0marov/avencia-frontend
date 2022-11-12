@@ -21,9 +21,7 @@ class WalletCreationVal extends Equatable {
 
 class Wallets extends Equatable {
   final List<Wallet> wallets;
-  final MoneyAmount totalUSD;
   @override
   List get props => [wallets];
-  const Wallets({required this.wallets})
-      : totalUSD = 0; // TODO: implement the algorithm for getting the totalUSD value
+  const Wallets({required this.wallets});
 }

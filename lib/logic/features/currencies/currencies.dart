@@ -7,7 +7,7 @@ import 'package:helpers/logic/http/http.dart';
 
 import '../../core/money.dart';
 
-const _coinApiHost = "api.coinapi.io";
+const _baseCurrency = "USD";
 
 class SupportedCurrencies {
   static const _currencies = [
@@ -36,7 +36,9 @@ Future<ExchangeRates> getRates(
     method: HTTPMethods.get,
     outMapper: ratesMapper,
   );
-  final result = await usecase(SupportedCurrencies.currencies);
+  final currencies =
+      SupportedCurrencies.currencies.where((curr) => curr.code != _baseCurrency).toList();
+  final result = await usecase(currencies);
   return result.fold(
     (exception) => throw exception,
     (rates) => rates,

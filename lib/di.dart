@@ -1,5 +1,9 @@
 import 'package:avencia/config/const.dart';
 import 'package:avencia/logic/core/money_mapper.dart';
+import 'package:avencia/logic/features/currencies/currencies.dart';
+import 'package:avencia/logic/features/currencies/internal/currencies_mapper.dart';
+import 'package:avencia/logic/features/currencies/internal/exchange_rates_mapper.dart';
+import 'package:avencia/logic/features/currencies/usecases.dart';
 import 'package:avencia/logic/features/dashboard/usecases.dart';
 import 'package:avencia/logic/features/history/internal/history_mapper.dart';
 import 'package:avencia/logic/features/history/usecases.dart';
@@ -64,6 +68,8 @@ class UIDeps {
 
   final GetFullUserInfoUseCase getUserInfo;
 
+  final USDTotalGetter getUsdTotal;
+
   final SimpleBuilderFactory simpleBuilder;
   final FormWidgetFactory formWidget;
   final BlocExceptionListenerFactory exceptionListener;
@@ -82,6 +88,7 @@ class UIDeps {
     this.createWallet,
     this.getWallets,
     this.getUserInfo,
+    this.getUsdTotal,
     this.simpleBuilder,
     this.formWidget,
     this.exceptionListener,
@@ -131,6 +138,9 @@ Future<void> initialize() async {
     FullUserInfoMapper(walletsMapper, historyMapper),
   );
 
+  final getUsdTotal =
+      newUSDTotalGetter(await getRates(nucFactory, CurrenciesMapper(), ExchangeRatesMapper()));
+
   uiDeps = UIDeps._(
     authFacade,
     transfer,
@@ -152,6 +162,7 @@ Future<void> initialize() async {
     createWallet,
     getWallets,
     getUserInfo,
+    getUsdTotal,
     simpleBuilder,
     formWidget,
     exceptionListener,
