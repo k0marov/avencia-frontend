@@ -139,7 +139,8 @@ Future<void> initialize() async {
     nucFactory,
     FullUserInfoMapper(walletsMapper, historyMapper),
   );
-  final rates = await getRates(nucFactory, CurrenciesMapper(), ExchangeRatesMapper());
+  final rates = await getRates(
+      NetworkUseCaseFactory(apiHost, http.Client()), CurrenciesMapper(), ExchangeRatesMapper());
   final convertUsd = newUSDConverter(rates);
   final getUsdTotal = newUSDTotalGetter(convertUsd);
 

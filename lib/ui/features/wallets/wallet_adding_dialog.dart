@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import '../../../di.dart';
 import '../../../logic/features/wallets/internal/values.dart';
 
-void showWalletAddingDialog(BuildContext context) {
+void showWalletAddingDialog(BuildContext context, void Function() refresh) {
   final theme = Theme.of(context);
   final text = theme.textTheme;
   showDialog(
@@ -26,7 +26,10 @@ void showWalletAddingDialog(BuildContext context) {
           child: ListView(
             children: SupportedCurrencies.currencies
                 .map(
-                  (c) => _SelectCurrencyWidget(currency: c),
+                  (c) => _SelectCurrencyWidget(
+                    currency: c,
+                    refresh: refresh,
+                  ),
                 )
                 .toList(),
           ),
@@ -39,8 +42,10 @@ void showWalletAddingDialog(BuildContext context) {
 // TODO: deal with screen refreshing
 
 class _SelectCurrencyWidget extends StatelessWidget {
+  final void Function() refresh;
   final CurrencyData currency;
-  const _SelectCurrencyWidget({Key? key, required this.currency}) : super(key: key);
+  const _SelectCurrencyWidget({Key? key, required this.currency, required this.refresh})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -53,7 +58,7 @@ class _SelectCurrencyWidget extends StatelessWidget {
           await uiDeps.createWallet(
             WalletCreationVal(currency: currency.code),
           );
-          // context.read<SimpleCubit<Wallets>>().refresh();
+          refresh();
         },
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 20),
