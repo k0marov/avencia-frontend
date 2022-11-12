@@ -1,5 +1,5 @@
 import 'package:avencia/logic/features/currencies/currencies.dart';
-import 'package:avencia/logic/features/currencies/currency_data.dart';
+import 'package:avencia/logic/features/currencies/values.dart';
 import 'package:avencia/ui/core/widgets/currency_icon.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

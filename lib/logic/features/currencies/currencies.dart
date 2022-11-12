@@ -1,4 +1,13 @@
-import 'package:avencia/logic/features/currencies/currency_data.dart';
+import 'package:avencia/config/const.dart';
+import 'package:avencia/logic/features/currencies/internal/currencies_mapper.dart';
+import 'package:avencia/logic/features/currencies/internal/exchange_rates_mapper.dart';
+import 'package:avencia/logic/features/currencies/values.dart';
+import 'package:helpers/logic/entity/network_use_case_factory.dart';
+import 'package:helpers/logic/http/http.dart';
+
+import '../../core/money.dart';
+
+const _coinApiHost = "api.coinapi.io";
 
 class SupportedCurrencies {
   static const _currencies = [
@@ -15,4 +24,21 @@ class SupportedCurrencies {
         (curr) => curr?.code == code,
         orElse: () => null,
       );
+}
+
+typedef ExchangeRates = Map<Currency, double>;
+
+Future<ExchangeRates> getRates(
+    NetworkUseCaseFactory nuc, CurrenciesMapper currMapper, ExchangeRatesMapper ratesMapper) async {
+  final usecase = nuc.newBaseNetworkUseCase(
+    inpMapper: currMapper,
+    getUri: (_, host) => Uri.https(host, getExchangeRatesEndpoint),
+    method: HTTPMethods.get,
+    outMapper: ratesMapper,
+  );
+  final result = await usecase(SupportedCurrencies.currencies);
+  return result.fold(
+    (exception) => throw exception,
+    (rates) => rates,
+  );
 }

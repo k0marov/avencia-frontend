@@ -22,6 +22,7 @@ import 'package:helpers/logic/uploader/uploader.dart';
 import 'package:helpers/ui/errors/bloc_exception_listener.dart';
 import 'package:helpers/ui/forms/form_widget.dart';
 import 'package:helpers/ui/general/simple_cubit_builder.dart';
+import 'package:http/http.dart' as http;
 import 'package:rx_shared_preferences/rx_shared_preferences.dart';
 
 import 'logic/features/auth/auth_facade.dart';
@@ -92,7 +93,7 @@ late final UIDeps uiDeps;
 Future<void> initialize() async {
   final authFacade = FirebaseAuthFacade(FirebaseAuth.instance);
   final authClientFactory = newAuthHTTPClientFactory(authFacade);
-  final nucFactory = NetworkUseCaseFactory(apiHost, authClientFactory);
+  final nucFactory = NetworkUseCaseFactory(apiHost, authClientFactory(http.Client()));
 
   final startTransaction =
       newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());

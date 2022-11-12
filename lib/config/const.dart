@@ -1,4 +1,4 @@
-const apiHost = "141.8.195.6";
+const apiHost = "avencia.skomarov.com";
 
 const transferEndpoint = "/v1/app/transfer";
 const getUserInfoEndpoint = "/v1/app/user";
@@ -13,3 +13,5 @@ const genTransactionCodeEndpoint = "/v1/app/gen-transaction-code";
 
 const createWalletEndpoint = "/v1/app/wallets";
 const getWalletsEndpoint = "/v1/app/wallets";
+
+const getExchangeRatesEndpoint = "/v1/app/exchange-rates";
