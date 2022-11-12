@@ -2,7 +2,6 @@ import 'package:avencia/di.dart';
 import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
-import 'package:avencia/ui/core/widgets/history_entry_widget.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:avencia/ui/features/wallets/footer.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +46,7 @@ class _Wallets extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("rebuild");
     final state = context.read<SimpleCubit<Wallets>>().state;
     final wallets = state.assertLoaded();
     return Column(
@@ -56,13 +56,7 @@ class _Wallets extends StatelessWidget {
           padding: const EdgeInsets.only(left: 12),
           child: Text("Crypto Accounts", style: Theme.of(context).textTheme.headline4),
         ),
-        ...wallets.wallets.map((w) => WalletSection(
-              walletId: w.id,
-              type: "Wallet",
-              currency: w.money.currency,
-              amount: w.money.amount.toString(),
-              usdAmount: getInDollars(w.money),
-            )),
+        ...wallets.wallets.map((w) => WalletSection(wallet: w)),
       ].withSpaceBetween(height: ThemeConstants.cardSpacing),
     );
   }

@@ -20,7 +20,7 @@ class AddressSection extends StatelessWidget {
       (context, FormInfo<Address> info) {
         final cubit = context.read<FormCubit<Address>>();
         return SectionWidget(
-          title: Text("Details"),
+          title: Text("Address"),
           action: Padding(
             padding: const EdgeInsets.all(8.0),
             child: info.action,

@@ -56,6 +56,8 @@ class UIDeps {
   final TransactionCodeCubit Function(TransactionCode code) transCodeCubitFactory;
 
   final KycCubit Function() passportCubitFactory;
+  final KycCubit Function() nationalIdCubitFactory;
+  final KycCubit Function() drivingLicenseCubitFactory;
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
   final FormCubit<Address> Function() addressFormFactory;
@@ -84,6 +86,8 @@ class UIDeps {
     this.startTransaction,
     this.transCodeCubitFactory,
     this.passportCubitFactory,
+    this.nationalIdCubitFactory,
+    this.drivingLicenseCubitFactory,
     this.userDetailsFormFactory,
     this.addressFormFactory,
     this.getBrightness,
@@ -111,7 +115,6 @@ Future<void> initialize() async {
       newStartTransactionUseCase(nucFactory, MetaTransactionMapper(), TransactionCodeMapper());
 
   final transfer = newTransferUseCase(nucFactory, TransferMapper());
-  final transferCubitFactory = newTransferCubitFactory();
 
   final networkCrud = NetworkCRUD(nucFactory);
   final uniqueNetworkCrud = UniqueNetworkCRUD(nucFactory);
@@ -150,20 +153,40 @@ Future<void> initialize() async {
   final convertUsd = newUSDConverter(rates);
   final getUsdTotal = newUSDTotalGetter(convertUsd);
 
+  final passportCubit = () => KycCubit(
+        StatusDeps(
+          newKycStatusGetter(uniqueNetworkCrud, passportStatusEndpoint, StatusMapper()),
+          newKycStatusSubmitter(nucFactory, passportStatusEndpoint),
+        ),
+        ImagesDeps(const [passportBackEndpoint, passportFrontEndpoint], uploader),
+        AgreementsDeps(2),
+      );
+  final nationalIdCubit = () => KycCubit(
+        StatusDeps(
+          newKycStatusGetter(uniqueNetworkCrud, nationalIdStatusEndpoint, StatusMapper()),
+          newKycStatusSubmitter(nucFactory, nationalIdStatusEndpoint),
+        ),
+        ImagesDeps(const [nationalIdBackEndpoint, nationalIdFrontEndpoint], uploader),
+        AgreementsDeps(2),
+      );
+  final drivingLicenseCubit = () => KycCubit(
+        StatusDeps(
+          newKycStatusGetter(uniqueNetworkCrud, dlStatusEndpoint, StatusMapper()),
+          newKycStatusSubmitter(nucFactory, dlStatusEndpoint),
+        ),
+        ImagesDeps(const [dlBackEndpoint, dlFrontEndpoint], uploader),
+        AgreementsDeps(2),
+      );
+
   uiDeps = UIDeps._(
     authFacade,
     transfer,
-    transferCubitFactory,
+    (walletId) => TransferCubit(transfer, walletId),
     startTransaction,
     (code) => TransactionCodeCubit(code),
-    () => KycCubit(
-      StatusDeps(
-        newKycStatusGetter(uniqueNetworkCrud, passportStatusEndpoint, StatusMapper()),
-        newKycStatusSubmitter(nucFactory, passportStatusEndpoint),
-      ),
-      ImagesDeps(const [passportBackEndpoint, passportFrontEndpoint], uploader),
-      AgreementsDeps(2),
-    ),
+    passportCubit,
+    nationalIdCubit,
+    drivingLicenseCubit,
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     () => FormCubit<Address>(readAddress, updateAddress),
     newGetThemeBrightnessUseCase(sp),

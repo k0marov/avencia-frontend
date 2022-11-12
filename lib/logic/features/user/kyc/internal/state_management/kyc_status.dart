@@ -34,6 +34,7 @@ class StatusExtension {
 
   void _load() async {
     _emit(None());
+    print("getting status");
     _emit(Some(await _deps.statusGetter()));
   }
 }

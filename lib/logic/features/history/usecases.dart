@@ -21,6 +21,7 @@ GetHistoryUseCase newGetHistoryUseCase(
         )(null);
 
 List<DayHistory> splitHistoryByDay(History h) {
+  print(h);
   final res = <DayHistory>[];
   for (final e in h.entries) {
     final current = res.isNotEmpty ? res.last.day : null;
@@ -28,7 +29,7 @@ List<DayHistory> splitHistoryByDay(History h) {
     if (diff != null ? diff.inDays > 0 : true) {
       res.add(DayHistory(e.transactedAt, [e]));
     } else {
-      res.first.operations.add(e);
+      res.last.operations.add(e);
     }
   }
   return res;

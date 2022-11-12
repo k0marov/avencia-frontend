@@ -17,6 +17,7 @@ class FirebaseAuthFacade implements AuthFacade {
   Future<Either<Exception, EmailState>> getEmail() => withExceptionHandling(() async {
         final user = _fbAuth.currentUser;
         if (user == null) throw UnauthenticatedException();
+        await user.reload();
         return EmailState(
           user.email ?? "",
           user.emailVerified,

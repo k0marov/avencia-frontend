@@ -1,4 +1,5 @@
 import 'package:avencia/di.dart';
+import 'package:avencia/logic/features/transfer/state_management/transfer_cubit.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
@@ -17,25 +18,42 @@ import '../../core/widgets/wallet_card.dart';
 import '../dashboard/section_widget.dart';
 
 class TransferScreen extends StatelessWidget {
-  const TransferScreen({Key? key}) : super(key: key);
+  final Wallet? initialWallet;
+  const TransferScreen({Key? key, this.initialWallet}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return uiDeps.simpleBuilder<Wallets>(
       load: uiDeps.getWallets,
       loadingBuilder: () => SimpleScreen(
-        title: "Transfer",
-        contentBuilder: (_) => AspectRatio(aspectRatio: 1, child: loadingWidget),
-      ),
+          title: "Transfer",
+          contentBuilder: (_) => AspectRatio(aspectRatio: 1, child: loadingWidget)),
       loadedBuilder: (_, cubit) => SimpleScreen(
         title: "Transfer",
         onRefresh: cubit.refresh,
-        contentBuilder: (_) => Column(
-          children: [
-            _RecipientSection(),
-            _WalletsSection(),
-            _SendSection(currency: "ETH"),
-          ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+        contentBuilder: (_) => BlocProvider<TransferCubit>(
+          create: (_) => uiDeps.transferCubitFactory(initialWallet),
+          child: BlocListener<TransferCubit, TransferState>(
+            listener: (context, state) => state.sendState.fold(
+                () {},
+                (s) => s.fold((e) {}, (sent) {
+                      if (sent) {
+                        context.read<SimpleCubit<Wallets>>().refresh();
+                        Navigator.of(context).pop();
+                      }
+                    })),
+            child: BlocBuilder<TransferCubit, TransferState>(
+              builder: (context, state) {
+                return Column(
+                  children: [
+                    _RecipientSection(),
+                    _WalletsSection(),
+                    _SendSection(),
+                  ].withSpaceBetween(height: ThemeConstants.sectionSpacing),
+                );
+              },
+            ),
+          ),
         ),
       ),
     );
@@ -52,9 +70,9 @@ class _RecipientSection extends StatelessWidget {
       content: Padding(
         padding: const EdgeInsets.symmetric(vertical: 8.0),
         child: CustomTextField(
-          updValue: (_) {},
-          label: "recipient username",
-          hint: "type in the recipient username",
+          updValue: context.read<TransferCubit>().recipientChanged,
+          label: "recipient email",
+          hint: "type in the recipient email",
           initial: Right(""),
         ),
       ),
@@ -70,28 +88,50 @@ class _WalletsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.read<SimpleCubit<Wallets>>().state;
     final wallets = state.assertLoaded();
+    final transferCubit = context.read<TransferCubit>();
     return SectionWidget(
       title: Text("Wallet"),
       action: IconButton(
-        onPressed: () {},
+        onPressed: transferCubit.walletsShowToggled,
         iconSize: 32,
         icon: Icon(
-          Icons.keyboard_arrow_down,
+          transferCubit.state.walletsShown ? Icons.keyboard_arrow_down : Icons.keyboard_arrow_up,
         ),
       ),
-      content: Column(children: wallets.wallets.map((w) => WalletCard(w: w)).toList()),
+      content: Column(
+        children: (transferCubit.state.walletsShown
+                ? wallets.wallets
+                : wallets.wallets.where((w) => w == transferCubit.state.data.myWallet))
+            .map(
+              (w) => InkWell(
+                onTap: () => transferCubit.walletChanged(w),
+                child: WalletCard(
+                  w: w,
+                  isSelected: w == transferCubit.state.data.myWallet,
+                ),
+              ),
+            )
+            .toList(),
+      ),
     );
   }
 }
 
 class _SendSection extends StatelessWidget {
-  final String currency;
-  const _SendSection({Key? key, required this.currency}) : super(key: key);
+  const _SendSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final cubit = context.read<TransferCubit>();
     return SectionWidget(
       title: Text("Send"),
+      action: cubit.state.sendState.fold(
+        () => CircularProgressIndicator(),
+        (some) => some.fold(
+          (e) => ExceptionWidget(exception: e),
+          (r) => null,
+        ),
+      ),
       content: Padding(
         padding: const EdgeInsets.symmetric(vertical: 10),
         child: SizedBox(
@@ -102,9 +142,9 @@ class _SendSection extends StatelessWidget {
                 child: CustomTextField(
                   prefixIcon: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: CurrencyIcon(currency: currency),
+                    child: CurrencyIcon(currency: cubit.state.data.myWallet.money.currency),
                   ),
-                  updValue: (_) {},
+                  updValue: (val) => cubit.amountChanged(double.tryParse(val) ?? 0),
                   hint: "amount to send",
                   initial: Right(""),
                 ),
@@ -112,7 +152,7 @@ class _SendSection extends StatelessWidget {
               SizedBox(
                 width: 100,
                 child: GradientButton(
-                  onPressed: () {},
+                  onPressed: cubit.sendPressed,
                   content: Text("Send"),
                 ),
               ),

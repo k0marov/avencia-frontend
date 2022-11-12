@@ -1,4 +1,6 @@
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../features/navigation_menu/navigation_menu.dart';
 import '../general/themes/theme.dart';
@@ -30,14 +32,19 @@ class SimpleScreen extends StatelessWidget {
         SizedBox(height: ThemeConstants.sectionSpacing),
       ],
     );
-    return Scaffold(
-      appBar: createAvenciaAppBar(context),
-      drawer: NavigationMenuDrawer(),
-      body: Padding(
-        padding: ThemeConstants.screenPadding,
-        child: onRefresh != null
-            ? RefreshIndicator(onRefresh: onRefresh!, child: mainContent)
-            : mainContent,
+    return WillPopScope(
+      onWillPop: () async =>
+          GoRouter.of(context).location !=
+          Routes.dashboard.fullPath, // TODO: remove this dirty workaround
+      child: Scaffold(
+        appBar: createAvenciaAppBar(context),
+        drawer: NavigationMenuDrawer(),
+        body: Padding(
+          padding: ThemeConstants.screenPadding,
+          child: onRefresh != null
+              ? RefreshIndicator(onRefresh: onRefresh!, child: mainContent)
+              : mainContent,
+        ),
       ),
     );
   }

@@ -8,19 +8,22 @@ class AuthScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return fb_ui.SignInScreen(
-      headerMaxExtent: 250,
-      headerBuilder: (context, constraints, _) {
-        return const Center(
-          child: Padding(
-            padding: EdgeInsets.only(top: 100, left: 20, right: 20),
-            child: LogoWidget(),
-          ),
-        );
-      },
-      providerConfigs: const [
-        fb_ui.EmailProviderConfiguration(),
-      ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: fb_ui.SignInScreen(
+        headerMaxExtent: 250,
+        headerBuilder: (context, constraints, _) {
+          return const Center(
+            child: Padding(
+              padding: EdgeInsets.only(top: 100, left: 20, right: 20),
+              child: LogoWidget(),
+            ),
+          );
+        },
+        providerConfigs: const [
+          fb_ui.EmailProviderConfiguration(),
+        ],
+      ),
     );
   }
 }

@@ -28,7 +28,7 @@ class AddressMapper implements FullMapper<Address> {
         address: json["address"],
         city: json["city"],
         state: json["state"],
-        zipCode: json["zipcode"],
+        zipCode: json["zip_code"],
       );
 
   @override

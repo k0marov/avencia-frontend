@@ -74,7 +74,7 @@ class _BalanceSection extends StatelessWidget {
       Row(children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text("Balance", style: text.headline5),
-          Text("\$156,153,517,892", style: text.headline2),
+          Text("\$157,163.42", style: text.headline2),
         ]),
         Spacer(),
         SizedBox(

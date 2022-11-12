@@ -1,6 +1,9 @@
 import 'package:avencia/logic/features/currencies/currencies.dart';
 import 'package:avencia/logic/features/transactions/internal/values.dart';
+import 'package:avencia/logic/features/wallets/internal/values.dart';
+import 'package:avencia/ui/core/widgets/history_entry_widget.dart';
 import 'package:avencia/ui/features/transactions/transaction_screen.dart';
+import 'package:avencia/ui/features/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../../core/widgets/card_with_buttons.dart';
@@ -9,18 +12,10 @@ import '../../core/widgets/icon_with_text.dart';
 import '../dashboard/section_widget.dart';
 
 class WalletSection extends StatelessWidget {
-  final String walletId;
-  final String type;
-  final String currency;
-  final String amount;
-  final String usdAmount;
+  final Wallet wallet;
   const WalletSection({
     Key? key,
-    required this.walletId,
-    required this.type,
-    required this.currency,
-    required this.amount,
-    required this.usdAmount,
+    required this.wallet,
   }) : super(key: key);
 
   @override
@@ -31,13 +26,14 @@ class WalletSection extends StatelessWidget {
       title: Row(children: [
         SizedBox(
           height: 45,
-          child: CurrencyIcon(currency: currency),
+          child: CurrencyIcon(currency: wallet.money.currency),
         ),
         SizedBox(width: 10),
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(SupportedCurrencies.getData(currency)?.name ?? currency, style: text.headline3),
+          Text(SupportedCurrencies.getData(wallet.money.currency)?.name ?? wallet.money.currency,
+              style: text.headline3),
           SizedBox(height: 5),
-          Text(type, style: text.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
+          Text("Wallet", style: text.bodyText2?.copyWith(fontWeight: FontWeight.bold)),
         ])
       ]),
       action: IconButton(
@@ -50,20 +46,23 @@ class WalletSection extends StatelessWidget {
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 2),
             child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              Text(amount, style: text.headline2),
-              Text(usdAmount, style: text.headline4),
+              Text(wallet.money.amount.toString(), style: text.headline2),
+              Text(getInDollars(wallet.money), style: text.headline4),
             ]),
           ),
           buttons: [
             ButtonData(
-              onPressed: () {},
+              onPressed: () => Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TransferScreen(
+                        initialWallet: wallet,
+                      ))),
               contents: Text("Send", style: text.bodyText2),
             ),
             ButtonData(
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => TransactionScreen(
-                    trans: MetaTransaction(TransactionType.withdrawal, walletId),
+                    trans: MetaTransaction(TransactionType.withdrawal, wallet.id),
                   ),
                 ),
               ),
@@ -76,7 +75,7 @@ class WalletSection extends StatelessWidget {
               onPressed: () => Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => TransactionScreen(
-                    trans: MetaTransaction(TransactionType.deposit, walletId),
+                    trans: MetaTransaction(TransactionType.deposit, wallet.id),
                   ),
                 ),
               ),

@@ -48,23 +48,27 @@ class AvenciaAppBar extends StatelessWidget {
           ),
           SizedBox(width: 15),
           Expanded(
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              FutureBuilder<UseCaseRes<EmailState>>(
-                future: uiDeps.authFacade.getEmail(),
-                builder: (_, AsyncSnapshot<UseCaseRes<EmailState>> snapshot) =>
-                    stateSwitch<EmailState>(
-                  state: snapshot.hasData
-                      ? Some(snapshot.data!)
-                      : None<Either<Exception, EmailState>>(),
-                  loadedBuilder: (loaded) => Text(
-                    loaded.email, // TODO: change this
-                    style: theme.textTheme.headline3,
-                    overflow: TextOverflow.clip,
-                  ),
+            child: FutureBuilder<UseCaseRes<EmailState>>(
+              future: uiDeps.authFacade.getEmail(),
+              builder: (_, AsyncSnapshot<UseCaseRes<EmailState>> snapshot) =>
+                  stateSwitch<EmailState>(
+                state:
+                    snapshot.hasData ? Some(snapshot.data!) : None<Either<Exception, EmailState>>(),
+                loadingBuilder: () => Container(),
+                loadedBuilder: (loaded) => Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      loaded.email, // TODO: change this
+                      style: theme.textTheme.headline3,
+                      overflow: TextOverflow.clip,
+                    ),
+                    Text(loaded.isVerified ? "Verified" : "Unverified",
+                        style: theme.textTheme.headline5),
+                  ],
                 ),
               ),
-              Text("Unverified", style: theme.textTheme.headline5),
-            ]),
+            ),
           ),
         ],
       ),

@@ -36,7 +36,9 @@ extension RoutePaths on Routes {
     }
   }
 
-  String get fullPath => "/$path";
+  String get fullPath => [Routes.dashboard, Routes.login].contains(this)
+      ? "/$path"
+      : "/${Routes.dashboard.path}/$path";
 }
 
 final router = GoRouter(
@@ -52,22 +54,24 @@ final router = GoRouter(
         GoRoute(
           path: Routes.dashboard.path,
           builder: (BuildContext context, GoRouterState state) => const DashboardScreen(),
-        ),
-        GoRoute(
-          path: Routes.account.path,
-          builder: (BuildContext context, GoRouterState state) => const NewProfileScreen(),
-        ),
-        GoRoute(
-          path: Routes.wallets.path,
-          builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
-        ),
-        GoRoute(
-          path: Routes.orders.path,
-          builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
-        ),
-        GoRoute(
-          path: Routes.settings.path,
-          builder: (BuildContext context, GoRouterState state) => SettingsScreen(),
+          routes: [
+            GoRoute(
+              path: Routes.account.path,
+              builder: (BuildContext context, GoRouterState state) => const NewProfileScreen(),
+            ),
+            GoRoute(
+              path: Routes.wallets.path,
+              builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
+            ),
+            GoRoute(
+              path: Routes.orders.path,
+              builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
+            ),
+            GoRoute(
+              path: Routes.settings.path,
+              builder: (BuildContext context, GoRouterState state) => SettingsScreen(),
+            ),
+          ],
         ),
       ],
     ),

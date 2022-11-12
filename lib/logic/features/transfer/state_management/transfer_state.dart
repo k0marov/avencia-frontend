@@ -1,18 +1,25 @@
 part of 'transfer_cubit.dart';
 
 class TransferState extends Equatable {
-  final String email;
-  final Currency currency;
-  final MoneyAmount amount;
-  final Exception? exception;
+  final TransferData data;
+  final bool walletsShown;
+  // False means the send button has not been pressed yet
+  // True means the transfer was completed successfully
+  final BlocState<bool> sendState;
 
   @override
-  List get props => [email, currency, amount, exception];
+  List get props => [data, walletsShown, sendState];
 
-  const TransferState(this.email, this.currency, this.amount, [this.exception]);
+  const TransferState(this.data, this.walletsShown, [this.sendState = const Some(Right(false))]);
 
-  TransferState withEmail(String email) => TransferState(email, currency, amount, exception);
-  TransferState withCurrency(Currency currency) => TransferState(email, currency, amount, exception);
-  TransferState withAmount(MoneyAmount amount) => TransferState(email, currency, amount, exception);
-  TransferState withException(Exception exception) => TransferState(email, currency, amount, exception);
+  TransferState copyWith({
+    TransferData? data,
+    bool? walletsShown,
+    BlocState<bool>? sendState,
+  }) =>
+      TransferState(
+        data ?? this.data,
+        walletsShown ?? this.walletsShown,
+        sendState ?? this.sendState,
+      );
 }

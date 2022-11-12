@@ -59,6 +59,12 @@ ThemeData createTheme(Brightness brightness) {
         foregroundColor: textColors.body(),
       ),
     ),
+    checkboxTheme: CheckboxThemeData(
+      fillColor: MaterialStateProperty.resolveWith(
+        (states) => states.contains(MaterialState.selected) ? AppColors.purple : Colors.transparent,
+      ),
+      side: BorderSide(color: textColors.halfInverse()),
+    ),
     drawerTheme: DrawerThemeData(
       backgroundColor: colors.background(),
     ),
