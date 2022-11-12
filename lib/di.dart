@@ -68,6 +68,7 @@ class UIDeps {
 
   final GetFullUserInfoUseCase getUserInfo;
 
+  final USDConverter convertUsd;
   final USDTotalGetter getUsdTotal;
 
   final SimpleBuilderFactory simpleBuilder;
@@ -88,6 +89,7 @@ class UIDeps {
     this.createWallet,
     this.getWallets,
     this.getUserInfo,
+    this.convertUsd,
     this.getUsdTotal,
     this.simpleBuilder,
     this.formWidget,
@@ -137,9 +139,9 @@ Future<void> initialize() async {
     nucFactory,
     FullUserInfoMapper(walletsMapper, historyMapper),
   );
-
-  final getUsdTotal =
-      newUSDTotalGetter(await getRates(nucFactory, CurrenciesMapper(), ExchangeRatesMapper()));
+  final rates = await getRates(nucFactory, CurrenciesMapper(), ExchangeRatesMapper());
+  final convertUsd = newUSDConverter(rates);
+  final getUsdTotal = newUSDTotalGetter(convertUsd);
 
   uiDeps = UIDeps._(
     authFacade,
@@ -162,6 +164,7 @@ Future<void> initialize() async {
     createWallet,
     getWallets,
     getUserInfo,
+    convertUsd,
     getUsdTotal,
     simpleBuilder,
     formWidget,

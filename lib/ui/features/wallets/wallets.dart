@@ -2,6 +2,7 @@ import 'package:avencia/di.dart';
 import 'package:avencia/logic/features/wallets/internal/values.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
 import 'package:avencia/ui/core/general/themes/theme.dart';
+import 'package:avencia/ui/core/widgets/history_entry_widget.dart';
 import 'package:avencia/ui/core/widgets/simple_screen.dart';
 import 'package:avencia/ui/features/wallets/footer.dart';
 import 'package:flutter/material.dart';
@@ -60,7 +61,7 @@ class _Wallets extends StatelessWidget {
               type: "Wallet",
               currency: w.money.currency,
               amount: w.money.amount.toString(),
-              usdAmount: "42",
+              usdAmount: getInDollars(w.money),
             )),
       ].withSpaceBetween(height: ThemeConstants.cardSpacing),
     );

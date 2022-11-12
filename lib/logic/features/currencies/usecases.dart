@@ -1,14 +1,19 @@
 import 'package:avencia/logic/features/currencies/currencies.dart';
 import 'package:avencia/logic/features/wallets/internal/values.dart';
 
+import '../../core/money.dart';
+
+typedef USDConverter = double Function(Money);
 typedef USDTotalGetter = double Function(Wallets);
 
-USDTotalGetter newUSDTotalGetter(ExchangeRates rates) => (wallets) {
-      double total = 0.0;
-      for (final w in wallets.wallets) {
-        final rate = rates[w.money.currency];
-        if (rate == null) continue; // TODO: maybe throw an error
-        total += w.money.amount / rate;
-      }
-      return total;
+USDConverter newUSDConverter(ExchangeRates rates) => (m) {
+      if (m.currency == baseCurrency) return m.amount;
+      final rate = rates[m.currency];
+      if (rate == null) throw Exception("the currency ${m.currency} is not supported");
+      return m.amount / rate;
     };
+
+USDTotalGetter newUSDTotalGetter(USDConverter convert) => (wallets) => wallets.wallets.fold(
+      0.0,
+      (prev, wallet) => prev + convert(wallet.money),
+    );

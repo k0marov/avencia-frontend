@@ -7,7 +7,7 @@ import 'package:helpers/logic/http/http.dart';
 
 import '../../core/money.dart';
 
-const _baseCurrency = "USD";
+const baseCurrency = "USD";
 
 class SupportedCurrencies {
   static const _currencies = [
@@ -37,7 +37,7 @@ Future<ExchangeRates> getRates(
     outMapper: ratesMapper,
   );
   final currencies =
-      SupportedCurrencies.currencies.where((curr) => curr.code != _baseCurrency).toList();
+      SupportedCurrencies.currencies.where((curr) => curr.code != baseCurrency).toList();
   final result = await usecase(currencies);
   return result.fold(
     (exception) => throw exception,

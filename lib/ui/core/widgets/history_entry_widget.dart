@@ -1,3 +1,4 @@
+import 'package:avencia/di.dart';
 import 'package:avencia/logic/core/money.dart';
 import 'package:avencia/logic/features/history/internal/entities.dart';
 import 'package:avencia/ui/core/general/helpers.dart';
@@ -25,7 +26,7 @@ String formatDate(DateTime dt) {
   }
 }
 
-String getInDollars(Money m) => "0 USD";
+String getInDollars(Money m) => "${uiDeps.convertUsd(m).toStringAsFixed(2)} USD";
 
 class HistoryEntryWidget extends StatelessWidget {
   final HistoryEntry entry;
