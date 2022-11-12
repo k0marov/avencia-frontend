@@ -61,6 +61,8 @@ class _NavigationAppBar extends StatelessWidget {
   }
 }
 
+// TODO: implement showing real values here
+
 class _BalanceSection extends StatelessWidget {
   const _BalanceSection({Key? key}) : super(key: key);
 

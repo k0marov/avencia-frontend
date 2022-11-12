@@ -9,6 +9,7 @@ import 'package:avencia/logic/features/history/internal/history_mapper.dart';
 import 'package:avencia/logic/features/history/usecases.dart';
 import 'package:avencia/logic/features/user/kyc/internal/status_mapper.dart';
 import 'package:avencia/logic/features/user/kyc/usecases.dart';
+import 'package:avencia/logic/features/user/user_details/address_crud.dart';
 import 'package:avencia/logic/features/wallets/internal/wallet_creation_mapper.dart';
 import 'package:avencia/logic/features/wallets/internal/wallets_mapper.dart';
 import 'package:avencia/logic/features/wallets/usecases.dart';
@@ -42,7 +43,7 @@ import 'logic/features/transfer/state_management/transfer_cubit.dart';
 import 'logic/features/transfer/usecases.dart';
 import 'logic/features/user/kyc/internal/state_management/kyc_cubit.dart';
 import 'logic/features/user/user_details/internal/mappers.dart';
-import 'logic/features/user/user_details/internal/user_details.dart';
+import 'logic/features/user/user_details/internal/values.dart';
 import 'logic/features/user/user_details/user_details_crud.dart';
 
 class UIDeps {
@@ -57,6 +58,7 @@ class UIDeps {
   final KycCubit Function() passportCubitFactory;
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
+  final FormCubit<Address> Function() addressFormFactory;
 
   final GetThemeBrightnessStreamUseCase getBrightness;
   final ToggleThemeBrightnessUseCase toggleBrightness;
@@ -83,6 +85,7 @@ class UIDeps {
     this.transCodeCubitFactory,
     this.passportCubitFactory,
     this.userDetailsFormFactory,
+    this.addressFormFactory,
     this.getBrightness,
     this.toggleBrightness,
     this.getHistory,
@@ -115,6 +118,9 @@ Future<void> initialize() async {
 
   final readUserDetails = newUserDetailsReader(uniqueNetworkCrud, UserDetailsMapper());
   final updateUserDetails = newUserDetailsUpdater(uniqueNetworkCrud, UserDetailsMapper());
+
+  final readAddress = newAddressReader(uniqueNetworkCrud, AddressMapper());
+  final updateAddress = newAddressUpdater(uniqueNetworkCrud, AddressMapper());
 
   final uploader = newUploader(authClientFactory, apiHost);
 
@@ -159,6 +165,7 @@ Future<void> initialize() async {
       AgreementsDeps(2),
     ),
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
+    () => FormCubit<Address>(readAddress, updateAddress),
     newGetThemeBrightnessUseCase(sp),
     newToggleThemeBrightnessUseCase(sp),
     getHistory,

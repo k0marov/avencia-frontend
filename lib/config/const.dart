@@ -4,6 +4,7 @@ const transferEndpoint = "/v1/app/transfer";
 const getUserInfoEndpoint = "/v1/app/user";
 const historyEndpoint = "/v1/app/history";
 const userDetailsEndpoint = "/v1/app/user/details";
+const addressEndpoint = "/v1/app/user/address";
 const passportEndpoint = "/v1/app/user/kyc/passport";
 const passportStatusEndpoint = "$passportEndpoint/status";
 const passportBackEndpoint = "$passportEndpoint/back";

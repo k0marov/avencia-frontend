@@ -1,4 +1,4 @@
-import 'package:avencia/logic/features/user/user_details/internal/user_details.dart';
+import 'package:avencia/logic/features/user/user_details/internal/values.dart';
 import 'package:helpers/logic/entity/network_use_case_factory.dart';
 import 'package:helpers/logic/general.dart';
 
@@ -7,31 +7,35 @@ class UserDetailsMapper implements InpMapper<UserDetails>, OutMapper<UserDetails
   UserDetails fromJson(Map<String, dynamic> json) {
     return UserDetails(
       fullName: json["full_name"],
-      displayName: json["display_name"],
+      lastName: json["last_name"],
       phone: json["phone"],
       birthDate: fromUnixSec(json["birth_date"]),
-      address: Address(
-        address: json["address"]["address"],
-        city: json["address"]["city"],
-        state: json["address"]["state"],
-        nation: json["address"]["nation"],
-        zipCode: json["address"]["zipcode"],
-      ),
     );
   }
 
   @override
   Map<String, dynamic> toJson(UserDetails v) => {
         "full_name": v.fullName,
-        "display_name": v.displayName,
+        "display_name": v.lastName,
         "phone": v.phone,
         "birth_date": toUnixSec(v.birthDate),
-        "address": {
-          "address": v.address.address,
-          "city": v.address.city,
-          "state": v.address.state,
-          "nation": v.address.nation,
-          "zip_code": v.address.zipCode,
-        }
+      };
+}
+
+class AddressMapper implements FullMapper<Address> {
+  @override
+  Address fromJson(Map<String, dynamic> json) => Address(
+        address: json["address"],
+        city: json["city"],
+        state: json["state"],
+        zipCode: json["zipcode"],
+      );
+
+  @override
+  Map<String, dynamic> toJson(Address v) => {
+        "address": v.address,
+        "city": v.city,
+        "state": v.state,
+        "zipcode": v.zipCode,
       };
 }

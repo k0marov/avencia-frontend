@@ -4,17 +4,16 @@ import 'package:helpers/logic/entity/unique_network_crud.dart';
 
 import 'internal/values.dart';
 
-UniqueReader<UserDetails> newUserDetailsReader(UniqueNetworkCRUD crud, OutMapper<UserDetails> map) {
+UniqueReader<Address> newAddressReader(UniqueNetworkCRUD crud, OutMapper<Address> map) {
   return crud.newReader(
-    endpoint: userDetailsEndpoint,
+    endpoint: addressEndpoint,
     outMap: map,
   );
 }
 
-UniqueUpdater<UserDetails> newUserDetailsUpdater(
-    UniqueNetworkCRUD crud, InpMapper<UserDetails> map) {
+UniqueUpdater<Address> newAddressUpdater(UniqueNetworkCRUD crud, InpMapper<Address> map) {
   return crud.newUpdater(
-    endpoint: userDetailsEndpoint,
+    endpoint: addressEndpoint,
     inpMap: map,
   );
 }
