@@ -30,9 +30,9 @@ class OrdersScreen extends StatelessWidget {
         title: "Orders",
         contentBuilder: (_) => AspectRatio(aspectRatio: 1, child: loadingWidget),
       ),
-      loadedBuilder: (_, cubit) => SimpleScreen(
+      loadedBuilder: (context, _) => SimpleScreen(
         title: 'Orders',
-        onRefresh: cubit.refresh,
+        onRefresh: () => context.read<SimpleCubit<History>>().refresh(),
         contentBuilder: (_) => BlocProvider<SearchCubit>(
           create: (_) => SearchCubit(),
           child: BlocBuilder<SearchCubit, SearchState>(

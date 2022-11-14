@@ -1,6 +1,6 @@
-import 'package:avencia/ui/core/app/auth_state_inherited_widget.dart';
 import 'package:avencia/ui/core/app/splash_screen.dart';
 import 'package:avencia/ui/features/auth/auth_screen.dart';
+import 'package:avencia/ui/features/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -9,12 +9,14 @@ import '../../features/orders/orders_screen.dart';
 import '../../features/profile/profile_screen.dart';
 import '../../features/settings/settings_screen.dart';
 import '../../features/wallets/wallets.dart';
+import 'auth_state_inherited_widget.dart';
 
 enum Routes {
   login,
   dashboard,
   account,
   wallets,
+  transfer,
   orders,
   settings,
 }
@@ -30,6 +32,8 @@ extension RoutePaths on Routes {
         return "account";
       case Routes.wallets:
         return "wallets";
+      case Routes.transfer:
+        return "transfer";
       case Routes.orders:
         return "orders";
       case Routes.settings:
@@ -76,6 +80,10 @@ final router = GoRouter(
     GoRoute(
       path: Routes.wallets.fullPath,
       builder: (BuildContext context, GoRouterState state) => const WalletsScreen(),
+    ),
+    GoRoute(
+      path: Routes.transfer.fullPath,
+      builder: (context, state) => const TransferScreen(),
     ),
     GoRoute(
       path: Routes.orders.fullPath,

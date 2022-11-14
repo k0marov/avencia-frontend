@@ -47,7 +47,7 @@ class TransactionCodeWidget extends StatelessWidget {
       ),
       uiDeps.simpleBuilder<TransactionCode>(
         load: () => uiDeps.startTransaction(metaTrans),
-        loadedBuilder: (code, _) => BlocProvider(
+        loadedBuilder: (context, code) => BlocProvider(
             create: (_) => uiDeps.transCodeCubitFactory(code),
             child: BlocBuilder<TransactionCodeCubit, TransactionCodeState>(
               builder: (context, state) => _buildMainContent(context, state),

@@ -80,7 +80,7 @@ class _BalanceSection extends StatelessWidget {
           uiDeps.simpleBuilder<Wallets>(
             load: uiDeps.getWallets,
             loadingBuilder: () => Text("\$0.00", style: text.headline2),
-            loadedBuilder: (wallets, cubit) {
+            loadedBuilder: (context, wallets) {
               final usdTotal = uiDeps.getUsdTotal(wallets);
               return Text("\$${usdTotal.toStringAsFixed(2)}", style: text.headline2);
             },
