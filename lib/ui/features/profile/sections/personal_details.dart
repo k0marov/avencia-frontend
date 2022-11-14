@@ -9,7 +9,6 @@ import 'package:helpers/ui/forms/date_picker_field.dart';
 import 'package:helpers/ui/forms/form_widget.dart';
 
 import '../../../core/general/themes/theme.dart';
-import '../../auth/email_field.dart';
 import '../../dashboard/section_widget.dart';
 
 class EditButton extends StatelessWidget {
@@ -61,7 +60,6 @@ class PersonalDetailsSection extends StatelessWidget {
                 updValue: (v) => cubit.valueEdited(info.current.copyWith(phone: v)),
                 getValue: (UserDetails ud) => ud.phone,
               ),
-              EmailField(),
               DatePickerField(
                 enabled: info.isEditing,
                 updValue: (v) => cubit.valueEdited(info.current.copyWith(birthDate: v)),

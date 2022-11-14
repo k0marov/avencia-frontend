@@ -54,6 +54,10 @@ ThemeData createTheme(Brightness brightness) {
       primaryContainer: colors.section(),
       secondaryContainer: colors.secondaryCard(),
     ),
+    inputDecorationTheme: InputDecorationTheme(
+      focusColor: textColors.title(),
+      floatingLabelStyle: textTheme.labelSmall,
+    ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: textColors.body(),

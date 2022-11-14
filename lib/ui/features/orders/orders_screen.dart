@@ -40,7 +40,7 @@ class OrdersScreen extends StatelessWidget {
               children: [
                 CustomTextField(
                   hint: "Search",
-                  prefixIcon: Icon(Icons.search),
+                  prefix: Icon(Icons.search),
                   updValue: context.read<SearchCubit>().updSearchText,
                   initial: Right(state),
                 ),

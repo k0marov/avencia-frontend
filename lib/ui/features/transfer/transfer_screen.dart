@@ -136,7 +136,7 @@ class _SendSection extends StatelessWidget {
             children: [
               Expanded(
                 child: CustomTextField(
-                  prefixIcon: Padding(
+                  prefix: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: CurrencyIcon(currency: cubit.state.data.myWallet.money.currency),
                   ),

@@ -50,7 +50,11 @@ class EmailDialog extends StatelessWidget {
               Navigator.of(context).pop();
             }
           : null,
-      child: Text(state.action == CurrentAction.updating ? "Update" : "Verify"),
+      child: Text(
+        state.actionEnabled
+            ? (state.action == CurrentAction.updating ? "Change" : "Verify")
+            : "Change",
+      ),
     );
   }
 }

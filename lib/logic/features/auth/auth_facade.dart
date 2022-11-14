@@ -14,6 +14,11 @@ class FirebaseAuthFacade implements AuthFacade {
   Stream<AuthState> getStateStream() => _fbAuth.userChanges().asyncMap(_userToState);
 
   @override
+  Future<Either<Exception, void>> updateDisplayName(String displayName) => withExceptionHandling(
+        () async => _fbAuth.currentUser?.updateDisplayName(displayName),
+      );
+
+  @override
   Future<Either<Exception, EmailState>> getEmail() => withExceptionHandling(() async {
         final user = _fbAuth.currentUser;
         if (user == null) throw UnauthenticatedException();

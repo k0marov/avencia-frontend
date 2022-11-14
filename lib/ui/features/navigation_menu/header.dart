@@ -1,5 +1,7 @@
 import 'package:avencia/di.dart';
+import 'package:avencia/ui/core/app/routing.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../logic/features/wallets/internal/values.dart';
 import '../../core/app/logo_widget.dart';
@@ -88,7 +90,11 @@ class _BalanceSection extends StatelessWidget {
         SizedBox(
           height: 55,
           width: 55,
-          child: CustomIconButton(iconSize: 25, onPressed: () {}, icon: Icons.monitor_heart),
+          child: CustomIconButton(
+            iconSize: 25,
+            onPressed: () => context.go(Routes.orders.fullPath),
+            icon: Icons.monitor_heart,
+          ),
         ),
       ])
     ]);
@@ -108,7 +114,7 @@ class _BalanceActions extends StatelessWidget {
       body: _BalanceAdditionalInfo(),
       buttons: [
         ButtonData(
-          onPressed: () {},
+          onPressed: () => context.go(Routes.wallets.fullPath),
           contents: IconWithText(
             icon: Icons.arrow_downward,
             text: Text(
@@ -119,7 +125,7 @@ class _BalanceActions extends StatelessWidget {
           highlighted: true,
         ),
         ButtonData(
-          onPressed: () {},
+          onPressed: () => context.go(Routes.wallets.fullPath),
           contents: IconWithText(
             icon: Icons.arrow_upward,
             text: Text(

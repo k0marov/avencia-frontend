@@ -13,6 +13,7 @@ import 'package:avencia/logic/features/user/user_details/address_crud.dart';
 import 'package:avencia/logic/features/wallets/internal/wallet_creation_mapper.dart';
 import 'package:avencia/logic/features/wallets/internal/wallets_mapper.dart';
 import 'package:avencia/logic/features/wallets/usecases.dart';
+import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
 import 'package:helpers/logic/entity/created_id_mapper.dart';
@@ -61,6 +62,7 @@ class UIDeps {
 
   final FormCubit<UserDetails> Function() userDetailsFormFactory;
   final FormCubit<Address> Function() addressFormFactory;
+  final FormCubit<String> Function() displayNameFormFactory;
 
   final GetThemeBrightnessStreamUseCase getBrightness;
   final ToggleThemeBrightnessUseCase toggleBrightness;
@@ -90,6 +92,7 @@ class UIDeps {
     this.drivingLicenseCubitFactory,
     this.userDetailsFormFactory,
     this.addressFormFactory,
+    this.displayNameFormFactory,
     this.getBrightness,
     this.toggleBrightness,
     this.getHistory,
@@ -189,6 +192,13 @@ Future<void> initialize() async {
     drivingLicenseCubit,
     () => FormCubit<UserDetails>(readUserDetails, updateUserDetails),
     () => FormCubit<Address>(readAddress, updateAddress),
+    () => FormCubit<String>(
+      () => authFacade.getState().then((result) => result.fold(
+            () => Left(UnauthenticatedException()),
+            (state) => Right(state.displayName ?? ""),
+          )),
+      authFacade.updateDisplayName,
+    ),
     newGetThemeBrightnessUseCase(sp),
     newToggleThemeBrightnessUseCase(sp),
     getHistory,

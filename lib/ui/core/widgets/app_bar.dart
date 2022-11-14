@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/auth/auth_facade.dart';
 import 'package:helpers/logic/auth/auth_state_bloc.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
@@ -69,22 +70,24 @@ class _AuthInfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final state = context.read<AuthStateCubit>().state;
+    final state = context.watch<AuthStateCubit>().state;
     final theme = Theme.of(context);
     final text = theme.textTheme;
-    return (state ?? None()).fold(
-      () => AspectRatio(aspectRatio: 1, child: loadingWidget),
-      (auth) => Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              (auth.displayName?.isEmpty ?? true) ? "Me" : auth.displayName!,
-              style: text.headline3,
-              overflow: TextOverflow.clip,
-            ),
-            Text(auth.emailState.isVerified ? "Verified" : "Unverified", style: text.headline5),
-          ],
+    return BlocBuilder<AuthStateCubit, AuthState?>(
+      builder: (context, state) => (state ?? None()).fold(
+        () => AspectRatio(aspectRatio: 1, child: loadingWidget),
+        (auth) => Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                (auth.displayName?.isEmpty ?? true) ? "Me" : auth.displayName!,
+                style: text.headline3,
+                overflow: TextOverflow.clip,
+              ),
+              Text(auth.emailState.isVerified ? "Verified" : "Unverified", style: text.headline5),
+            ],
+          ),
         ),
       ),
     );
