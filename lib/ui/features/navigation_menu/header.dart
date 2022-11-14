@@ -1,5 +1,7 @@
+import 'package:avencia/di.dart';
 import 'package:flutter/material.dart';
 
+import '../../../logic/features/wallets/internal/values.dart';
 import '../../core/app/logo_widget.dart';
 import '../../core/general/themes/theme.dart';
 import '../../core/widgets/card_with_buttons.dart';
@@ -19,9 +21,9 @@ class NavigationHeader extends StatelessWidget {
         ),
         gradient: LinearGradient(
           begin: Alignment.topRight,
-          end: Alignment.topLeft,
+          end: Alignment.bottomLeft,
           colors: [
-            Theme.of(context).colorScheme.primary.withAlpha(20),
+            Theme.of(context).colorScheme.primary.withAlpha(65),
             Colors.transparent,
           ],
         ),
@@ -61,20 +63,26 @@ class _NavigationAppBar extends StatelessWidget {
   }
 }
 
-// TODO: implement showing real values here
-
 class _BalanceSection extends StatelessWidget {
   const _BalanceSection({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // TODO: optimize this somehow, since loading all of the wallets info every time you open then nav bar is not good
     final theme = Theme.of(context);
     final text = theme.textTheme;
     return Column(children: [
       Row(children: [
         Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Text("Balance", style: text.headline5),
-          Text("\$157,163.42", style: text.headline2),
+          uiDeps.simpleBuilder<Wallets>(
+            load: uiDeps.getWallets,
+            loadingBuilder: () => Text("\$0.00", style: text.headline2),
+            loadedBuilder: (wallets, cubit) {
+              final usdTotal = uiDeps.getUsdTotal(wallets);
+              return Text("\$${usdTotal.toStringAsFixed(2)}", style: text.headline2);
+            },
+          ),
         ]),
         Spacer(),
         SizedBox(

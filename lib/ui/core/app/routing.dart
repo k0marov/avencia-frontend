@@ -42,7 +42,7 @@ extension RoutePaths on Routes {
 
 final router = GoRouter(
   redirect: (context, state) {
-    // creates a subscription on AuthStateCubit
+    // creates a subscription on AuthStateInheritedWidget
     // which causes this method to run every time a new auth state is emitted
     final authState = context.dependOnInheritedWidgetOfExactType<AuthStateInheritedWidget>()!.state;
     switch (authState) {
