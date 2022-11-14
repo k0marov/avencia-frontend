@@ -39,6 +39,11 @@ class RouteButtons extends StatelessWidget {
         route: Routes.orders,
       ),
       _RouteButton(
+        icon: Icons.attach_money,
+        text: "Bridge",
+        route: Routes.bridge,
+      ),
+      _RouteButton(
         icon: Icons.settings_outlined,
         text: "Settings",
         route: Routes.settings,

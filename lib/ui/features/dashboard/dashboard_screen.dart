@@ -8,7 +8,6 @@ import 'package:helpers/logic/simple_cubit.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
 import '../../../di.dart';
-import '../../../logic/features/wallets/internal/values.dart';
 import 'sections/digital_wallets.dart';
 import 'sections/overview.dart';
 import 'sections/recent_activities.dart';
@@ -26,7 +25,7 @@ class DashboardScreen extends StatelessWidget {
       ),
       loadedBuilder: (context, wallets) => SimpleScreen(
         title: "Dashboard",
-        onRefresh: () => context.read<SimpleCubit<Wallets>>().refresh(),
+        onRefresh: () async => context.read<SimpleCubit<FullUserInfo>>().refresh(),
         contentBuilder: (_) => Column(
           children: [
             OverviewSection(),

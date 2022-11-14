@@ -1,5 +1,6 @@
 import 'package:avencia/ui/core/app/splash_screen.dart';
 import 'package:avencia/ui/features/auth/auth_screen.dart';
+import 'package:avencia/ui/features/bridge/bridge_screen.dart';
 import 'package:avencia/ui/features/transfer/transfer_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -18,6 +19,7 @@ enum Routes {
   wallets,
   transfer,
   orders,
+  bridge,
   settings,
 }
 
@@ -36,6 +38,8 @@ extension RoutePaths on Routes {
         return "transfer";
       case Routes.orders:
         return "orders";
+      case Routes.bridge:
+        return "bridge";
       case Routes.settings:
         return "settings";
     }
@@ -88,6 +92,10 @@ final router = GoRouter(
     GoRoute(
       path: Routes.orders.fullPath,
       builder: (BuildContext context, GoRouterState state) => const OrdersScreen(),
+    ),
+    GoRoute(
+      path: Routes.bridge.fullPath,
+      builder: (BuildContext context, GoRouterState state) => const BridgeScreen(),
     ),
     GoRoute(
       path: Routes.settings.fullPath,
