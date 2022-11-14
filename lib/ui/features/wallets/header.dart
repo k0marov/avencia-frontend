@@ -19,8 +19,8 @@ class ActionButtons extends StatelessWidget {
     final theme = Theme.of(context);
     final text = theme.textTheme;
     const spacing = SizedBox(width: 5);
-    final state = context.read<SimpleCubit<Wallets>>().state;
-    final wallets = state.assertLoaded();
+    final cubit = context.read<SimpleCubit<Wallets>>();
+    final wallets = cubit.state.assertLoaded();
     return SizedBox(
       height: 45,
       child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -29,7 +29,10 @@ class ActionButtons extends StatelessWidget {
           child: SimpleButton(
             onPressed: () => Navigator.of(context).push(
               MaterialPageRoute(
-                builder: (context) => TransferScreen(),
+                builder: (context) => BlocProvider.value(
+                  value: cubit,
+                  child: TransferScreen(),
+                ),
               ),
             ),
             contents: Text("Send"),

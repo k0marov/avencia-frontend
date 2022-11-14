@@ -6,12 +6,12 @@ import 'package:helpers/logic/errors/errors.dart';
 class FirebaseAuthFacade implements AuthFacade {
   final FirebaseAuth _fbAuth;
   const FirebaseAuthFacade(this._fbAuth);
-  @override
-  Future<Option<AuthToken>> getToken() => _userToToken(_fbAuth.currentUser);
 
   @override
-  Stream<Option<AuthToken>> getTokenStream() =>
-      _fbAuth.idTokenChanges().asyncMap((_) => getToken());
+  Future<AuthState> getState() => _userToState(_fbAuth.currentUser);
+
+  @override
+  Stream<AuthState> getStateStream() => _fbAuth.userChanges().asyncMap(_userToState);
 
   @override
   Future<Either<Exception, EmailState>> getEmail() => withExceptionHandling(() async {
@@ -35,8 +35,13 @@ class FirebaseAuthFacade implements AuthFacade {
   @override
   Future<Either<Exception, void>> logout() => withExceptionHandling(() async => _fbAuth.signOut());
 
-  Future<Option<AuthToken>> _userToToken(User? user) async =>
-      user != null ? Some(await user.getIdToken()) : None();
+  Future<AuthState> _userToState(User? user) async => user != null
+      ? Some(UserState(
+          displayName: user.displayName,
+          emailState: EmailState(user.email, user.emailVerified),
+          token: await user.getIdToken(),
+        ))
+      : None();
 
   @override
   Future<Either<Exception, void>> refresh() => withExceptionHandling(() async {

@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart' show Right;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:helpers/ui/errors/state_switch.dart';
 import 'package:helpers/ui/forms/custom_text_field.dart';
 
 import '../../../logic/features/auth/email_field_cubit.dart';
@@ -21,32 +20,29 @@ class EmailDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<EmailFieldCubit, EmailFieldState>(builder: (context, state) {
-      return stateSwitch<LoadedState>(
-        state: state,
-        loadedBuilder: (loaded) => AlertDialog(
-          title: const Text("Change email"),
-          content: SizedBox(
-            width: 250,
-            child: CustomTextField(
-              hint: "email",
-              updValue: context.read<EmailFieldCubit>().edited,
-              initial: Right(loaded.edited),
-            ),
+    return BlocBuilder<EmailFieldCubit, EmailCubitState>(builder: (context, state) {
+      return AlertDialog(
+        title: const Text("Change email"),
+        content: SizedBox(
+          width: 250,
+          child: CustomTextField(
+            hint: "email",
+            updValue: context.read<EmailFieldCubit>().edited,
+            initial: Right(state.edited),
           ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text("Cancel"),
-            ),
-            _getActionButton(context, loaded),
-          ],
         ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(),
+            child: const Text("Cancel"),
+          ),
+          _getActionButton(context, state),
+        ],
       );
     });
   }
 
-  Widget _getActionButton(BuildContext context, LoadedState state) {
+  Widget _getActionButton(BuildContext context, EmailCubitState state) {
     return ElevatedButton(
       onPressed: state.actionEnabled
           ? () {

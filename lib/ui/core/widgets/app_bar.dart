@@ -1,8 +1,7 @@
-import 'package:avencia/di.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:helpers/logic/auth/auth_facade.dart';
-import 'package:helpers/logic/core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:helpers/logic/auth/auth_state_bloc.dart';
 import 'package:helpers/ui/errors/state_switch.dart';
 
 import 'custom_icon_button.dart';
@@ -47,29 +46,7 @@ class AvenciaAppBar extends StatelessWidget {
             child: Avatar(),
           ),
           SizedBox(width: 15),
-          Expanded(
-            child: FutureBuilder<UseCaseRes<EmailState>>(
-              future: uiDeps.authFacade.getEmail(),
-              builder: (_, AsyncSnapshot<UseCaseRes<EmailState>> snapshot) =>
-                  stateSwitch<EmailState>(
-                state:
-                    snapshot.hasData ? Some(snapshot.data!) : None<Either<Exception, EmailState>>(),
-                loadingBuilder: () => Container(),
-                loadedBuilder: (loaded) => Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      loaded.email, // TODO: change this
-                      style: theme.textTheme.headline3,
-                      overflow: TextOverflow.clip,
-                    ),
-                    Text(loaded.isVerified ? "Verified" : "Unverified",
-                        style: theme.textTheme.headline5),
-                  ],
-                ),
-              ),
-            ),
-          ),
+          _AuthInfo(),
         ],
       ),
       actions: [
@@ -83,6 +60,33 @@ class AvenciaAppBar extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class _AuthInfo extends StatelessWidget {
+  const _AuthInfo({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final state = context.read<AuthStateCubit>().state;
+    final theme = Theme.of(context);
+    final text = theme.textTheme;
+    return (state ?? None()).fold(
+      () => AspectRatio(aspectRatio: 1, child: loadingWidget),
+      (auth) => Expanded(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              (auth.displayName?.isEmpty ?? true) ? "Me" : auth.displayName!,
+              style: text.headline3,
+              overflow: TextOverflow.clip,
+            ),
+            Text(auth.emailState.isVerified ? "Verified" : "Unverified", style: text.headline5),
+          ],
+        ),
+      ),
     );
   }
 }

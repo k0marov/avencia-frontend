@@ -1,58 +1,46 @@
 import 'package:bloc/bloc.dart';
-import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:helpers/logic/auth/auth_facade.dart';
-import 'package:helpers/logic/core.dart';
 
 enum CurrentAction {
   updating,
   verifying,
 }
 
-typedef EmailFieldState = BlocState<LoadedState>;
-
-class LoadedState extends Equatable {
+class EmailCubitState extends Equatable {
   final EmailState current;
   final String edited;
+  final Exception? exception;
   @override
-  List get props => [current, edited];
+  List get props => [current, edited, exception];
   CurrentAction get action =>
       current.email == edited ? CurrentAction.verifying : CurrentAction.updating;
   bool get actionEnabled => !(action == CurrentAction.verifying && current.isVerified);
-  const LoadedState(this.current, this.edited);
-  LoadedState withEdited(String edited) => LoadedState(current, edited);
+  const EmailCubitState(this.current, this.edited, [this.exception]);
+  EmailCubitState withEdited(String edited) => EmailCubitState(current, edited, exception);
+  EmailCubitState withException(Exception exception) => EmailCubitState(current, edited, exception);
 }
 
-class EmailFieldCubit extends Cubit<EmailFieldState> {
+class EmailFieldCubit extends Cubit<EmailCubitState> {
   final AuthFacade _auth;
-  EmailFieldCubit(this._auth) : super(const None()) {
-    _load();
-  }
+  final EmailState _currentState;
+  EmailFieldCubit(this._auth, this._currentState)
+      : super(EmailCubitState(
+          _currentState,
+          _currentState.email ?? "",
+        ));
 
   void edited(String newVal) {
-    state.forLoaded(
-      (loaded) => emit(Some(Right(loaded.withEdited(newVal)))),
-    );
+    emit(state.withEdited(newVal));
   }
 
-  void actionPressed() {
-    state.forLoaded(
-      (loaded) async => (loaded.action == CurrentAction.updating
-              ? await _auth.updateEmail(loaded.edited)
-              : await _auth.verifyEmail())
-          .fold(
-        (e) => emit(Some(Left(e))),
-        (success) => null,
-      ),
+  void actionPressed() async {
+    (state.action == CurrentAction.updating
+            ? await _auth.updateEmail(state.edited)
+            : await _auth.verifyEmail())
+        .fold(
+      (e) => emit(state.withException(e)),
+      (success) => null,
     );
-  }
-
-  void _load() {
-    _auth.getEmail().then(
-          (res) => res.fold(
-            (e) => emit(Some(Left(e))),
-            (email) => emit(Some(Right(LoadedState(email, email.email)))),
-          ),
-        );
   }
 }
